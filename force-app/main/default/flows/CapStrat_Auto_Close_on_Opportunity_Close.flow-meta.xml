@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Send_Failure_Email</name>
+        <label>Send Failure Email to RFP Team</label>
+        <locationX>600</locationX>
+        <locationY>500</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <connector>
+            <targetReference>Each_CapStrat</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>emailAddresses</name>
+            <value>
+                <stringValue>rfp@passportinc.com</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <elementReference>fEmailSubject</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailBody</name>
+            <value>
+                <elementReference>fEmailBody</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <apiVersion>64.0</apiVersion>
+    <assignments>
+        <name>Set_CapStrat_Fields</name>
+        <label>Set Stage and Closed Reason</label>
+        <locationX>200</locationX>
+        <locationY>300</locationY>
+        <assignmentItems>
+            <assignToReference>Each_CapStrat.CapStrat_Stage__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>RFP Closed</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Each_CapStrat.RFP_Closed__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>fClosedReason</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Award_Date_Blank</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Set_Award_Date</name>
+        <label>Set Bid Award Date from Opp Close Date</label>
+        <locationX>100</locationX>
+        <locationY>400</locationY>
+        <assignmentItems>
+            <assignToReference>Each_CapStrat.Bid_Award_Date__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.CloseDate</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Update_CapStrat</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <name>Any_Open_CapStrats</name>
+        <label>Any Open CapStrats?</label>
+        <locationX>200</locationX>
+        <locationY>150</locationY>
+        <defaultConnectorLabel>None</defaultConnectorLabel>
+        <rules>
+            <name>Has_CapStrats</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Open_CapStrats</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Each_CapStrat</targetReference>
+            </connector>
+            <label>Has CapStrats</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Award_Date_Blank</name>
+        <label>Bid Award Date Blank?</label>
+        <locationX>200</locationX>
+        <locationY>380</locationY>
+        <defaultConnector>
+            <targetReference>Update_CapStrat</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Already Set</defaultConnectorLabel>
+        <rules>
+            <name>Blank_Award_Date</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Each_CapStrat.Bid_Award_Date__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_Award_Date</targetReference>
+            </connector>
+            <label>Blank Award Date</label>
+        </rules>
+    </decisions>
+    <description>When an Opportunity with the RFP checkbox is moved to Closed Won or Closed Lost, close its open Capture Strategies: CapStrat Stage to RFP Closed, RFP Closed Reason to Won/Lost, Bid Award Date from Opp Close Date when blank. If a Capture Strategy cannot be saved (required-field validation), it is left open and rfp@passportinc.com is emailed to update it manually.</description>
+    <environments>Default</environments>
+    <formulas>
+        <name>fClosedReason</name>
+        <dataType>String</dataType>
+        <expression>IF({!$Record.IsWon}, "Won", "Lost")</expression>
+    </formulas>
+    <formulas>
+        <name>fEmailSubject</name>
+        <dataType>String</dataType>
+        <expression>"Action needed: Capture Strategy not auto-closed for Opportunity " &amp; {!$Record.Name}</expression>
+    </formulas>
+    <formulas>
+        <name>fEmailBody</name>
+        <dataType>String</dataType>
+        <expression>"Opportunity " &amp; {!$Record.Name} &amp; " was closed as " &amp; IF({!$Record.IsWon}, "Won", "Lost") &amp; ", but its Capture Strategy " &amp; {!Each_CapStrat.Name} &amp; " could not be auto-closed because required fields are missing." &amp; BR() &amp; BR() &amp;
+"Error: " &amp; {!$Flow.FaultMessage} &amp; BR() &amp; BR() &amp;
+"Please fill in the missing fields and set the CapStrat Stage to RFP Closed manually:" &amp; BR() &amp;
+"Capture Strategy: https://passportlabs.lightning.force.com/" &amp; {!Each_CapStrat.Id} &amp; BR() &amp;
+"Opportunity: https://passportlabs.lightning.force.com/" &amp; {!$Record.Id}</expression>
+    </formulas>
+    <interviewLabel>CapStrat Auto Close {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>CapStrat - Auto Close on Opportunity Close</label>
+    <loops>
+        <name>Each_CapStrat</name>
+        <label>Each CapStrat</label>
+        <locationX>200</locationX>
+        <locationY>220</locationY>
+        <collectionReference>Get_Open_CapStrats</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Set_CapStrat_Fields</targetReference>
+        </nextValueConnector>
+    </loops>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Get_Open_CapStrats</name>
+        <label>Get Open CapStrats</label>
+        <locationX>200</locationX>
+        <locationY>80</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Any_Open_CapStrats</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Related_Opportunity__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>CapStrat_Stage__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue>RFP Closed</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>CapStrat_Stage__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue>Closed Lost</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>CapStrat_Stage__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue>Closed Won</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>CapStrat_Stage__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue>Did Not Bid</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>CapStrat_Stage__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue>Cancelled</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>CapStrat_Stage__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue>Unsolicited Response - No Action</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>Capture_Strategy__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <name>Update_CapStrat</name>
+        <label>Update CapStrat</label>
+        <locationX>200</locationX>
+        <locationY>480</locationY>
+        <connector>
+            <targetReference>Each_CapStrat</targetReference>
+        </connector>
+        <faultConnector>
+            <targetReference>Send_Failure_Email</targetReference>
+        </faultConnector>
+        <inputReference>Each_CapStrat</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>200</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Get_Open_CapStrats</targetReference>
+        </connector>
+        <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
+        <filterFormula>AND(
+  {!$Record.RFP__c},
+  OR(
+    ISPICKVAL({!$Record.StageName}, "Closed Won"),
+    ISPICKVAL({!$Record.StageName}, "Closed Lost")
+  )
+)</filterFormula>
+        <object>Opportunity</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>
