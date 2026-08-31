@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Closed_Won_Lost_Fields_Required</fullName>
+    <active>true</active>
+    <description>Competitors Bidding and Bid Award Date are required to close as Won or Lost. Other closure reasons, records created before 2026-08-31, and Bypass CapStrat Validation holders are exempt.</description>
+    <errorConditionFormula>NOT($Permission.Bypass_CapStrat_Validation) &amp;&amp;
+OR(ISNEW(), CreatedDate &gt;= DATETIMEVALUE("2026-08-31 00:00:00")) &amp;&amp;
+ISPICKVAL(CapStrat_Stage__c, "RFP Closed") &amp;&amp;
+OR(
+  ISPICKVAL(RFP_Closed__c, "Won"),
+  ISPICKVAL(RFP_Closed__c, "Lost")
+) &amp;&amp;
+(
+  ISBLANK(Competitor_Name__c) ||
+  ISBLANK(Bid_Award_Date__c)
+)</errorConditionFormula>
+    <errorMessage>To close this Capture Strategy as Won or Lost, first fill in Competitors Bidding and Bid Award Date.</errorMessage>
+</ValidationRule>

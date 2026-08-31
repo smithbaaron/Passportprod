@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Bid_Basics_Required_Past_Review</fullName>
+    <active>true</active>
+    <description>Bid Source, Prime or Sub Contractor, Received Date, Due Date, and Actual Bid Release Date are required to leave Bid Under Review. Records created before 2026-08-31 and Bypass CapStrat Validation holders are exempt.</description>
+    <errorConditionFormula>NOT($Permission.Bypass_CapStrat_Validation) &amp;&amp;
+OR(ISNEW(), CreatedDate &gt;= DATETIMEVALUE("2026-08-31 00:00:00")) &amp;&amp;
+NOT(ISBLANK(TEXT(CapStrat_Stage__c))) &amp;&amp;
+NOT(ISPICKVAL(CapStrat_Stage__c, "Bid Under Review")) &amp;&amp;
+(
+  ISBLANK(TEXT(Bid_Source__c)) ||
+  ISBLANK(TEXT(Primary_Bidder__c)) ||
+  ISBLANK(Received_Date__c) ||
+  ISBLANK(Due_Date__c) ||
+  ISBLANK(Actual_Bid_Release_Date__c)
+)</errorConditionFormula>
+    <errorMessage>To move this Capture Strategy past Bid Under Review, first fill in: Bid Source, Prime or Sub Contractor, Received Date, Due Date, and Actual Bid Release Date.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Submitted_Stage_Fields_Required</fullName>
+    <active>true</active>
+    <description>Submitted Date and Estimated Award Date are required at the Submitted stage and beyond. Did Not Bid/Cancelled closures, records created before 2026-08-31, and Bypass CapStrat Validation holders are exempt.</description>
+    <errorConditionFormula>NOT($Permission.Bypass_CapStrat_Validation) &amp;&amp;
+OR(ISNEW(), CreatedDate &gt;= DATETIMEVALUE("2026-08-31 00:00:00")) &amp;&amp;
+OR(
+  ISPICKVAL(CapStrat_Stage__c, "Submitted - Awaiting Customer Decision"),
+  ISPICKVAL(CapStrat_Stage__c, "RFP Shortlisted"),
+  ISPICKVAL(CapStrat_Stage__c, "Shortlisted - Awaiting Customer Decision"),
+  ISPICKVAL(CapStrat_Stage__c, "Awarded"),
+  ISPICKVAL(CapStrat_Stage__c, "RFP Closed")
+) &amp;&amp;
+NOT(OR(
+  ISPICKVAL(RFP_Closed__c, "Did Not Bid"),
+  ISPICKVAL(RFP_Closed__c, "Cancelled")
+)) &amp;&amp;
+(
+  ISBLANK(Submitted_Date__c) ||
+  ISBLANK(Estimated_Award_Date__c)
+)</errorConditionFormula>
+    <errorMessage>To move this Capture Strategy to Submitted (or any later stage), first fill in Submitted Date and Estimated Award Date.</errorMessage>
+</ValidationRule>

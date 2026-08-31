@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Closed_Reason_Required</fullName>
+    <active>true</active>
+    <description>An RFP Closed Reason must be selected when a Capture Strategy moves to the RFP Closed stage. Applies to records created on or after 2026-08-31; users with the Bypass CapStrat Validation permission are exempt.</description>
+    <errorConditionFormula>NOT($Permission.Bypass_CapStrat_Validation) &amp;&amp;
+OR(ISNEW(), CreatedDate &gt;= DATETIMEVALUE("2026-08-31 00:00:00")) &amp;&amp;
+ISPICKVAL(CapStrat_Stage__c, "RFP Closed") &amp;&amp;
+ISBLANK(TEXT(RFP_Closed__c))</errorConditionFormula>
+    <errorMessage>Select an RFP Closed Reason when moving this Capture Strategy to RFP Closed.</errorMessage>
+</ValidationRule>

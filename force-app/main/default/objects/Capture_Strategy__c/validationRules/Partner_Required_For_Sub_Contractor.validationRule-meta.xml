@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Partner_Required_For_Sub_Contractor</fullName>
+    <active>true</active>
+    <description>Partner(s) is required when Prime or Sub Contractor is Sub Contractor ("Partner Needed" allowed). Records created before 2026-08-31 and Bypass CapStrat Validation holders are exempt.</description>
+    <errorConditionFormula>NOT($Permission.Bypass_CapStrat_Validation) &amp;&amp;
+OR(ISNEW(), CreatedDate &gt;= DATETIMEVALUE("2026-08-31 00:00:00")) &amp;&amp;
+ISPICKVAL(Primary_Bidder__c, "Sub Contractor") &amp;&amp;
+ISBLANK(Partner_s__c)</errorConditionFormula>
+    <errorMessage>Select Partner(s) when bidding as a Sub Contractor. If a partner is not yet secured, choose "Partner Needed".</errorMessage>
+</ValidationRule>

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomPermission xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Bypass CapStrat Validation</label>
+    <description>Exempts the holder from the Capture Strategy required-field validation rules (for admins, data loads, and integrations).</description>
+</CustomPermission>

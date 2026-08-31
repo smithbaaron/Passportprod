@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>CapStrat Validation Bypass</label>
+    <description>Assign to admins, integration users, or data-load users who need to save Capture Strategy records without the required-field validation rules.</description>
+    <customPermissions>
+        <enabled>true</enabled>
+        <name>Bypass_CapStrat_Validation</name>
+    </customPermissions>
+    <hasActivationRequired>false</hasActivationRequired>
+</PermissionSet>
