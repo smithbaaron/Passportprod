@@ -1,5 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Send_Fault_Create</name>
+        <label>Email CS Rep - Renewal Not Created</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>emailAddresses</name>
+            <value>
+                <elementReference>fFaultRecipient</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>senderType</name>
+            <value>
+                <stringValue>OrgWideEmailAddress</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>senderAddress</name>
+            <value>
+                <stringValue>donotreply@passportinc.com</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <elementReference>fFaultSubjectCreate</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailBody</name>
+            <value>
+                <elementReference>fFaultBodyCreate</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <actionCalls>
+        <name>Send_Fault_Lines</name>
+        <label>Email CS Rep - Products Not Copied</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>emailAddresses</name>
+            <value>
+                <elementReference>fFaultRecipient</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>senderType</name>
+            <value>
+                <stringValue>OrgWideEmailAddress</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>senderAddress</name>
+            <value>
+                <stringValue>donotreply@passportinc.com</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <elementReference>fFaultSubjectLines</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailBody</name>
+            <value>
+                <elementReference>fFaultBodyLines</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
     <apiVersion>65.0</apiVersion>
     <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <assignments>
@@ -376,6 +454,38 @@
         <dataType>String</dataType>
         <expression>TEXT( YEAR( {!varNextRenewal} ) )</expression>
     </formulas>
+    <formulas>
+        <name>fFaultRecipient</name>
+        <dataType>String</dataType>
+        <expression>IF(ISBLANK({!$Record.Client_Success_Rep__r.Email}), "aaron.smith@passportinc.com", {!$Record.Client_Success_Rep__r.Email})</expression>
+    </formulas>
+    <formulas>
+        <name>fFaultSubjectCreate</name>
+        <dataType>String</dataType>
+        <expression>"Action needed: renewal opportunity NOT auto-created for " &amp; {!$Record.Name}</expression>
+    </formulas>
+    <formulas>
+        <name>fFaultBodyCreate</name>
+        <dataType>String</dataType>
+        <expression>"The auto-renewal automation could not create a renewal opportunity after " &amp; {!$Record.Name} &amp; " was closed." &amp; BR() &amp; BR() &amp;
+"Error: " &amp; {!$Flow.FaultMessage} &amp; BR() &amp; BR() &amp;
+"Please create the renewal opportunity manually." &amp; BR() &amp;
+"Closed opportunity: https://passportlabs.lightning.force.com/" &amp; {!$Record.Id}</expression>
+    </formulas>
+    <formulas>
+        <name>fFaultSubjectLines</name>
+        <dataType>String</dataType>
+        <expression>"Action needed: products missing on auto-created renewal for " &amp; {!$Record.Name}</expression>
+    </formulas>
+    <formulas>
+        <name>fFaultBodyLines</name>
+        <dataType>String</dataType>
+        <expression>"The auto-renewal automation created renewal opportunity " &amp; {!varName} &amp; " but could not copy the products onto it." &amp; BR() &amp; BR() &amp;
+"Error: " &amp; {!$Flow.FaultMessage} &amp; BR() &amp; BR() &amp;
+"Please add the products to it manually." &amp; BR() &amp;
+"Renewal opportunity: https://passportlabs.lightning.force.com/" &amp; {!Create_New_Renewal_Opportunity} &amp; BR() &amp;
+"Closed opportunity: https://passportlabs.lightning.force.com/" &amp; {!$Record.Id}</expression>
+    </formulas>
     <interviewLabel>Auto-Create Renewal Opportunity on Closed Won {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Auto-Create Renewal Opportunity on Closed Won</label>
     <loops>
@@ -631,6 +741,9 @@
         <connector>
             <targetReference>Get_Source_Products</targetReference>
         </connector>
+        <faultConnector>
+            <targetReference>Send_Fault_Create</targetReference>
+        </faultConnector>
         <object>Opportunity</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordCreates>
@@ -639,6 +752,9 @@
         <label>Create New Line Items</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
+        <faultConnector>
+            <targetReference>Send_Fault_Lines</targetReference>
+        </faultConnector>
         <inputReference>varNewLines</inputReference>
     </recordCreates>
     <recordLookups>
