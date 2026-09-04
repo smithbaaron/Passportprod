@@ -863,7 +863,7 @@ ISPICKVAL({!$Record.Type}, &quot;Renewal&quot;)
         <recordTriggerType>Update</recordTriggerType>
         <triggerType>RecordAfterSave</triggerType>
     </start>
-    <status>Draft</status>
+    <status>Active</status>
     <variables>
         <name>varNextRenewal</name>
         <dataType>Date</dataType>
