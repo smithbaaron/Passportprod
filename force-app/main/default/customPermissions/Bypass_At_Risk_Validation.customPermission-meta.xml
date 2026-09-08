@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomPermission xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Skips the At-Risk Journey validation rules and guards. Assign via the At-Risk Validation Bypass permission set for admin corrections and data loads.</description>
+    <isLicensed>false</isLicensed>
+    <label>Bypass At-Risk Validation</label>
+</CustomPermission>

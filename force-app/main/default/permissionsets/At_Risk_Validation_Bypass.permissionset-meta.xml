@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customPermissions>
+        <enabled>true</enabled>
+        <name>Bypass_At_Risk_Validation</name>
+    </customPermissions>
+    <description>Grants Bypass At-Risk Validation. Assign temporarily when an admin or data load must skip At-Risk Journey guards. Assigned to no one by default.</description>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>At-Risk Validation Bypass</label>
+</PermissionSet>
