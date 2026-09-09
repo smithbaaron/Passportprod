@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>ACCOUNT.NAME</field>
+    </columns>
+    <columns>
+        <field>At_Risk_Journey__c.Predicted_Churn_Date__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>At_Risk_Journey__c.Actual_Revenue_Sum_atrisk__c</field>
+    </columns>
+    <description>Living clients still marked Predicted Churn whose predicted date has already passed - churn is landing in the wrong reporting period until these are updated.</description>
+    <filter>
+        <criteriaItems>
+            <column>At_Risk_Journey__c.At_Risk_Journey_is_Open__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>1</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>At_Risk_Journey__c.Churn_Risk_Spectrum__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Predicted Churn</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>At_Risk_Journey__c.Predicted_Churn_Date__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>lessThan</operator>
+            <value>TODAY</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account.Status__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notEqual</operator>
+            <value>Former</value>
+        </criteriaItems>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Account.Client_Success_Rep_2__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Overdue Predicted Churn - Living Clients</name>
+    <reportType>AccountCustomEntity$At_Risk_Journey__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <timeFrameFilter>
+        <dateColumn>CREATED_DATE</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>
