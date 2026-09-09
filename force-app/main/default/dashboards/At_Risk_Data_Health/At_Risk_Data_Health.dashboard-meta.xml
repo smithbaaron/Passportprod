@@ -86,6 +86,14 @@
             <report>At_Risk_Data_Health/Stale_Open_Cases_60_Days</report>
             <title>The update-cadence gap</title>
         </components>
+        <components>
+            <chartAxisRange>Auto</chartAxisRange>
+            <componentType>Column</componentType>
+            <displayUnits>Auto</displayUnits>
+            <header>Revenue still on Former/Prospect accounts</header>
+            <report>At_Risk_Data_Health/Former_Prospect_Still_Generating_Revenue</report>
+            <sortBy>RowValueDescending</sortBy>
+        </components>
     </rightSection>
     <runningUser>aaron.smith@passportinc.com</runningUser>
     <textColor>#000000</textColor>
