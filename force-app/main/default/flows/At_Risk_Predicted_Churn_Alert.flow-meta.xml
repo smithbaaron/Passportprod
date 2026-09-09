@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Send_Entered_Alert</name>
+        <label>Email Forecast Owner - Entered Predicted Churn</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>emailAddresses</name>
+            <value>
+                <stringValue>cecily.bolton@passportinc.com</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>senderType</name>
+            <value>
+                <stringValue>OrgWideEmailAddress</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>senderAddress</name>
+            <value>
+                <stringValue>donotreply@passportinc.com</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <elementReference>fSubjEnter</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailBody</name>
+            <value>
+                <elementReference>fBodyEnter</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <actionCalls>
+        <name>Send_Left_Alert</name>
+        <label>Email Forecast Owner - Left Predicted Churn</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>emailAddresses</name>
+            <value>
+                <stringValue>cecily.bolton@passportinc.com</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>senderType</name>
+            <value>
+                <stringValue>OrgWideEmailAddress</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>senderAddress</name>
+            <value>
+                <stringValue>donotreply@passportinc.com</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <elementReference>fSubjLeave</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailBody</name>
+            <value>
+                <elementReference>fBodyLeave</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <apiVersion>64.0</apiVersion>
+    <decisions>
+        <name>Which_Transition</name>
+        <label>Entered or Left Predicted Churn?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>No Change - Skip</defaultConnectorLabel>
+        <rules>
+            <name>Entered_PC</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>fIsPC</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>fWasPC</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Send_Entered_Alert</targetReference>
+            </connector>
+            <label>Entered Predicted Churn</label>
+        </rules>
+        <rules>
+            <name>Left_PC</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>fWasPC</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>fIsPC</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Send_Left_Alert</targetReference>
+            </connector>
+            <label>Left Predicted Churn</label>
+        </rules>
+    </decisions>
+    <environments>Default</environments>
+    <formulas>
+        <name>fIsPC</name>
+        <dataType>Boolean</dataType>
+        <expression>ISPICKVAL({!$Record.Churn_Risk_Spectrum__c}, "Predicted Churn") &amp;&amp; {!$Record.At_Risk_Journey_is_Open__c}</expression>
+    </formulas>
+    <formulas>
+        <name>fWasPC</name>
+        <dataType>Boolean</dataType>
+        <expression>ISPICKVAL({!$Record__Prior.Churn_Risk_Spectrum__c}, "Predicted Churn") &amp;&amp; {!$Record__Prior.At_Risk_Journey_is_Open__c}</expression>
+    </formulas>
+    <formulas>
+        <name>fSubjEnter</name>
+        <dataType>String</dataType>
+        <expression>"Churn forecast update: " &amp; {!$Record.Account__r.Name} &amp; " marked Predicted Churn"</expression>
+    </formulas>
+    <formulas>
+        <name>fBodyEnter</name>
+        <dataType>String</dataType>
+        <expression>{!$Record.Account__r.Name} &amp; " has been marked Predicted Churn." &amp; BR() &amp; BR() &amp;
+"CS Rep: " &amp; {!$Record.CS_Rep__c} &amp; BR() &amp;
+"Predicted churn date: " &amp; IF(ISBLANK({!$Record.Predicted_Churn_Date__c}), "not set", TEXT({!$Record.Predicted_Churn_Date__c})) &amp; BR() &amp;
+"Revenue at risk: " &amp; IF(ISBLANK({!$Record.Actual_Revenue_Sum_atrisk__c}), "n/a", "$" &amp; TEXT({!$Record.Actual_Revenue_Sum_atrisk__c})) &amp; BR() &amp;
+"Primary cause: " &amp; TEXT({!$Record.Primary_At_Risk_Cause__c}) &amp; BR() &amp; BR() &amp;
+"Please include this account in the churn forecast." &amp; BR() &amp;
+"At-Risk Journey: https://passportlabs.lightning.force.com/" &amp; {!$Record.Id} &amp; BR() &amp;
+"Account: https://passportlabs.lightning.force.com/" &amp; {!$Record.Account__c}</expression>
+    </formulas>
+    <formulas>
+        <name>fSubjLeave</name>
+        <dataType>String</dataType>
+        <expression>"Churn forecast update: " &amp; {!$Record.Account__r.Name} &amp; " no longer Predicted Churn"</expression>
+    </formulas>
+    <formulas>
+        <name>fBodyLeave</name>
+        <dataType>String</dataType>
+        <expression>{!$Record.Account__r.Name} &amp; " is no longer marked Predicted Churn." &amp; BR() &amp; BR() &amp;
+IF({!$Record.At_Risk_Journey_is_Open__c},
+  "The risk level changed to: " &amp; TEXT({!$Record.Churn_Risk_Spectrum__c}),
+  "The at-risk case was closed." &amp; IF(ISBLANK({!$Record.Derisked_Client_Action__c}), "", " Resolution: " &amp; {!$Record.Derisked_Client_Action__c})
+) &amp; BR() &amp;
+"CS Rep: " &amp; {!$Record.CS_Rep__c} &amp; BR() &amp; BR() &amp;
+"Please update the churn forecast accordingly." &amp; BR() &amp;
+"At-Risk Journey: https://passportlabs.lightning.force.com/" &amp; {!$Record.Id} &amp; BR() &amp;
+"Account: https://passportlabs.lightning.force.com/" &amp; {!$Record.Account__c}</expression>
+    </formulas>
+    <interviewLabel>At-Risk: Predicted Churn Forecast Alert {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>At-Risk: Predicted Churn Forecast Alert</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Which_Transition</targetReference>
+        </connector>
+        <object>At_Risk_Journey__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>
