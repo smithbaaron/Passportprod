@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QuickAction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Guided at-risk check-in: walks a CS rep through updating the account's open at-risk case. Deliberately not placed on any page layout yet - invisible until rollout.</description>
+    <flowDefinition>At_Risk_Update_Status</flowDefinition>
+    <label>Update At-Risk Status</label>
+    <optionsCreateFeedItem>false</optionsCreateFeedItem>
+    <type>Flow</type>
+</QuickAction>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Last_Check_In__c</fullName>
+    <description>Date a CS rep last completed the guided Update At-Risk Status form for this case. Unlike Last Modified, this only moves when a human finishes a check-in, so it is the honest staleness metric and the trigger for check-in reminders.</description>
+    <externalId>false</externalId>
+    <label>Last Check-In Date</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>
