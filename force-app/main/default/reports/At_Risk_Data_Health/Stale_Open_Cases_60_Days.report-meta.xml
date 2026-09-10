@@ -4,7 +4,7 @@
         <field>ACCOUNT.NAME</field>
     </columns>
     <columns>
-        <field>LAST_UPDATE</field>
+        <field>CUST_LAST_UPDATE</field>
     </columns>
     <columns>
         <field>At_Risk_Journey__c.Churn_Risk_Spectrum__c</field>
@@ -26,7 +26,7 @@
             <value>Former</value>
         </criteriaItems>
         <criteriaItems>
-            <column>LAST_UPDATE</column>
+            <column>CUST_LAST_UPDATE</column>
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
             <operator>notEqual</operator>
