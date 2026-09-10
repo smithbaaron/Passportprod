@@ -37,3 +37,8 @@ working here:
 - Custom permission `Bypass_At_Risk_Validation` (perm set "At-Risk Validation
   Bypass") skips the at-risk guards; `Bypass_CapStrat_Validation` does the same
   for CapStrat rules. Both are assigned to no one by default.
+- Account `At_Risk_Client__c` ("At-Risk Client (RETIRED FIELD)") is retired
+  per Aaron (Sep 2026): never read or write it. The live flag is the
+  `Is_At_Risk__c` formula (open-journey count > 0). The mirror sync maintains
+  only spectrum + date fields (v3+). Blocked Former accounts keep a stale
+  checkmark until churn explanations unlock them.

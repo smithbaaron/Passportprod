@@ -135,12 +135,6 @@
             </value>
         </filters>
         <inputAssignments>
-            <field>At_Risk_Client__c</field>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
             <field>At_Risk_Date__c</field>
             <value>
                 <elementReference>Get_Open_Journey.At_Risk_Date__c</elementReference>
@@ -173,12 +167,6 @@
                 <elementReference>$Record.Account__c</elementReference>
             </value>
         </filters>
-        <inputAssignments>
-            <field>At_Risk_Client__c</field>
-            <value>
-                <booleanValue>false</booleanValue>
-            </value>
-        </inputAssignments>
         <inputAssignments>
             <field>At_Risk_Date__c</field>
             <value>
