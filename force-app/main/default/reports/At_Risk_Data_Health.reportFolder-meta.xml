@@ -5,5 +5,10 @@
         <sharedTo>cecily.bolton@passportinc.com</sharedTo>
         <sharedToType>User</sharedToType>
     </folderShares>
+    <folderShares>
+        <accessLevel>View</accessLevel>
+        <sharedTo>marcia.barnette@passportinc.com</sharedTo>
+        <sharedToType>User</sharedToType>
+    </folderShares>
     <name>At-Risk Data Health</name>
 </ReportFolder>
