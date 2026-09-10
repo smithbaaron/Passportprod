@@ -9,7 +9,7 @@
     <columns>
         <field>TYPE</field>
     </columns>
-    <description>Former (churned) accounts still carrying leftover at-risk values that cannot be cleared because a blank churn explanation blocks all edits. Intentionally checks the retired At-Risk Client checkbox: the leftovers live in the old fields.</description>
+    <description>Former (churned) accounts that still have an open at-risk case or leftover at-risk values on the account. Includes the accounts blocked from cleanup by a missing churn explanation; open zombie cases also appear in the Zombie Cases report.</description>
     <filter>
         <booleanFilter>1 AND (2 OR 3 OR 4)</booleanFilter>
         <criteriaItems>
@@ -20,7 +20,7 @@
             <value>Former</value>
         </criteriaItems>
         <criteriaItems>
-            <column>Account.At_Risk_Client__c</column>
+            <column>Account.Is_At_Risk__c</column>
             <columnToColumn>false</columnToColumn>
             <isUnlocked>false</isUnlocked>
             <operator>equals</operator>
