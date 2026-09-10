@@ -9,6 +9,7 @@
     <columns>
         <field>TYPE</field>
     </columns>
+    <description>Former (churned) accounts still carrying leftover at-risk values that cannot be cleared because a blank churn explanation blocks all edits. Intentionally checks the retired At-Risk Client checkbox: the leftovers live in the old fields.</description>
     <filter>
         <booleanFilter>1 AND (2 OR 3 OR 4)</booleanFilter>
         <criteriaItems>
