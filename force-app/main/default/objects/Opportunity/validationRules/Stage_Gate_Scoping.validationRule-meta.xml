@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Stage_Gate_Scoping</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+  RecordType.DeveloperName = &quot;Standard_Opportunity&quot;,
+  OR(
+    ISPICKVAL(Type, &quot;New Business - New Customer&quot;),
+    ISPICKVAL(Type, &quot;New Business - Cross-Sell&quot;)
+  ),
+  ISCHANGED(StageName),
+  CASE(
+    TEXT(StageName),
+    &quot;Lead Qualification&quot;, 1,
+    &quot;Discovery&quot;, 2,
+    &quot;SE Technical Review&quot;, 3,
+    &quot;Proposal&quot;, 4,
+    &quot;RFP&quot;, 5,
+    &quot;Award&quot;, 6,
+    &quot;Scoping&quot;, 7,
+    &quot;Contract&quot;, 8,
+    &quot;Closed Won&quot;, 9,
+    0
+  ) &gt; 7,
+  CASE(
+    TEXT(PRIORVALUE(StageName)),
+    &quot;Lead Qualification&quot;, 1,
+    &quot;Discovery&quot;, 2,
+    &quot;SE Technical Review&quot;, 3,
+    &quot;Proposal&quot;, 4,
+    &quot;RFP&quot;, 5,
+    &quot;Award&quot;, 6,
+    &quot;Scoping&quot;, 7,
+    &quot;Contract&quot;, 8,
+    &quot;Closed Won&quot;, 9,
+    0
+  ) &lt;= 7,
+  OR(
+    NOT(Demo_Complete__c),
+    ISBLANK(Expected_Launch__c)
+  )
+)</errorConditionFormula>
+    <errorMessage>Complete Scoping before advancing: Demo Completed and Expected Launch Date are required.</errorMessage>
+</ValidationRule>
