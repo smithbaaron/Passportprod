@@ -42,3 +42,15 @@ working here:
   `Is_At_Risk__c` formula (open-journey count > 0). The mirror sync maintains
   only spectrum + date fields (v3+). Blocked Former accounts keep a stale
   checkmark until churn explanations unlock them.
+- Administratively-closed churn cases carry
+  `Derisked_Resolution__c = 'Client churned - closed administratively'` (with
+  `Derisked_Client_Action__c = 'Client Churned'`). This is the filter key to
+  exclude the one-time zombie cleanup from any closed-case reporting. The Sep
+  2026 pass closed 210 such cases on Former accounts.
+- Both at-risk validation rules now honor `Bypass_At_Risk_Validation`:
+  `Account.Churn_Explanation` and `At_Risk_Journey__c.Only_Latest_Journey_Can_Be_Open`.
+  Assign perm set "At-Risk Validation Bypass" for admin bulk ops, then unassign.
+- Bulk-closing at-risk cases requires pausing the legacy `De_Risk_Final` flow
+  (FLOW label "FLOW: Email Alert De-Risked", 300R700000SsLU3IAN) first: it
+  fires the 10-recipient de-risk email on every close AND writes the account
+  (which fails on blocked Former accounts). Restore it after.
