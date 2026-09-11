@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Stage_Gate_SE_Technical_Review</fullName>
+    <active>true</active>
+    <description>New Business (non-RFP, Standard) opps need an SE assigned (Solution_Engineer_s__c), SE Technical Review Complete, and a review date before crossing forward past the SE Technical Review stage. Backward moves and Closed Lost/Rejected are exempt.</description>
+    <errorConditionFormula>AND(
+  NOT( RFP__c ),
+  RecordType.DeveloperName = "Standard_Opportunity",
+  OR(
+    ISPICKVAL( Type, "New Business - New Customer" ),
+    ISPICKVAL( Type, "New Business - Cross-Sell" )
+  ),
+  ISCHANGED( StageName ),
+  CASE( TEXT( StageName ),
+    "Lead Qualification", 1, "Discovery", 2, "SE Technical Review", 3,
+    "Proposal", 4, "RFP", 5, "Award", 6, "Scoping", 7,
+    "Contract", 8, "Closed Won", 9, 0 ) &gt; 3,
+  CASE( TEXT( PRIORVALUE( StageName ) ),
+    "Lead Qualification", 1, "Discovery", 2, "SE Technical Review", 3,
+    "Proposal", 4, "RFP", 5, "Award", 6, "Scoping", 7,
+    "Contract", 8, "Closed Won", 9, 0 ) &lt;= 3,
+  OR(
+    ISBLANK( Solution_Engineer_s__c ),
+    NOT( SE_Technical_Review_Complete__c ),
+    ISBLANK( SE_Technical_Review_Date__c )
+  )
+)</errorConditionFormula>
+    <errorMessage>Before advancing past the SE Technical Review stage, assign a Solution Engineer, mark SE Technical Review Complete, and enter the SE Technical Review Date.</errorMessage>
+</ValidationRule>
