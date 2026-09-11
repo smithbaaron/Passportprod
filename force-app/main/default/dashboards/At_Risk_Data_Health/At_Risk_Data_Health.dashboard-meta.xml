@@ -3,98 +3,197 @@
     <backgroundEndColor>#FFFFFF</backgroundEndColor>
     <backgroundFadeDirection>Diagonal</backgroundFadeDirection>
     <backgroundStartColor>#FFFFFF</backgroundStartColor>
+    <dashboardGridLayout>
+        <dashboardGridComponents>
+            <colSpan>4</colSpan>
+            <columnIndex>0</columnIndex>
+            <dashboardComponent>
+                <autoselectColumnsFromReport>true</autoselectColumnsFromReport>
+                <componentType>Metric</componentType>
+                <groupingSortProperties/>
+                <header>Overdue predicted churn (living clients)</header>
+                <indicatorBreakpoint1>1.0</indicatorBreakpoint1>
+                <indicatorBreakpoint2>50.0</indicatorBreakpoint2>
+                <indicatorHighColor>#C23934</indicatorHighColor>
+                <indicatorLowColor>#00716B</indicatorLowColor>
+                <indicatorMiddleColor>#E2CE7D</indicatorMiddleColor>
+                <report>At_Risk_Data_Health/Overdue_Predicted_Churn_Living</report>
+                <showRange>false</showRange>
+            </dashboardComponent>
+            <rowIndex>0</rowIndex>
+            <rowSpan>4</rowSpan>
+        </dashboardGridComponents>
+        <dashboardGridComponents>
+            <colSpan>4</colSpan>
+            <columnIndex>4</columnIndex>
+            <dashboardComponent>
+                <autoselectColumnsFromReport>true</autoselectColumnsFromReport>
+                <componentType>Metric</componentType>
+                <groupingSortProperties/>
+                <header>Stale open cases (60+ days)</header>
+                <indicatorBreakpoint1>1.0</indicatorBreakpoint1>
+                <indicatorBreakpoint2>50.0</indicatorBreakpoint2>
+                <indicatorHighColor>#C23934</indicatorHighColor>
+                <indicatorLowColor>#00716B</indicatorLowColor>
+                <indicatorMiddleColor>#E2CE7D</indicatorMiddleColor>
+                <report>At_Risk_Data_Health/Stale_Open_Cases_60_Days</report>
+                <showRange>false</showRange>
+            </dashboardComponent>
+            <rowIndex>0</rowIndex>
+            <rowSpan>4</rowSpan>
+        </dashboardGridComponents>
+        <dashboardGridComponents>
+            <colSpan>4</colSpan>
+            <columnIndex>8</columnIndex>
+            <dashboardComponent>
+                <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
+                <chartAxisRange>Auto</chartAxisRange>
+                <chartSummary>
+                    <aggregate>Sum</aggregate>
+                    <axisBinding>y</axisBinding>
+                    <column>At_Risk_Journey__c.Actual_Revenue_Sum_atrisk__c</column>
+                </chartSummary>
+                <componentChartTheme>dark</componentChartTheme>
+                <componentType>Donut</componentType>
+                <decimalPrecision>-1</decimalPrecision>
+                <displayUnits>Auto</displayUnits>
+                <drillEnabled>false</drillEnabled>
+                <drillToDetailEnabled>false</drillToDetailEnabled>
+                <enableHover>false</enableHover>
+                <expandOthers>false</expandOthers>
+                <groupingColumn>At_Risk_Journey__c.Churn_Risk_Spectrum__c</groupingColumn>
+                <groupingSortProperties>
+                    <groupingSorts>
+                        <groupingLevel>g1</groupingLevel>
+                        <sortColumn>s!At_Risk_Journey__c.Actual_Revenue_Sum_atrisk__c</sortColumn>
+                        <sortOrder>d</sortOrder>
+                    </groupingSorts>
+                </groupingSortProperties>
+                <header>Living at-risk book by risk level</header>
+                <legendPosition>Bottom</legendPosition>
+                <report>At_Risk_Data_Health/Living_At_Risk_Book</report>
+                <showPercentage>false</showPercentage>
+                <showTotal>false</showTotal>
+                <showValues>false</showValues>
+                <sortBy>RowValueDescending</sortBy>
+                <sortLegendValues>false</sortLegendValues>
+                <useReportChart>false</useReportChart>
+            </dashboardComponent>
+            <rowIndex>0</rowIndex>
+            <rowSpan>8</rowSpan>
+        </dashboardGridComponents>
+        <dashboardGridComponents>
+            <colSpan>4</colSpan>
+            <columnIndex>0</columnIndex>
+            <dashboardComponent>
+                <autoselectColumnsFromReport>true</autoselectColumnsFromReport>
+                <componentType>Metric</componentType>
+                <groupingSortProperties/>
+                <header>Former accounts still flagged</header>
+                <indicatorBreakpoint1>1.0</indicatorBreakpoint1>
+                <indicatorBreakpoint2>50.0</indicatorBreakpoint2>
+                <indicatorHighColor>#C23934</indicatorHighColor>
+                <indicatorLowColor>#00716B</indicatorLowColor>
+                <indicatorMiddleColor>#E2CE7D</indicatorMiddleColor>
+                <report>At_Risk_Data_Health/Former_Still_Flagged_Blocked</report>
+                <showRange>false</showRange>
+            </dashboardComponent>
+            <rowIndex>4</rowIndex>
+            <rowSpan>4</rowSpan>
+        </dashboardGridComponents>
+        <dashboardGridComponents>
+            <colSpan>4</colSpan>
+            <columnIndex>4</columnIndex>
+            <dashboardComponent>
+                <autoselectColumnsFromReport>true</autoselectColumnsFromReport>
+                <componentType>Metric</componentType>
+                <groupingSortProperties/>
+                <header>Zombie cases on churned clients</header>
+                <indicatorBreakpoint1>1.0</indicatorBreakpoint1>
+                <indicatorBreakpoint2>50.0</indicatorBreakpoint2>
+                <indicatorHighColor>#C23934</indicatorHighColor>
+                <indicatorLowColor>#00716B</indicatorLowColor>
+                <indicatorMiddleColor>#E2CE7D</indicatorMiddleColor>
+                <report>At_Risk_Data_Health/Zombie_Cases_Churned_Clients</report>
+                <showRange>false</showRange>
+            </dashboardComponent>
+            <rowIndex>4</rowIndex>
+            <rowSpan>4</rowSpan>
+        </dashboardGridComponents>
+        <dashboardGridComponents>
+            <colSpan>4</colSpan>
+            <columnIndex>0</columnIndex>
+            <dashboardComponent>
+                <autoselectColumnsFromReport>true</autoselectColumnsFromReport>
+                <componentType>Metric</componentType>
+                <groupingSortProperties/>
+                <header>Accounts with 2+ open cases</header>
+                <indicatorBreakpoint1>1.0</indicatorBreakpoint1>
+                <indicatorBreakpoint2>50.0</indicatorBreakpoint2>
+                <indicatorHighColor>#C23934</indicatorHighColor>
+                <indicatorLowColor>#00716B</indicatorLowColor>
+                <indicatorMiddleColor>#E2CE7D</indicatorMiddleColor>
+                <report>At_Risk_Data_Health/Duplicate_Open_At_Risk_Cases</report>
+                <showRange>false</showRange>
+            </dashboardComponent>
+            <rowIndex>8</rowIndex>
+            <rowSpan>4</rowSpan>
+        </dashboardGridComponents>
+        <dashboardGridComponents>
+            <colSpan>4</colSpan>
+            <columnIndex>4</columnIndex>
+            <dashboardComponent>
+                <autoselectColumnsFromReport>true</autoselectColumnsFromReport>
+                <chartAxisRange>Auto</chartAxisRange>
+                <componentType>Column</componentType>
+                <displayUnits>Auto</displayUnits>
+                <drillEnabled>false</drillEnabled>
+                <drillToDetailEnabled>false</drillToDetailEnabled>
+                <enableHover>false</enableHover>
+                <expandOthers>false</expandOthers>
+                <groupingSortProperties/>
+                <header>Revenue still on Former/Prospect accounts</header>
+                <report>At_Risk_Data_Health/Former_Prospect_Still_Generating_Revenue</report>
+                <showPercentage>false</showPercentage>
+                <showValues>false</showValues>
+                <sortBy>RowValueDescending</sortBy>
+                <sortLegendValues>false</sortLegendValues>
+                <useReportChart>false</useReportChart>
+            </dashboardComponent>
+            <rowIndex>8</rowIndex>
+            <rowSpan>8</rowSpan>
+        </dashboardGridComponents>
+        <dashboardGridComponents>
+            <colSpan>4</colSpan>
+            <columnIndex>8</columnIndex>
+            <dashboardComponent>
+                <autoselectColumnsFromReport>true</autoselectColumnsFromReport>
+                <chartAxisRange>Auto</chartAxisRange>
+                <componentType>Column</componentType>
+                <displayUnits>Auto</displayUnits>
+                <drillEnabled>false</drillEnabled>
+                <drillToDetailEnabled>false</drillToDetailEnabled>
+                <enableHover>false</enableHover>
+                <expandOthers>false</expandOthers>
+                <groupingSortProperties/>
+                <header>Zombie cases by vintage</header>
+                <report>At_Risk_Data_Health/Zombie_Cases_Churned_Clients</report>
+                <showPercentage>false</showPercentage>
+                <showValues>false</showValues>
+                <sortBy>RowLabelAscending</sortBy>
+                <sortLegendValues>false</sortLegendValues>
+                <useReportChart>false</useReportChart>
+            </dashboardComponent>
+            <rowIndex>8</rowIndex>
+            <rowSpan>8</rowSpan>
+        </dashboardGridComponents>
+        <numberOfColumns>12</numberOfColumns>
+        <rowHeight>36</rowHeight>
+    </dashboardGridLayout>
     <dashboardType>SpecifiedUser</dashboardType>
-    <description>Live view of the at-risk data issues discussed with CS and Cecily: zombie cases, duplicates, overdue churn dates, blocked former accounts, the living at-risk book, and stale updates.</description>
-    <isGridLayout>false</isGridLayout>
-    <leftSection>
-        <columnSize>Medium</columnSize>
-        <components>
-            <componentType>Metric</componentType>
-            <header>Zombie cases on churned clients</header>
-            <indicatorBreakpoint1>1.0</indicatorBreakpoint1>
-            <indicatorBreakpoint2>50.0</indicatorBreakpoint2>
-            <indicatorHighColor>#C25454</indicatorHighColor>
-            <indicatorLowColor>#54C254</indicatorLowColor>
-            <indicatorMiddleColor>#C2C254</indicatorMiddleColor>
-            <report>At_Risk_Data_Health/Zombie_Cases_Churned_Clients</report>
-            <title>Awaiting CS resolution wording</title>
-        </components>
-        <components>
-            <componentType>Metric</componentType>
-            <header>Accounts with 2+ open cases</header>
-            <indicatorBreakpoint1>1.0</indicatorBreakpoint1>
-            <indicatorBreakpoint2>50.0</indicatorBreakpoint2>
-            <indicatorHighColor>#C25454</indicatorHighColor>
-            <indicatorLowColor>#54C254</indicatorLowColor>
-            <indicatorMiddleColor>#C2C254</indicatorMiddleColor>
-            <report>At_Risk_Data_Health/Duplicate_Open_At_Risk_Cases</report>
-            <title>CS picks the surviving case</title>
-        </components>
-        <components>
-            <chartAxisRange>Auto</chartAxisRange>
-            <componentType>Column</componentType>
-            <displayUnits>Auto</displayUnits>
-            <header>Zombie cases by vintage</header>
-            <report>At_Risk_Data_Health/Zombie_Cases_Churned_Clients</report>
-            <sortBy>RowLabelAscending</sortBy>
-        </components>
-    </leftSection>
-    <middleSection>
-        <columnSize>Medium</columnSize>
-        <components>
-            <componentType>Metric</componentType>
-            <header>Overdue predicted churn (living clients)</header>
-            <indicatorBreakpoint1>1.0</indicatorBreakpoint1>
-            <indicatorBreakpoint2>50.0</indicatorBreakpoint2>
-            <indicatorHighColor>#C25454</indicatorHighColor>
-            <indicatorLowColor>#54C254</indicatorLowColor>
-            <indicatorMiddleColor>#C2C254</indicatorMiddleColor>
-            <report>At_Risk_Data_Health/Overdue_Predicted_Churn_Living</report>
-            <title>Churn in wrong reporting period</title>
-        </components>
-        <components>
-            <chartAxisRange>Auto</chartAxisRange>
-            <componentType>Donut</componentType>
-            <displayUnits>Auto</displayUnits>
-            <header>Living at-risk book by risk level</header>
-            <legendPosition>Bottom</legendPosition>
-            <report>At_Risk_Data_Health/Living_At_Risk_Book</report>
-            <sortBy>RowValueDescending</sortBy>
-        </components>
-    </middleSection>
-    <rightSection>
-        <columnSize>Medium</columnSize>
-        <components>
-            <componentType>Metric</componentType>
-            <header>Former accounts still flagged</header>
-            <indicatorBreakpoint1>1.0</indicatorBreakpoint1>
-            <indicatorBreakpoint2>50.0</indicatorBreakpoint2>
-            <indicatorHighColor>#C25454</indicatorHighColor>
-            <indicatorLowColor>#54C254</indicatorLowColor>
-            <indicatorMiddleColor>#C2C254</indicatorMiddleColor>
-            <report>At_Risk_Data_Health/Former_Still_Flagged_Blocked</report>
-            <title>Blocked until churn explanation entered</title>
-        </components>
-        <components>
-            <componentType>Metric</componentType>
-            <header>Stale open cases (60+ days)</header>
-            <indicatorBreakpoint1>1.0</indicatorBreakpoint1>
-            <indicatorBreakpoint2>50.0</indicatorBreakpoint2>
-            <indicatorHighColor>#C25454</indicatorHighColor>
-            <indicatorLowColor>#54C254</indicatorLowColor>
-            <indicatorMiddleColor>#C2C254</indicatorMiddleColor>
-            <report>At_Risk_Data_Health/Stale_Open_Cases_60_Days</report>
-            <title>The update-cadence gap</title>
-        </components>
-        <components>
-            <chartAxisRange>Auto</chartAxisRange>
-            <componentType>Column</componentType>
-            <displayUnits>Auto</displayUnits>
-            <header>Revenue still on Former/Prospect accounts</header>
-            <report>At_Risk_Data_Health/Former_Prospect_Still_Generating_Revenue</report>
-            <sortBy>RowValueDescending</sortBy>
-        </components>
-    </rightSection>
+    <description>Live view for CS: the living at-risk book, overdue predicted-churn dates, and stale case updates lead the top row. Former-account cleanup (zombie cases now cleared, blocked former accounts, former/prospect revenue) follows below for reference.</description>
+    <isGridLayout>true</isGridLayout>
+    <owner>aaron.smith@passportinc.com</owner>
     <runningUser>aaron.smith@passportinc.com</runningUser>
     <textColor>#000000</textColor>
     <title>At-Risk Data Health</title>
