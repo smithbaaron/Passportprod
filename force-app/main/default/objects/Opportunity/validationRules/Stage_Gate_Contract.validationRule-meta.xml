@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Stage_Gate_Contract</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+  RecordType.DeveloperName = &quot;Standard_Opportunity&quot;,
+  OR(
+    ISPICKVAL(Type, &quot;New Business - New Customer&quot;),
+    ISPICKVAL(Type, &quot;New Business - Cross-Sell&quot;)
+  ),
+  ISCHANGED(StageName),
+  CASE(
+    TEXT(StageName),
+    &quot;Lead Qualification&quot;, 1,
+    &quot;Discovery&quot;, 2,
+    &quot;SE Technical Review&quot;, 3,
+    &quot;Proposal&quot;, 4,
+    &quot;RFP&quot;, 5,
+    &quot;Award&quot;, 6,
+    &quot;Scoping&quot;, 7,
+    &quot;Contract&quot;, 8,
+    &quot;Closed Won&quot;, 9,
+    0
+  ) &gt; 8,
+  OR(
+    ISBLANK(Client_Success_Rep__c),
+    ISBLANK(Google_Drive_Deal_Folder__c)
+  )
+)</errorConditionFormula>
+    <errorMessage>Complete Contract before closing: Client Success Rep and Google Drive link are required.</errorMessage>
+</ValidationRule>
