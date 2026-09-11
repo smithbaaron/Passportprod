@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Churn_Explanation</fullName>
+    <active>true</active>
+    <description>In order for a account to churn, you must enter churn reason</description>
+    <errorConditionFormula>AND(
+  ISPICKVAL(Status__c, &quot;Former&quot;),
+  ISBLANK(( Churn_Explanation__c )),
+  NOT($Permission.Bypass_At_Risk_Validation)
+)</errorConditionFormula>
+    <errorDisplayField>Churn_Explanation__c</errorDisplayField>
+    <errorMessage>Please enter churn explanation</errorMessage>
+</ValidationRule>

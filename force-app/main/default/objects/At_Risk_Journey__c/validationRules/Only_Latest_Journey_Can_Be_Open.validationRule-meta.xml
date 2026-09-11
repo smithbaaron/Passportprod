@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Only_Latest_Journey_Can_Be_Open</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+  Account__r.Open_At_Risk_Journey_Count__c &gt; 1,
+  NOT($Permission.Bypass_At_Risk_Validation)
+)</errorConditionFormula>
+    <errorMessage>Only one At-Risk Journey associated with an Account can be open at one time. Please de-risk any other open At-Risk Journeys before creating a new one.</errorMessage>
+</ValidationRule>
