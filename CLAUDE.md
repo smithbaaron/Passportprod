@@ -90,3 +90,9 @@ working here:
   Recurring NS had already zeroed before the Status flip (bulk/administrative churns):
   27 such churns 2024-2026 as of Sep 2026, plus 213 legacy Former accounts with no
   `Churn_Date__c` at all.
+- Report folders cannot be re-parented programmatically: the Reports REST
+  `PATCH /folders/<id>` rejects `parentId` (errorCode 102 "Folder parent cannot be
+  part of a patch request body") and Folder DML is blocked. Moving a folder is
+  UI-only (Reports tab -> folder -> Move). Sharing IS scriptable, and subfolders
+  inherit the parent, so the pattern is: set the parent's shares by API, move the
+  children in the UI.
