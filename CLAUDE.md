@@ -81,3 +81,12 @@ working here:
   Kept restricted: Commissions, Due Diligence, Diligence Reports, Corp Dev Reports,
   Legal Department, Snapshot Reports - Admin Only, FP&A (x2), Bookings vs Budget,
   Annual Planning, CRO KPI Reports.
+- Lost revenue on churned accounts = `Churn_Recurring_Revenue__c`: the active Workflow
+  Rule "Churned Account -- Recurring Rev Capture" copies `Recurring_NS__c` into it when
+  `Status__c` changes to Former (a point-in-time snapshot). `Actual_Revenue_Sum__c`
+  (Account) is live annualized NetSuite revenue and decays after churn;
+  `At_Risk_Journey__c.Actual_Revenue_Sum_atrisk__c` is only a formula mirror of it
+  (`Account__r.Actual_Revenue_Sum__c`), not a stored value. The snapshot is blank when
+  Recurring NS had already zeroed before the Status flip (bulk/administrative churns):
+  27 such churns 2024-2026 as of Sep 2026, plus 213 legacy Former accounts with no
+  `Churn_Date__c` at all.
