@@ -54,3 +54,30 @@ working here:
   (FLOW label "FLOW: Email Alert De-Risked", 300R700000SsLU3IAN) first: it
   fires the 10-recipient de-risk email on every close AND writes the account
   (which fails on blocked Former accounts). Restore it after.
+- Report folder sharing is LEGACY mode (enhanced folder sharing off; Salesforce has
+  removed the Setup toggle; `FolderShare` sObject unsupported). The Reports &
+  Dashboards REST API still works for sharing:
+  `POST /services/data/v64.0/folders/<id>/shares` with
+  `{"shares":[{"accessType":"view","shareType":"organization","shareWithId":"00GG0000003PxGUMA0"}]}`
+  (request field is `shareWithId`; the GET response spells it `sharedWithId`).
+  Remove with `sf api request rest .../shares/<shareId> --method DELETE --body '{}'`
+  (the CLI errors on DELETE without a body). Metadata `folderShares`/`accessType`
+  deploys are no-ops on existing folders.
+- `Folder.AccessType` does NOT reflect effective sharing (never updates for share
+  rows). Read effective access from the REST shares endpoint or the Metadata API
+  `folderShares` block (ground truth). `UserRecordAccess` on Folder measures
+  object-record read, not analytics-folder visibility - useless for this.
+- Report SUBFOLDERS inherit the parent's sharing and reject direct sharing writes
+  (errorCode 250 "not allowed on a subfolder"): share the top-level parent. So any
+  sensitive folder nested under a public parent is silently open to everyone.
+  Sep 2026: Annual Planning, Bookings vs Budget (+RevOrg KPI Reports), Commissions,
+  CRO KPI Reports and Due Diligence live under the PublicInternal Revenue Ops
+  Reports and are open to all internal users until moved out. FP&A (x2) sit under
+  AE Reporting, so AE Reporting must stay restricted until FP&A is moved.
+- "All Internal Users" is the system group `00GG0000003PxGUMA0` (DeveloperName
+  AllInternalUsers, Type Organization, Name null): auto-maintained, membership
+  cannot be edited (INSUFFICIENT_ACCESS_ON_CROSS_REFERENCE_ENTITY). Sep 2026 folder
+  open: 37 top-level report folders shared View to it; 61 already inherited.
+  Kept restricted: Commissions, Due Diligence, Diligence Reports, Corp Dev Reports,
+  Legal Department, Snapshot Reports - Admin Only, FP&A (x2), Bookings vs Budget,
+  Annual Planning, CRO KPI Reports.
