@@ -22,3 +22,5 @@ node_modules/
 *.pem
 authurl*
 *.authurl
+deploy_tmp/
+retrieve_tmp/
