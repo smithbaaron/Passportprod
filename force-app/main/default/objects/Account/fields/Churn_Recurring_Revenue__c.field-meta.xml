@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Churn_Recurring_Revenue__c</fullName>
+    <description>Snapshot of Recurring_NS__c captured by workflow rule &quot;Churned Account -- Recurring Rev Capture&quot; when Status__c changes to Former. Represents recurring revenue lost at churn; excludes One_Time_NS__c (hardware/implementation). Blank when Recurring NS was already 0 at the status change (late or administrative churns). Not for manual entry.</description>
+    <inlineHelpText>Set automatically when Status changes to Former - a snapshot of Recurring NS at the moment of churn (products only; excludes one-time hardware/implementation). Leave blank before churn; do not enter estimates.</inlineHelpText>
+    <label>Churn Recurring Revenue</label>
+    <precision>10</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Currency</type>
+</CustomField>
