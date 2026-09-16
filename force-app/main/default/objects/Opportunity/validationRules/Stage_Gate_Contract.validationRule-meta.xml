@@ -4,10 +4,7 @@
     <active>true</active>
     <errorConditionFormula>AND(
   RecordType.DeveloperName = &quot;Standard_Opportunity&quot;,
-  OR(
-    ISPICKVAL(Type, &quot;New Business - New Customer&quot;),
-    ISPICKVAL(Type, &quot;New Business - Cross-Sell&quot;)
-  ),
+  ISPICKVAL(Type, &quot;New Business - Cross-Sell&quot;),
   ISCHANGED(StageName),
   CASE(
     TEXT(StageName),
@@ -22,10 +19,7 @@
     &quot;Closed Won&quot;, 9,
     0
   ) &gt; 8,
-  OR(
-    ISBLANK(Client_Success_Rep__c),
-    ISBLANK(Google_Drive_Deal_Folder__c)
-  )
+  ISBLANK(Client_Success_Rep__c)
 )</errorConditionFormula>
-    <errorMessage>Complete Contract before closing: Client Success Rep and Google Drive link are required.</errorMessage>
+    <errorMessage>Complete Contract before closing: a Client Success Rep is required on Cross-Sell deals.</errorMessage>
 </ValidationRule>

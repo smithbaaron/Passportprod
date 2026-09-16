@@ -96,3 +96,15 @@ working here:
   UI-only (Reports tab -> folder -> Move). Sharing IS scriptable, and subfolders
   inherit the parent, so the pattern is: set the parent's shares by API, move the
   children in the UI.
+- Opportunity Closed Won is gated by several active rules besides the stage gates:
+  Ironclad Workflow attached (`Ensure_Ironclad_Workflow_IsPresent`, every Type except
+  Renewal / Upsell / Revenue Enhancement), `Why_Passport__c` filled (`Require_Why_Passport`),
+  at least one product line (`Stop_close_won_opp_missing_opp_product`), Account billing
+  city/state, and Close Date. Salesforce returns every failing rule's message in one save,
+  so a savepoint/rollback `Database.update(o, false)` probe lists all blockers for a deal.
+- `Stage_Gate_Contract` (Sep 2026) requires `Client_Success_Rep__c` only on
+  "New Business - Cross-Sell": net-new deals get their CS rep after close, and the Google
+  Drive Deal Folder link is no longer gated. `Stage_Gate_Discovery`, `Stage_Gate_RFP`,
+  `Pre_Close_Audit_Check` and `Google_Drive_in_Sales_Team_Section` are inactive in the org.
+  The org carries 45 Opportunity validation rules; this repo holds 8 (retrieve
+  `CustomObject:Opportunity` for ground truth).
