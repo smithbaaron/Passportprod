@@ -108,3 +108,11 @@ working here:
   `Pre_Close_Audit_Check` and `Google_Drive_in_Sales_Team_Section` are inactive in the org.
   The org carries 45 Opportunity validation rules; this repo holds 8 (retrieve
   `CustomObject:Opportunity` for ground truth).
+- Account roll-up summaries over Opportunity (`Open_Opp_Count__c`, `Closed_Won_Opportunities__c`,
+  `Won_Opp_Count__c`, `Amount_Sum__c`, `Total_spaces_sold__c`, `Customer_Acquisition_Date__c`,
+  `Implementation_Complete_Opportunities__c`) re-save the Account whenever an opp enters or
+  leaves a counted stage, so the Account `Churn_Explanation` rule surfaces on Opportunity saves
+  as "Please enter churn explanation" (fields=Churn_Explanation__c). A rep closing a deal on a
+  Former account with a blank explanation must fill it on the Account first (Client Details
+  section of Account Layout; CUSTOM - Sales User has edit). Sep 2026: 525 of 634 Former
+  accounts are blocked this way, 490 of them with no `Churn_Date__c`.
