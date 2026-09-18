@@ -32,11 +32,15 @@ working here:
   save of a Former account with a blank explanation, which froze 524 legacy Former
   accounts (489 with no churn date): reps could not create, advance or close opps on
   them (Account roll-ups re-save the parent), at-risk journeys could not be opened
-  or closed, and the NetSuite revenue sync (user "Passport Operations") had not
-  written any of them since the rule was created on 2025-05-08, leaving stale
-  `Recurring_NS__c` ($397K over 20 accounts) and `Actual_Revenue_Sum__c` ($2.5M over
-  336). Those 524 accounts still have no explanation; a backfill for the 35 dated
-  churns (2023-2025) is a separate decision.
+  or closed, and the NetSuite revenue sync (user "Passport Operations", daily at
+  ~09:00 UTC) had not written any of them since the rule was created on 2025-05-08.
+  After the fix the sync wrote 377 of them on 2026-09-18 with UNCHANGED revenue
+  values, so `Recurring_NS__c` > 0 on a Former account (20 accounts, $397K; Ann Arbor
+  $205,899 despite an Aug 2024 churn) is what NetSuite currently reports, not a
+  Salesforce freeze: a NetSuite-side question (still billing, or stale customer
+  attribute). The 147 not written are presumably not NetSuite customers. Those 524
+  accounts still have no explanation; a backfill for the 35 dated churns (2023-2025)
+  is a separate decision.
 - Account at-risk fields are a projection of the At-Risk Journey child records
   (kept true by the At_Risk_Account_Mirror_Sync flow). Fix the journey, never
   hand-edit the account mirror.
