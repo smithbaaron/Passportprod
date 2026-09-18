@@ -26,8 +26,17 @@ working here:
   then activate via Tooling PATCH on FlowDefinition
   (`{"Metadata":{"activeVersionNumber":N}}`). Revert = same call with the old
   number. The repo files carry `Active` to reflect intended state.
-- Accounts with `Status__c = 'Former'` and a blank `Churn_Explanation__c` are
-  un-editable (validation rule) — automation must skip them.
+- `Account.Churn_Explanation` (validation rule) requires a churn explanation only
+  when an account is created as, or changed to, Former (narrowed 2026-09-18;
+  formula has `OR(ISNEW(), ISCHANGED(Status__c))`). Before that it fired on every
+  save of a Former account with a blank explanation, which froze 524 legacy Former
+  accounts (489 with no churn date): reps could not create, advance or close opps on
+  them (Account roll-ups re-save the parent), at-risk journeys could not be opened
+  or closed, and the NetSuite revenue sync (user "Passport Operations") had not
+  written any of them since the rule was created on 2025-05-08, leaving stale
+  `Recurring_NS__c` ($397K over 20 accounts) and `Actual_Revenue_Sum__c` ($2.5M over
+  336). Those 524 accounts still have no explanation; a backfill for the 35 dated
+  churns (2023-2025) is a separate decision.
 - Account at-risk fields are a projection of the At-Risk Journey child records
   (kept true by the At_Risk_Account_Mirror_Sync flow). Fix the journey, never
   hand-edit the account mirror.
@@ -112,7 +121,9 @@ working here:
   `Won_Opp_Count__c`, `Amount_Sum__c`, `Total_spaces_sold__c`, `Customer_Acquisition_Date__c`,
   `Implementation_Complete_Opportunities__c`) re-save the Account whenever an opp enters or
   leaves a counted stage, so the Account `Churn_Explanation` rule surfaces on Opportunity saves
-  as "Please enter churn explanation" (fields=Churn_Explanation__c). A rep closing a deal on a
-  Former account with a blank explanation must fill it on the Account first (Client Details
-  section of Account Layout; CUSTOM - Sales User has edit). Sep 2026: 525 of 634 Former
-  accounts are blocked this way, 490 of them with no `Churn_Date__c`.
+  as "Please enter churn explanation" (fields=Churn_Explanation__c) whenever that rule matches;
+  any Account validation rule can surface on an Opportunity save this way. The
+  `Open_Opp_Count__c` filter carries a stale value "Scoping/Proposal" (no such stage), so
+  Proposal, Scoping, SE Technical Review and Internal Review are not counted today; fixing
+  it is a separate decision. `Churn_Explanation__c` is on the Client Details section of
+  Account Layout and CUSTOM - Sales User has edit on it.
