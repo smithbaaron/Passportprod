@@ -46,7 +46,13 @@ working here:
   hand-edit the account mirror.
 - Long-text fields can't be filtered in SOQL/reports; Tooling API JSON nulls
   collection-typed flow action inputs (Metadata XML is ground truth); report
-  Metadata deploys strip blank-value filters (use the Analytics REST API PATCH).
+  Metadata deploys strip blank-value filters (use the Analytics REST API PATCH:
+  `PATCH /services/data/v64.0/analytics/reports/<id>` with `reportMetadata.reportFilters`
+  + `reportBooleanFilter`; a filter `{"column":..,"operator":"equals","value":""}` is
+  "is blank"). Report numeric filters do NOT treat blank as 0 (`lessThan 1` skips
+  blanks), and SOQL `!= 0` DOES match nulls. Revenue Reconciliation reports
+  `Current_Accounts_With_Zero_NS_Revenue` and `Stale_Actual_Revenue_Sum` carry an
+  API-added "NS Revenue equals blank" filter that a redeploy from this repo would drop.
 - Custom permission `Bypass_At_Risk_Validation` (perm set "At-Risk Validation
   Bypass") skips the at-risk guards; `Bypass_CapStrat_Validation` does the same
   for CapStrat rules. Both are assigned to no one by default.
