@@ -32,13 +32,13 @@ working here:
   save of a Former account with a blank explanation, which froze 524 legacy Former
   accounts (489 with no churn date): reps could not create, advance or close opps on
   them (Account roll-ups re-save the parent), at-risk journeys could not be opened
-  or closed, and the NetSuite revenue sync (user "Passport Operations", daily at
-  ~09:00 UTC) had not written any of them since the rule was created on 2025-05-08.
-  After the fix the sync wrote 377 of them on 2026-09-18 with UNCHANGED revenue
-  values, so `Recurring_NS__c` > 0 on a Former account (20 accounts, $397K; Ann Arbor
-  $205,899 despite an Aug 2024 churn) is what NetSuite currently reports, not a
-  Salesforce freeze: a NetSuite-side question (still billing, or stale customer
-  attribute). The 147 not written are presumably not NetSuite customers. Those 524
+  or closed, and the monthly NetSuite revenue refresh (Celigo, runs as user "Passport
+  Operations") had not written any of them since the rule was created on 2025-05-08.
+  After the fix the September refresh wrote 377 of them on 2026-09-18 with UNCHANGED
+  revenue values, so `Recurring_NS__c` > 0 on a Former account (Ann Arbor $205,899
+  despite an Aug 2024 churn) is what NetSuite posted in the prior 12 complete months,
+  not a Salesforce freeze: a NetSuite-side question (still billing, or a mis-mapped
+  customer). The 147 not written are presumably not NetSuite customers. Those 524
   accounts still have no explanation; a backfill for the 35 dated churns (2023-2025)
   is a separate decision.
 - Account at-risk fields are a projection of the At-Risk Journey child records
@@ -100,6 +100,17 @@ working here:
   Kept restricted: Commissions, Due Diligence, Diligence Reports, Corp Dev Reports,
   Legal Department, Snapshot Reports - Admin Only, FP&A (x2), Bookings vs Budget,
   Annual Planning, CRO KPI Reports.
+- NetSuite revenue fields on Account (`NS_Revenue__c`, `Recurring_NS__c`, `One_Time_NS__c`,
+  `Parking/Payments/Enforcement/Permit/Transit/Hardware_Other_NS__c`), per Kyle Whittlesey
+  (Financial Systems, Aug 2026): summed by NetSuite Class (= product family) per Customer,
+  one Customer maps 1:1 to one Account, NO multi-customer roll-ups (parent totals are a
+  Salesforce Rollup Helper construct); ALL calculate on a rolling prior 12 COMPLETE months;
+  accrual basis (an invoice's revenue posts in its month whether or not paid, so overdue
+  balances never reduce it); refreshed by a MONTHLY MANUAL Celigo run, not live (the
+  "Passport Operations" user logs in daily but the revenue write lands once a month; Sep
+  2026 run = 9/17-9/18). Revenue below opportunity expectations is usually usage-based fees
+  vs. estimated opps, not a data error. Product-level (opportunity-product) NetSuite
+  revenue is not available from the integration (Celigo support question).
 - Lost revenue on churned accounts = `Churn_Recurring_Revenue__c`: the active Workflow
   Rule "Churned Account -- Recurring Rev Capture" copies `Recurring_NS__c` into it when
   `Status__c` changes to Former (a point-in-time snapshot). `Actual_Revenue_Sum__c`
