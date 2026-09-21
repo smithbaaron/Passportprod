@@ -6,37 +6,19 @@
         <developerName>FORMULA1</developerName>
         <isActive>true</isActive>
         <isCrossBlock>false</isCrossBlock>
-        <masterLabel>Deals Reached</masterLabel>
+        <masterLabel>Deals Lost</masterLabel>
         <scale>0</scale>
-    </aggregates>
-    <aggregates>
-        <calculatedFormula>WON:SUM</calculatedFormula>
-        <datatype>number</datatype>
-        <developerName>FORMULA2</developerName>
-        <isActive>true</isActive>
-        <isCrossBlock>false</isCrossBlock>
-        <masterLabel>Deals Won</masterLabel>
-        <scale>0</scale>
-    </aggregates>
-    <aggregates>
-        <calculatedFormula>WON:SUM / CLOSED:SUM</calculatedFormula>
-        <datatype>percent</datatype>
-        <developerName>FORMULA3</developerName>
-        <isActive>true</isActive>
-        <isCrossBlock>false</isCrossBlock>
-        <masterLabel>Win Rate</masterLabel>
-        <scale>1</scale>
     </aggregates>
     <chart>
         <backgroundFadeDir>Diagonal</backgroundFadeDir>
         <chartSummaries>
             <axisBinding>y</axisBinding>
-            <column>FORMULA3</column>
+            <column>FORMULA1</column>
         </chartSummaries>
         <chartType>HorizontalBar</chartType>
         <enableHoverLabels>false</enableHoverLabels>
         <expandOthers>true</expandOthers>
-        <groupingColumn>STAGE_NAME</groupingColumn>
+        <groupingColumn>FROM_OPPORTUNITY_STAGE_NAME</groupingColumn>
         <location>CHART_TOP</location>
         <showAxisLabels>true</showAxisLabels>
         <showPercentage>false</showPercentage>
@@ -46,7 +28,7 @@
         <summaryAxisRange>Auto</summaryAxisRange>
         <textColor>#000000</textColor>
         <textSize>12</textSize>
-        <title>Win Rate by Stage Reached (T12)</title>
+        <title>Losses by Last Stage</title>
         <titleColor>#000000</titleColor>
         <titleSize>18</titleSize>
     </chart>
@@ -63,7 +45,7 @@
         <field>TYPE</field>
     </columns>
     <columns>
-        <field>FROM_OPPORTUNITY_STAGE_NAME</field>
+        <field>STAGE_NAME</field>
     </columns>
     <columns>
         <field>LAST_UPDATE</field>
@@ -78,17 +60,14 @@
         <field>Opportunity.Won_Lost_Reason__c</field>
     </columns>
     <columns>
-        <field>AMOUNT</field>
-    </columns>
-    <columns>
         <aggregateTypes>Sum</aggregateTypes>
-        <field>WON</field>
+        <field>AMOUNT</field>
     </columns>
     <columns>
         <aggregateTypes>Sum</aggregateTypes>
         <field>CLOSED</field>
     </columns>
-    <description>New-business deals closed in the last 365 days, by every stage they passed through. Deals Reached = deals that entered the stage (each counted once); Deals Won = those that went on to win; Win Rate = Won / Reached. Questions: Aaron Smith.</description>
+    <description>New-business deals closed lost in the last 365 days, grouped by the stage they were in when they closed. Deals Lost = deals lost from that stage (each counted once); Sum of Amount = deal amount at close. Questions: Aaron Smith.</description>
     <filter>
         <criteriaItems>
             <column>RECORDTYPE</column>
@@ -133,7 +112,21 @@
             <value>1</value>
         </criteriaItems>
         <criteriaItems>
+            <column>WON</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>0</value>
+        </criteriaItems>
+        <criteriaItems>
             <column>STAGE_NAME</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Disqualified,Closed Lost,Rejected</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>FROM_OPPORTUNITY_STAGE_NAME</column>
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
             <operator>notEqual</operator>
@@ -143,10 +136,10 @@
     <format>Summary</format>
     <groupingsDown>
         <dateGranularity>Day</dateGranularity>
-        <field>STAGE_NAME</field>
+        <field>FROM_OPPORTUNITY_STAGE_NAME</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
-    <name>Win Rate by Stage Reached (T12)</name>
+    <name>Losses by Last Stage</name>
     <params>
         <name>terr</name>
         <value>all</value>

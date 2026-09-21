@@ -155,8 +155,8 @@ working here:
   `WON:SUM / CLOSED:SUM`, never `/ RowCount`. Creation rows carry a blank From Stage with Stage
   Change = true. The retired stage "Scoping/Proposal" is still the busiest mid-funnel stage in T12
   history (128 of 379 closed new-business deals), so stage filters should be "not equal to the closed
-  stages", not a list of current stages. Sales Velocity Reports `Win_Rate_by_Stage_Reached_T12`,
-  `Losses_by_Last_Stage_T12` and `Avg_Sales_Cycle_RFP_vs_Non_RFP_T12` (Sep 2026) follow the org's
+  stages", not a list of current stages. Sales Velocity Reports `Win_Rate_by_Stage_Reached`,
+  `Losses_by_Last_Stage` and `Avg_Sales_Cycle_RFP_vs_Non_RFP` (Sep 2026) follow the org's
   win-rate convention of excluding Lost Reason `Inactive` / `Pipeline Cleanup` (159 of the 379 T12
   closes, none won). The older "RFP vs Non-RFP Win Rate" filters the stale value `RFP - No Bid`
   (real picklist value: `No Bid RFP`). Marcia's "Stage to Won Conversion" / "Stage Conversion

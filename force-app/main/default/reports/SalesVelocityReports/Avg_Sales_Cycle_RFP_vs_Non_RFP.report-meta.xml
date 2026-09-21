@@ -98,7 +98,7 @@
         <field>TYPE</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
-    <name>Avg Sales Cycle - RFP vs Non-RFP (T12)</name>
+    <name>Avg Sales Cycle - RFP vs Non-RFP</name>
     <params>
         <name>open</name>
         <value>all</value>
