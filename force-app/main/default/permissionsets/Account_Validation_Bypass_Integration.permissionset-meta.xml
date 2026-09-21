@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customPermissions>
+        <enabled>true</enabled>
+        <name>Bypass_Account_Validation</name>
+    </customPermissions>
+    <description>Grants Bypass Account Validation. Assigned permanently to the Passport Operations user (Celigo NetSuite revenue refresh). Assign temporarily to an admin for data loads that must skip the Account every-save rules.</description>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>Account Validation Bypass (Integration)</label>
+</PermissionSet>

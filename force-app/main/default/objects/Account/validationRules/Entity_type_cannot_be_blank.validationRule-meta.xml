@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Entity_type_cannot_be_blank</fullName>
+    <active>true</active>
+    <description>Entity type is required when an account is created as Current, whenever its Status changes, or when the Entity type is cleared on a Current account. It no longer fires on every save of a legacy Current account with a blank Entity type (narrowed Sep 2026). The Bypass Account Validation permission (NetSuite refresh user) skips it.</description>
+    <errorConditionFormula>AND(
+  ISBLANK(TEXT(Entity2__c)),
+  OR(
+    ISCHANGED(Status__c),
+    AND(
+      ISPICKVAL(Status__c, &quot;Current&quot;),
+      OR(ISNEW(), ISCHANGED(Entity2__c))
+    )
+  ),
+  NOT($Permission.Bypass_Account_Validation)
+)</errorConditionFormula>
+    <errorDisplayField>Entity2__c</errorDisplayField>
+    <errorMessage>Entity type cannot be blank</errorMessage>
+</ValidationRule>

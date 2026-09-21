@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Partner_Subtype_cannot_be_blank</fullName>
+    <active>true</active>
+    <description>Partner Subtype is required when an account is created as, or changed to, Channel Partner, or when the subtype is cleared. It no longer fires on every save of a legacy Channel Partner with a blank subtype (narrowed Sep 2026). The Bypass Account Validation permission (NetSuite refresh user) skips it.</description>
+    <errorConditionFormula>AND(
+  ISPICKVAL(Type, &quot;Channel Partner&quot;),
+  ISPICKVAL(Partner_Subtype__c, &quot;&quot;),
+  OR(ISNEW(), ISCHANGED(Type), ISCHANGED(Partner_Subtype__c)),
+  NOT($Permission.Bypass_Account_Validation)
+)</errorConditionFormula>
+    <errorMessage>If the Type is Channel Partner then Partner Subtype is required.</errorMessage>
+</ValidationRule>

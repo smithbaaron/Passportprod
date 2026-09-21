@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Account_Name_Cannot_Contain</fullName>
+    <active>true</active>
+    <description>An Account Name cannot contain a comma. The Bypass Account Validation permission (NetSuite refresh user) skips it so a legacy name cannot block an integration write (Sep 2026).</description>
+    <errorConditionFormula>AND(
+  CONTAINS(Name, &quot;,&quot;),
+  NOT($Permission.Bypass_Account_Validation)
+)</errorConditionFormula>
+    <errorDisplayField>Name</errorDisplayField>
+    <errorMessage>Account names cannot contain commas. Please rename the Account before saving the record.</errorMessage>
+</ValidationRule>

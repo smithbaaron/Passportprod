@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomPermission xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Skips the Account validation rules that fire on every save (Entity type, Partner Subtype, comma in name) so the monthly NetSuite revenue refresh can never be blocked by legacy data. Granted by the Account Validation Bypass (Integration) permission set, assigned to the Passport Operations integration user.</description>
+    <isLicensed>false</isLicensed>
+    <label>Bypass Account Validation</label>
+</CustomPermission>
