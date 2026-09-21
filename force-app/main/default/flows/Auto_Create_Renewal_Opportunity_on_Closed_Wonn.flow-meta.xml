@@ -38,6 +38,7 @@
                 <elementReference>fFaultBodyCreate</elementReference>
             </value>
         </inputParameters>
+        <nameSegment>emailSimple</nameSegment>
     </actionCalls>
     <actionCalls>
         <name>Send_Fault_Lines</name>
@@ -77,19 +78,20 @@
                 <elementReference>fFaultBodyLines</elementReference>
             </value>
         </inputParameters>
+        <nameSegment>emailSimple</nameSegment>
     </actionCalls>
     <apiVersion>65.0</apiVersion>
     <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <assignments>
-        <name>Assign_NextRenewal_from_Opp_Asset</name>
-        <label>Next Renewal from Opp Asset</label>
+        <name>Assign_NextRenewal_Fallback</name>
+        <label>Next Renewal Fallback (+12 months)</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <assignmentItems>
             <assignToReference>varNextRenewal</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>Get_Opp_Assets.Contract_End_Date__c</elementReference>
+                <elementReference>fFallbackRenewal</elementReference>
             </value>
         </assignmentItems>
         <connector>
@@ -105,7 +107,7 @@
             <assignToReference>varNextRenewal</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>Get_Account_Assets.Contract_End_Date__c</elementReference>
+                <elementReference>Get_Account_Assets.Renewal_Date__c</elementReference>
             </value>
         </assignmentItems>
         <connector>
@@ -113,19 +115,67 @@
         </connector>
     </assignments>
     <assignments>
-        <name>Assign_NextRenewal_Fallback</name>
-        <label>Next Renewal Fallback (+12 months)</label>
+        <name>Assign_NextRenewal_from_Opp_Asset</name>
+        <label>Next Renewal from Opp Asset</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <assignmentItems>
             <assignToReference>varNextRenewal</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>fFallbackRenewal</elementReference>
+                <elementReference>Get_Opp_Assets.Renewal_Date__c</elementReference>
             </value>
         </assignmentItems>
         <connector>
             <targetReference>Get_All_Chain_Opportunity</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_varBaseName_from_Base</name>
+        <label>Assign varBaseName from Base</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>varBaseName</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_the_root_opportunity.Name</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Build_varRenewalName</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_varBaseName_from_record</name>
+        <label>Assign varBaseName from record</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>varBaseName</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Name</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Build_varRenewalName</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_varRoot_to_Parent</name>
+        <label>Assign varRoot to Parent</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>varRootId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Loop_Chain.Original_Opportunity__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_Chain</targetReference>
         </connector>
     </assignments>
     <assignments>
@@ -180,54 +230,6 @@
         </connector>
     </assignments>
     <assignments>
-        <name>Assign_varBaseName_from_Base</name>
-        <label>Assign varBaseName from Base</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <assignmentItems>
-            <assignToReference>varBaseName</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>Get_the_root_opportunity.Name</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Build_varRenewalName</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>Assign_varBaseName_from_record</name>
-        <label>Assign varBaseName from record</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <assignmentItems>
-            <assignToReference>varBaseName</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>$Record.Name</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Build_varRenewalName</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>Assign_varRoot_to_Parent</name>
-        <label>Assign varRoot to Parent</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <assignmentItems>
-            <assignToReference>varRootId</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>Loop_Chain.Original_Opportunity__c</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Loop_Chain</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
         <name>Build_varRenewalName</name>
         <label>Build varRenewalName</label>
         <locationX>0</locationX>
@@ -260,31 +262,6 @@
         </connector>
     </assignments>
     <decisions>
-        <name>Opp_Assets_Found</name>
-        <label>Opp Assets Found?</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <defaultConnector>
-            <targetReference>Get_Account_Assets</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>No</defaultConnectorLabel>
-        <rules>
-            <name>Opp_Asset_Yes</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>Get_Opp_Assets</leftValueReference>
-                <operator>IsNull</operator>
-                <rightValue>
-                    <booleanValue>false</booleanValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Assign_NextRenewal_from_Opp_Asset</targetReference>
-            </connector>
-            <label>Yes</label>
-        </rules>
-    </decisions>
-    <decisions>
         <name>Account_Assets_Found</name>
         <label>Account Assets Found?</label>
         <locationX>0</locationX>
@@ -305,28 +282,6 @@
             </conditions>
             <connector>
                 <targetReference>Assign_NextRenewal_from_Account_Asset</targetReference>
-            </connector>
-            <label>Yes</label>
-        </rules>
-    </decisions>
-    <decisions>
-        <name>Has_Products</name>
-        <label>Source Opp Has Products?</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <defaultConnectorLabel>No Products</defaultConnectorLabel>
-        <rules>
-            <name>Products_Yes</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>Get_Source_Products</leftValueReference>
-                <operator>IsNull</operator>
-                <rightValue>
-                    <booleanValue>false</booleanValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Loop_Products</targetReference>
             </connector>
             <label>Yes</label>
         </rules>
@@ -379,6 +334,28 @@
         </rules>
     </decisions>
     <decisions>
+        <name>Has_Products</name>
+        <label>Source Opp Has Products?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>No Products</defaultConnectorLabel>
+        <rules>
+            <name>Products_Yes</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Source_Products</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Loop_Products</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>Is_Current_Item_ParentOf_varRootId</name>
         <label>Is Current Item ParentOf varRootId?</label>
         <locationX>0</locationX>
@@ -411,7 +388,69 @@
             <label>MatchesRoot</label>
         </rules>
     </decisions>
+    <decisions>
+        <name>Opp_Assets_Found</name>
+        <label>Opp Assets Found?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Get_Account_Assets</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No</defaultConnectorLabel>
+        <rules>
+            <name>Opp_Asset_Yes</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Opp_Assets</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_NextRenewal_from_Opp_Asset</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
     <environments>Default</environments>
+    <formulas>
+        <name>fFallbackRenewal</name>
+        <dataType>Date</dataType>
+        <expression>ADDMONTHS(TODAY(), 12)</expression>
+    </formulas>
+    <formulas>
+        <name>fFaultBodyCreate</name>
+        <dataType>String</dataType>
+        <expression>&quot;The auto-renewal automation could not create a renewal opportunity after &quot; &amp; {!$Record.Name} &amp; &quot; was closed.&quot; &amp; BR() &amp; BR() &amp;
+&quot;Error: &quot; &amp; {!$Flow.FaultMessage} &amp; BR() &amp; BR() &amp;
+&quot;Please create the renewal opportunity manually.&quot; &amp; BR() &amp;
+&quot;Closed opportunity: https://passportlabs.lightning.force.com/&quot; &amp; {!$Record.Id}</expression>
+    </formulas>
+    <formulas>
+        <name>fFaultBodyLines</name>
+        <dataType>String</dataType>
+        <expression>&quot;The auto-renewal automation created renewal opportunity &quot; &amp; {!varName} &amp; &quot; but could not copy the products onto it.&quot; &amp; BR() &amp; BR() &amp;
+&quot;Error: &quot; &amp; {!$Flow.FaultMessage} &amp; BR() &amp; BR() &amp;
+&quot;Please add the products to it manually.&quot; &amp; BR() &amp;
+&quot;Renewal opportunity: https://passportlabs.lightning.force.com/&quot; &amp; {!Create_New_Renewal_Opportunity} &amp; BR() &amp;
+&quot;Closed opportunity: https://passportlabs.lightning.force.com/&quot; &amp; {!$Record.Id}</expression>
+    </formulas>
+    <formulas>
+        <name>fFaultRecipient</name>
+        <dataType>String</dataType>
+        <expression>IF(ISBLANK({!$Record.Client_Success_Rep__r.Email}), &quot;aaron.smith@passportinc.com&quot;, {!$Record.Client_Success_Rep__r.Email})</expression>
+    </formulas>
+    <formulas>
+        <name>fFaultSubjectCreate</name>
+        <dataType>String</dataType>
+        <expression>&quot;Action needed: renewal opportunity NOT auto-created for &quot; &amp; {!$Record.Name}</expression>
+    </formulas>
+    <formulas>
+        <name>fFaultSubjectLines</name>
+        <dataType>String</dataType>
+        <expression>&quot;Action needed: products missing on auto-created renewal for &quot; &amp; {!$Record.Name}</expression>
+    </formulas>
     <formulas>
         <name>varClientSuccessRep</name>
         <dataType>String</dataType>
@@ -429,11 +468,6 @@
     TODAY(),
     ADDMONTHS({!varNextRenewal}, -3)
 )</expression>
-    </formulas>
-    <formulas>
-        <name>fFallbackRenewal</name>
-        <dataType>Date</dataType>
-        <expression>ADDMONTHS(TODAY(), 12)</expression>
     </formulas>
     <formulas>
         <name>varName</name>
@@ -454,54 +488,8 @@
         <dataType>String</dataType>
         <expression>TEXT( YEAR( {!varNextRenewal} ) )</expression>
     </formulas>
-    <formulas>
-        <name>fFaultRecipient</name>
-        <dataType>String</dataType>
-        <expression>IF(ISBLANK({!$Record.Client_Success_Rep__r.Email}), "aaron.smith@passportinc.com", {!$Record.Client_Success_Rep__r.Email})</expression>
-    </formulas>
-    <formulas>
-        <name>fFaultSubjectCreate</name>
-        <dataType>String</dataType>
-        <expression>"Action needed: renewal opportunity NOT auto-created for " &amp; {!$Record.Name}</expression>
-    </formulas>
-    <formulas>
-        <name>fFaultBodyCreate</name>
-        <dataType>String</dataType>
-        <expression>"The auto-renewal automation could not create a renewal opportunity after " &amp; {!$Record.Name} &amp; " was closed." &amp; BR() &amp; BR() &amp;
-"Error: " &amp; {!$Flow.FaultMessage} &amp; BR() &amp; BR() &amp;
-"Please create the renewal opportunity manually." &amp; BR() &amp;
-"Closed opportunity: https://passportlabs.lightning.force.com/" &amp; {!$Record.Id}</expression>
-    </formulas>
-    <formulas>
-        <name>fFaultSubjectLines</name>
-        <dataType>String</dataType>
-        <expression>"Action needed: products missing on auto-created renewal for " &amp; {!$Record.Name}</expression>
-    </formulas>
-    <formulas>
-        <name>fFaultBodyLines</name>
-        <dataType>String</dataType>
-        <expression>"The auto-renewal automation created renewal opportunity " &amp; {!varName} &amp; " but could not copy the products onto it." &amp; BR() &amp; BR() &amp;
-"Error: " &amp; {!$Flow.FaultMessage} &amp; BR() &amp; BR() &amp;
-"Please add the products to it manually." &amp; BR() &amp;
-"Renewal opportunity: https://passportlabs.lightning.force.com/" &amp; {!Create_New_Renewal_Opportunity} &amp; BR() &amp;
-"Closed opportunity: https://passportlabs.lightning.force.com/" &amp; {!$Record.Id}</expression>
-    </formulas>
     <interviewLabel>Auto-Create Renewal Opportunity on Closed Won {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Auto-Create Renewal Opportunity on Closed Won</label>
-    <loops>
-        <name>Loop_Products</name>
-        <label>Loop Source Products</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <collectionReference>Get_Source_Products</collectionReference>
-        <iterationOrder>Asc</iterationOrder>
-        <nextValueConnector>
-            <targetReference>Build_New_Line</targetReference>
-        </nextValueConnector>
-        <noMoreValuesConnector>
-            <targetReference>Create_New_Lines</targetReference>
-        </noMoreValuesConnector>
-    </loops>
     <loops>
         <name>Loop_Chain</name>
         <label>Loop Chain</label>
@@ -514,6 +502,20 @@
         </nextValueConnector>
         <noMoreValuesConnector>
             <targetReference>Get_the_root_opportunity</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <loops>
+        <name>Loop_Products</name>
+        <label>Loop Source Products</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <collectionReference>Get_Source_Products</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Build_New_Line</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Create_New_Lines</targetReference>
         </noMoreValuesConnector>
     </loops>
     <processMetadataValues>
@@ -536,10 +538,26 @@
     </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
     <recordCreates>
+        <name>Create_New_Lines</name>
+        <label>Create New Line Items</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <faultConnector>
+            <targetReference>Send_Fault_Lines</targetReference>
+        </faultConnector>
+        <inputReference>varNewLines</inputReference>
+    </recordCreates>
+    <recordCreates>
         <name>Create_New_Renewal_Opportunity</name>
         <label>Create New Renewal Opportunity</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
+        <connector>
+            <targetReference>Get_Source_Products</targetReference>
+        </connector>
+        <faultConnector>
+            <targetReference>Send_Fault_Create</targetReference>
+        </faultConnector>
         <inputAssignments>
             <field>AccountId</field>
             <value>
@@ -661,6 +679,12 @@
             </value>
         </inputAssignments>
         <inputAssignments>
+            <field>Pricebook2Id</field>
+            <value>
+                <elementReference>$Record.Pricebook2Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
             <field>Project_Manager__c</field>
             <value>
                 <elementReference>$Record.Project_Manager__c</elementReference>
@@ -682,12 +706,6 @@
             <field>Referral_Name__c</field>
             <value>
                 <elementReference>$Record.Referral_Name__c</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>Pricebook2Id</field>
-            <value>
-                <elementReference>$Record.Pricebook2Id</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -738,69 +756,9 @@
                 <elementReference>$Record.Won_Lost_Reason__c</elementReference>
             </value>
         </inputAssignments>
-        <connector>
-            <targetReference>Get_Source_Products</targetReference>
-        </connector>
-        <faultConnector>
-            <targetReference>Send_Fault_Create</targetReference>
-        </faultConnector>
         <object>Opportunity</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordCreates>
-    <recordCreates>
-        <name>Create_New_Lines</name>
-        <label>Create New Line Items</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <faultConnector>
-            <targetReference>Send_Fault_Lines</targetReference>
-        </faultConnector>
-        <inputReference>varNewLines</inputReference>
-    </recordCreates>
-    <recordLookups>
-        <name>Get_Opp_Assets</name>
-        <label>Get Assets Linked to Expiring Opp</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>Opp_Assets_Found</targetReference>
-        </connector>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>Opportunity__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>$Record.Id</elementReference>
-            </value>
-        </filters>
-        <filters>
-            <field>Status</field>
-            <operator>EqualTo</operator>
-            <value>
-                <stringValue>Active</stringValue>
-            </value>
-        </filters>
-        <filters>
-            <field>Contract_End_Date__c</field>
-            <operator>IsNull</operator>
-            <value>
-                <booleanValue>false</booleanValue>
-            </value>
-        </filters>
-        <filters>
-            <field>Contract_End_Date__c</field>
-            <operator>GreaterThanOrEqualTo</operator>
-            <value>
-                <elementReference>$Flow.CurrentDate</elementReference>
-            </value>
-        </filters>
-        <getFirstRecordOnly>true</getFirstRecordOnly>
-        <object>Asset</object>
-        <sortField>Contract_End_Date__c</sortField>
-        <sortOrder>Asc</sortOrder>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-    </recordLookups>
     <recordLookups>
         <name>Get_Account_Assets</name>
         <label>Get Active Assets on Account</label>
@@ -826,14 +784,14 @@
             </value>
         </filters>
         <filters>
-            <field>Contract_End_Date__c</field>
+            <field>Renewal_Date__c</field>
             <operator>IsNull</operator>
             <value>
                 <booleanValue>false</booleanValue>
             </value>
         </filters>
         <filters>
-            <field>Contract_End_Date__c</field>
+            <field>Renewal_Date__c</field>
             <operator>GreaterThanOrEqualTo</operator>
             <value>
                 <elementReference>$Flow.CurrentDate</elementReference>
@@ -841,30 +799,7 @@
         </filters>
         <getFirstRecordOnly>true</getFirstRecordOnly>
         <object>Asset</object>
-        <sortField>Contract_End_Date__c</sortField>
-        <sortOrder>Asc</sortOrder>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-    </recordLookups>
-    <recordLookups>
-        <name>Get_Source_Products</name>
-        <label>Get Source Opp Products</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>Has_Products</targetReference>
-        </connector>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>OpportunityId</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>$Record.Id</elementReference>
-            </value>
-        </filters>
-        <getFirstRecordOnly>false</getFirstRecordOnly>
-        <object>OpportunityLineItem</object>
-        <sortField>SortOrder</sortField>
+        <sortField>Renewal_Date__c</sortField>
         <sortOrder>Asc</sortOrder>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
@@ -920,6 +855,50 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordLookups>
+        <name>Get_Opp_Assets</name>
+        <label>Get Assets Linked to Expiring Opp</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Opp_Assets_Found</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Opportunity__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Status</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Active</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Renewal_Date__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Renewal_Date__c</field>
+            <operator>GreaterThanOrEqualTo</operator>
+            <value>
+                <elementReference>$Flow.CurrentDate</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Asset</object>
+        <sortField>Renewal_Date__c</sortField>
+        <sortOrder>Asc</sortOrder>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
         <name>Get_Renewal_Record_Type</name>
         <label>Get Renewal Record Type</label>
         <locationX>0</locationX>
@@ -938,6 +917,29 @@
         </filters>
         <getFirstRecordOnly>true</getFirstRecordOnly>
         <object>RecordType</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Source_Products</name>
+        <label>Get Source Opp Products</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Has_Products</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>OpportunityId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>OpportunityLineItem</object>
+        <sortField>SortOrder</sortField>
+        <sortOrder>Asc</sortOrder>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordLookups>
@@ -981,8 +983,8 @@ ISPICKVAL({!$Record.Type}, &quot;Renewal&quot;)
     </start>
     <status>Active</status>
     <variables>
-        <name>varNextRenewal</name>
-        <dataType>Date</dataType>
+        <name>varBaseName</name>
+        <dataType>String</dataType>
         <isCollection>false</isCollection>
         <isInput>false</isInput>
         <isOutput>false</isOutput>
@@ -1004,8 +1006,8 @@ ISPICKVAL({!$Record.Type}, &quot;Renewal&quot;)
         <objectType>OpportunityLineItem</objectType>
     </variables>
     <variables>
-        <name>varBaseName</name>
-        <dataType>String</dataType>
+        <name>varNextRenewal</name>
+        <dataType>Date</dataType>
         <isCollection>false</isCollection>
         <isInput>false</isInput>
         <isOutput>false</isOutput>

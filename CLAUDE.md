@@ -183,5 +183,8 @@ working here:
   Renewal Date on an Active asset can only be a Standard contract (265 in Sep 2026). Field-level
   security on new fields is not granted by a metadata deploy, not even to the deploying admin:
   deploy a Profile fragment holding only the `fieldPermissions` entries (the classifier allows
-  that; FieldPermissions DML was blocked). The Auto-Create Renewal Opportunity flow still reads
-  `Contract_End_Date__c`; pointing it at `Renewal_Date__c` is a separate decision.
+  that; FieldPermissions DML was blocked). The Auto-Create Renewal Opportunity flow (v5, active 2026-09-21) reads
+  `Renewal_Date__c` in both asset lookups (filter, sort and assignment), so an auto-renewed asset with a
+  stale end date now yields the rolled renewal date instead of the +12-month fallback; a Standard asset
+  with a past end date is still skipped. Rollback harness: scratchpad renew_A..G.apex (one closing opp
+  per run).
