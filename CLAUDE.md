@@ -172,3 +172,16 @@ working here:
   and `RFP_Submitted_Date__c` are effectively unused. Sales-cycle fields: `Sales_Duration_Days__c` =
   CloseDate - DATEVALUE(CreatedDate) (same as standard Age once closed); `Sales_Cycle_Months__c` is
   rounded to whole months, so average the days and divide by 30.44 instead.
+- Asset contract fields: `Contract_Start_Date__c` and `Contract_End_Date__c` are entered by hand
+  (99% filled; assets are created manually, nothing writes them), `Contract_Term_Months__c` is a
+  formula between the two, `Contract_Term_Type__c` is Standard / Auto-Renewal / Evergreen. The end
+  date is never advanced after an auto-renewal (Sep 2026: 1,254 active Auto-Renewal/Evergreen assets
+  had a past end date), so `Renewal_Date__c` (formula, Sep 2026) rolls it forward: Standard = end
+  date; Auto-Renewal/Evergreen = end date + renewal periods until on/after TODAY(), period =
+  `Renewal_Term_Months__c` if entered, else the initial term (Auto-Renewal) or 12 (Evergreen).
+  Formula ADDMONTHS keeps "last day of month" as last day (Jun 30 + 2 months = Aug 31). A past
+  Renewal Date on an Active asset can only be a Standard contract (265 in Sep 2026). Field-level
+  security on new fields is not granted by a metadata deploy, not even to the deploying admin:
+  deploy a Profile fragment holding only the `fieldPermissions` entries (the classifier allows
+  that; FieldPermissions DML was blocked). The Auto-Create Renewal Opportunity flow still reads
+  `Contract_End_Date__c`; pointing it at `Renewal_Date__c` is a separate decision.
