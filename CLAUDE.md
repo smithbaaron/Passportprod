@@ -148,3 +148,27 @@ working here:
   Proposal, Scoping, SE Technical Review and Internal Review are not counted today; fixing
   it is a separate decision. `Churn_Explanation__c` is on the Client Details section of
   Account Layout and CUSTOM - Sales User has edit on it.
+- Opportunity History report type (`OpportunityHistory`; `<scope>` must be `all`): summing an
+  Opportunity-level checkbox (Won, Closed) counts each opportunity ONCE per grouping (parent-object
+  aggregates de-duplicate), while Record Count and the history-row Amount count every stage entry
+  (re-entries included). Per-deal funnel counts are therefore `CLOSED:SUM` and win rate is
+  `WON:SUM / CLOSED:SUM`, never `/ RowCount`. Creation rows carry a blank From Stage with Stage
+  Change = true. The retired stage "Scoping/Proposal" is still the busiest mid-funnel stage in T12
+  history (128 of 379 closed new-business deals), so stage filters should be "not equal to the closed
+  stages", not a list of current stages. Sales Velocity Reports `Win_Rate_by_Stage_Reached_T12`,
+  `Losses_by_Last_Stage_T12` and `Avg_Sales_Cycle_RFP_vs_Non_RFP_T12` (Sep 2026) follow the org's
+  win-rate convention of excluding Lost Reason `Inactive` / `Pipeline Cleanup` (159 of the 379 T12
+  closes, none won). The older "RFP vs Non-RFP Win Rate" filters the stale value `RFP - No Bid`
+  (real picklist value: `No Bid RFP`). Marcia's "Stage to Won Conversion" / "Stage Conversion
+  Report" divide by RowCount and are grouped by From Stage; leave them as they are.
+- Report metadata gaps: the Lightning "Row Count" toggle is `hasRecordCount` in the Analytics API
+  only (`PATCH /services/data/v64.0/analytics/reports/<id>` body
+  `{"reportMetadata":{"hasRecordCount":false}}`); a metadata redeploy resets it to true, so re-PATCH
+  the two funnel reports above after any redeploy. Chart deploys reject `legendPosition` and
+  `backgroundColor1/2` and cap the chart `title` at 40 characters. `sf project retrieve start
+  --output-dir` must point inside the project.
+- RFP deals are flagged by `Opportunity.RFP__c` (help text "Is this deal going to RFP?"; matches
+  passing through the RFP stage for 69 of 71 T12 closes). `Procurement_Method__c`, `RFP_Required__c`
+  and `RFP_Submitted_Date__c` are effectively unused. Sales-cycle fields: `Sales_Duration_Days__c` =
+  CloseDate - DATEVALUE(CreatedDate) (same as standard Age once closed); `Sales_Cycle_Months__c` is
+  rounded to whole months, so average the days and divide by 30.44 instead.
