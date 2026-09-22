@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>CUST_NAME</field>
+    </columns>
+    <columns>
+        <field>ACCOUNT.NAME</field>
+    </columns>
+    <columns>
+        <field>MEDDIC__c.Opportunity__c</field>
+    </columns>
+    <columns>
+        <field>MEDDIC__c.Success_Status__c</field>
+    </columns>
+    <columns>
+        <field>MEDDIC__c.Last_Reviewed__c</field>
+    </columns>
+    <columns>
+        <field>MEDDIC__c.Next_Review__c</field>
+    </columns>
+    <description>Client Success MEDDIC records whose Next Review is in the next 30 days or overdue, grouped by the account Client Success Rep. Feeds the monthly Success Reviews Due digest (review every 3 months). Questions: Aaron Smith.</description>
+    <filter>
+        <booleanFilter>1 AND (2 OR 3)</booleanFilter>
+        <criteriaItems>
+            <column>CUST_RECORDTYPE</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>MEDDIC__c.Client_Success</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>MEDDIC__c.Next_Review__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>NEXT_N_DAYS:30</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>MEDDIC__c.Next_Review__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>lessThan</operator>
+            <value>TODAY</value>
+        </criteriaItems>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Account.Client_Success_Rep_2__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Success Reviews Due (Next 30 Days)</name>
+    <reportType>AccountCustomEntity$MEDDIC__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>CUST_CREATED_DATE</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Next_Review__c</fullName>
-    <description>Status (Stage 4): date of the next CSM success review (every 3 months).</description>
+    <description>Status (Stage 4): when the next CSM success review is due. Three months after Last Reviewed, or three months after the record was created when no review has been logged yet. Drives the monthly "Success Reviews Due" digest.</description>
     <externalId>false</externalId>
+    <formula>IF(NOT(ISBLANK(Last_Reviewed__c)), ADDMONTHS(Last_Reviewed__c, 3), ADDMONTHS(DATEVALUE(CreatedDate), 3))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Calculated: Last Reviewed + 3 months (or 3 months after this record was created if it has never been reviewed).</inlineHelpText>
     <label>Next Review</label>
     <required>false</required>
     <trackHistory>false</trackHistory>
