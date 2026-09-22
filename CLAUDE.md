@@ -209,3 +209,13 @@ working here:
   Account - Prospect layout carried a dead Freshdesk related list (package removed) that a deploy now
   rejects; it was dropped from the layout on 2026-09-22. Deleting an opp
   cascades to ALL its MEDDIC records, CS-entered ones included.
+- Report subscriptions (Analytics REST `/analytics/notifications`, source `lightningReportSubscribe`):
+  POST creates one for the calling user (even when it returns "An unexpected error occurred" it may
+  have created it, and a second POST then says "You already have a notification"); updates are PUT,
+  not PATCH; `thresholds` must be omitted (`alwaysTrigger` and `static` are rejected for reports);
+  only `daily`/`weekly` schedules are accepted (`{"frequency":"weekly","details":{"time":8,
+  "daysOfWeek":["mon"]}}`), every monthly shape is rejected; and the object has no recipients
+  property, so recipient lists and monthly frequency are UI-only (Report -> Subscribe). Success
+  Reviews Due (`Support_Roundup_Updates/Success_Reviews_Due`, folder "Client Success") is meant to
+  be subscribed monthly on the 1st with a Record Count > 0 condition; `Next_Review__c` is a formula
+  (Last Reviewed + 3 months, else created + 3 months), so no CSM upkeep is needed for the dates.
