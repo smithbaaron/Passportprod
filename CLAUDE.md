@@ -188,3 +188,17 @@ working here:
   stale end date now yields the rolled renewal date instead of the +12-month fallback; a Standard asset
   with a past end date is still skipped. Rollback harness: scratchpad renew_A..G.apex (one closing opp
   per run).
+- MEDDIC (`MEDDIC__c`, Sep 2026): account-level MEDDIC records, master-detail to Account
+  (`MEDDIC_Records__r`, reparentable) with a REQUIRED Opportunity lookup (cascade delete; lookup filter
+  keeps the opp on the same account, enforced on API inserts too). Record types: `From_Opportunity`
+  (mirror of the six opportunity MEDDIC fields, read-only via `Synced_Records_Are_Read_Only`, which
+  rejects any edit that does not change `Last_Synced__c`; System Administrator exempt) and
+  `Client_Success` (CS-entered). Two record-triggered flows: `MEDDIC_Sync_on_Opportunity_Create`
+  (any of the six fields filled) and `MEDDIC_Sync_from_Opportunity` (update; entry = IsChanged on the
+  six fields or AccountId). Flow entry FORMULAS cannot reference rich-text fields (Metrics, Identify
+  Pain), and the IsChanged entry operator is FALSE on record create, hence the split. Profile
+  `fieldPermissions` cannot be deployed for required fields (Source__c, Opportunity__c). Related list
+  sits last in the right column of `Account_Record_Page` and on the Account / Account - Prospect
+  layouts (not Technology Partner). Backfill = one mirror per opp with MEDDIC content (705 as of
+  2026-09-22): scratchpad `meddic_backfill_dry.apex` (rollback) is the template. Deleting an opp
+  cascades to ALL its MEDDIC records, CS-entered ones included.

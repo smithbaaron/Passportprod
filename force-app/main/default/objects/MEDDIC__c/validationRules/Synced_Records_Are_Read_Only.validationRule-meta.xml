@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Synced_Records_Are_Read_Only</fullName>
+    <active>true</active>
+    <description>From Opportunity records are mirrors maintained by the sync flow, which stamps Last Synced on every write. Any other edit is rejected so nothing typed here is silently overwritten. System Administrators are exempt for data fixes.</description>
+    <errorConditionFormula>AND(
+  RecordType.DeveloperName = &quot;From_Opportunity&quot;,
+  NOT(ISNEW()),
+  NOT(ISCHANGED(Last_Synced__c)),
+  $Profile.Name &lt;&gt; &quot;System Administrator&quot;
+)</errorConditionFormula>
+    <errorMessage>This record mirrors the opportunity's MEDDIC fields and is updated automatically. Edit the fields on the opportunity, or add a Client Success MEDDIC record instead.</errorMessage>
+</ValidationRule>

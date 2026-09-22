@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Last_Synced__c</fullName>
+    <description>Set by the MEDDIC Sync from Opportunity flow on every copy. Also the key the read-only rule uses: an edit to a From Opportunity record that does not change this field is rejected.</description>
+    <externalId>false</externalId>
+    <label>Last Synced</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>DateTime</type>
+</CustomField>

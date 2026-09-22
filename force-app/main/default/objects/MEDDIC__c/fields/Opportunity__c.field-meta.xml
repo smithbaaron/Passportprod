@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Opportunity__c</fullName>
+    <deleteConstraint>Cascade</deleteConstraint>
+    <description>The deal this MEDDIC record describes. Required on every record; must belong to the same account.</description>
+    <externalId>false</externalId>
+    <label>Opportunity</label>
+    <lookupFilter>
+        <active>true</active>
+        <errorMessage>Choose an opportunity that belongs to this account.</errorMessage>
+        <filterItems>
+            <field>Opportunity.AccountId</field>
+            <operation>equals</operation>
+            <valueField>$Source.Account__c</valueField>
+        </filterItems>
+        <isOptional>false</isOptional>
+    </lookupFilter>
+    <referenceTo>Opportunity</referenceTo>
+    <relationshipLabel>MEDDIC</relationshipLabel>
+    <relationshipName>MEDDIC_Records</relationshipName>
+    <required>true</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>From_Opportunity</fullName>
+    <active>true</active>
+    <description>Mirror of the opportunity MEDDIC fields, maintained by the MEDDIC Sync from Opportunity flow. Read-only.</description>
+    <label>From Opportunity</label>
+    <picklistValues>
+        <picklist>Source__c</picklist>
+        <values>
+            <fullName>From%20Opportunity</fullName>
+            <default>true</default>
+        </values>
+    </picklistValues>
+</RecordType>
