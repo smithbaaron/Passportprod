@@ -99,6 +99,27 @@
                 </rightValue>
             </conditions>
             <conditions>
+                <leftValueReference>$Record.Why_Passport__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Compelling_Reason_Event_to_Close_in_Q__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Deal_Competition__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
                 <leftValueReference>$Record.Champion__c</leftValueReference>
                 <operator>IsNull</operator>
                 <rightValue>
@@ -111,7 +132,7 @@
             <label>Yes, create the mirror</label>
         </rules>
     </decisions>
-    <description>Copies the opportunity's MEDDIC fields (Metrics, Economic Buyer, Decision Criteria, Decision Process, Identify Pain, Champion) into the account-level MEDDIC record of type From Opportunity whenever one of them (or the account) changes on an update, creating the record on first content and following the opportunity if it moves to another account. Creation is handled by MEDDIC Sync on Opportunity Create. Built Sep 2026.</description>
+    <description>Copies the opportunity's MEDDICC fields (Metrics, Economic Buyer, Decision Criteria, Decision Process, Identify Pain, Champion, Compelling Event, Competition) and Why Passport into the account-level MEDDIC record of type From Opportunity whenever one of them (or the account) changes on an update, creating the record on first content and following the opportunity if it moves to another account. Creation is handled by MEDDIC Sync on Opportunity Create. Built Sep 2026.</description>
     <environments>Default</environments>
     <formulas>
         <name>fFaultBody</name>
@@ -192,6 +213,24 @@
             <field>Last_Synced__c</field>
             <value>
                 <elementReference>$Flow.CurrentDateTime</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Why_Passport__c</field>
+            <value>
+                <elementReference>$Record.Why_Passport__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Compelling_Event__c</field>
+            <value>
+                <elementReference>$Record.Compelling_Reason_Event_to_Close_in_Q__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Competition__c</field>
+            <value>
+                <elementReference>$Record.Deal_Competition__c</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -336,6 +375,24 @@
             </value>
         </inputAssignments>
         <inputAssignments>
+            <field>Why_Passport__c</field>
+            <value>
+                <elementReference>$Record.Why_Passport__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Compelling_Event__c</field>
+            <value>
+                <elementReference>$Record.Compelling_Reason_Event_to_Close_in_Q__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Competition__c</field>
+            <value>
+                <elementReference>$Record.Deal_Competition__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
             <field>Metrics__c</field>
             <value>
                 <elementReference>$Record.Metrics__c</elementReference>
@@ -387,6 +444,27 @@
         </filters>
         <filters>
             <field>Champion__c</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Why_Passport__c</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Compelling_Reason_Event_to_Close_in_Q__c</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Deal_Competition__c</field>
             <operator>IsChanged</operator>
             <value>
                 <booleanValue>true</booleanValue>

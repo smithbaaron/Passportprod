@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Compelling_Event__c</fullName>
+    <description>MEDDICC compelling event. Mirrors Opportunity.Compelling_Reason_Event_to_Close_in_Q__c (Reason to Close in Q) on From Opportunity records.</description>
+    <externalId>false</externalId>
+    <label>Compelling Event</label>
+    <length>32768</length>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>LongTextArea</type>
+    <visibleLines>4</visibleLines>
+</CustomField>

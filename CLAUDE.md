@@ -199,6 +199,13 @@ working here:
   Pain), and the IsChanged entry operator is FALSE on record create, hence the split. Profile
   `fieldPermissions` cannot be deployed for required fields (Source__c, Opportunity__c). Related list
   sits last in the right column of `Account_Record_Page` and on the Account / Account - Prospect
-  layouts (not Technology Partner). Backfill = one mirror per opp with MEDDIC content (705 as of
-  2026-09-22): scratchpad `meddic_backfill_dry.apex` (rollback) is the template. Deleting an opp
+  layouts (not Technology Partner). Mirrored source fields (nine): the six MEDDIC fields plus `Why_Passport__c`,
+  `Compelling_Reason_Event_to_Close_in_Q__c` -> `Compelling_Event__c` and `Deal_Competition__c` ->
+  `Competition__c` (multi-select copied as semicolon text). Cecily's Stage-4 lifecycle fields live on the
+  same object for Client Success records only (Client Objectives, Measurement, Qualitative Success,
+  Status incl. `Success_Status__c`, `Last_Reviewed__c`, `Next_Review__c`); the quarterly review reminder
+  is NOT built. Backfill = one mirror per opp with any of the nine fields filled (1,994 opps / 1,103
+  accounts as of 2026-09-22): scratchpad `meddic_backfill_dry.apex` (rollback) is the template. The
+  Account - Prospect layout carried a dead Freshdesk related list (package removed) that a deploy now
+  rejects; it was dropped from the layout on 2026-09-22. Deleting an opp
   cascades to ALL its MEDDIC records, CS-entered ones included.

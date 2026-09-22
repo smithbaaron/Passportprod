@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Success_Status__c</fullName>
+    <description>Status (Stage 4): how the client is tracking against the agreed success definition. Reviewed every 3 months.</description>
+    <externalId>false</externalId>
+    <label>Success Status</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value><fullName>On Track</fullName><default>false</default><label>On Track</label></value>
+            <value><fullName>At Risk</fullName><default>false</default><label>At Risk</label></value>
+            <value><fullName>Achieved</fullName><default>false</default><label>Achieved</label></value>
+            <value><fullName>Not Yet Measurable</fullName><default>false</default><label>Not Yet Measurable</label></value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

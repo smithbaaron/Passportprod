@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Competition__c</fullName>
+    <description>MEDDICC competition. Mirrors Opportunity.Deal_Competition__c on From Opportunity records.</description>
+    <externalId>false</externalId>
+    <label>Competition</label>
+    <length>255</length>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

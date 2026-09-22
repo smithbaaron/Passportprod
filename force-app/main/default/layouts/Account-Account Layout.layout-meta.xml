@@ -706,6 +706,7 @@
         <fields>Opportunity__c</fields>
         <fields>Economic_Buyer__c</fields>
         <fields>Champion__c</fields>
+        <fields>Success_Status__c</fields>
         <fields>Last_Synced__c</fields>
         <relatedList>MEDDIC__c.Account__c</relatedList>
     </relatedLists>
