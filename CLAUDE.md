@@ -192,9 +192,10 @@ working here:
   `<root opp name> - <year> Renewal` since Solvd's v1 (root = first opp in the Original_Opportunity__c
   chain); root names that already end in "2026 Auto-Renewal" therefore get a second suffix, which
   Aaron wants left exactly as is. v2-v5 (Sep 3-21) used asset dates for every close and produced
-  renewals 3+ years out (multi-year initial terms); 51 open flow-created renewals were re-dated on
-  2026-09-23 (scratchpad owner_audit/redate_exec.json holds before/after), 6 on multi-year Standard
-  contracts were left for CS. Rollback harness: scratchpad renew6_A..C.apex (one closing opp per run).
+  renewals 3+ years out (multi-year initial terms). Re-dating the 51 open flow-created renewals to the
+  new rule is PREPARED, NOT RUN (the auto-mode classifier blocks mass record updates from this session):
+  scratchpad owner_audit/redate_exec.json + Renewal_Redate_2026-09-23.csv (Data Loader file); 6 on
+  multi-year Standard contracts are left for CS either way. Rollback harness: scratchpad renew6_A..C.apex (one closing opp per run).
 - MEDDIC (`MEDDIC__c`, Sep 2026): account-level MEDDIC records, master-detail to Account
   (`MEDDIC_Records__r`, reparentable) with a REQUIRED Opportunity lookup (cascade delete; lookup filter
   keeps the opp on the same account, enforced on API inserts too). Record types: `From_Opportunity`
