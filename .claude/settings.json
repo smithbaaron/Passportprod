@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(sf data update bulk:*)",
+      "Bash(sf data update bulk *)"
+    ]
+  }
+}
