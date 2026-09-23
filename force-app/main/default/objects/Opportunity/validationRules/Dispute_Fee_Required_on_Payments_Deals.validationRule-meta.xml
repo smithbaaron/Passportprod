@@ -2,7 +2,7 @@
 <ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Dispute_Fee_Required_on_Payments_Deals</fullName>
     <active>true</active>
-    <description>Per Contracts (Courtney Louiselle) and Finance (Karen), Sep 2026, change request 00105850: the flat per-dispute chargeback fee the client pays must be settled before the contract is completed and must appear in the order form. Stops a New Business or Cross-Sell deal that carries a Payments-family product from entering Contract (or Closed Won) while Dispute Chargeback Fee is blank. 0 means the client pays no fee. Product Family RU is the Rollup Helper text of the product families on the deal (matches the Payments line items exactly).</description>
+    <description>Contracts/Finance, Sep 2026 (case 00105850): a Standard-record-type deal whose Product Family RU contains Payments needs the flat per-dispute fee the client pays (0 if none) before Contract or Closed Won, so it lands in the order form.</description>
     <errorConditionFormula>AND(
   RecordType.DeveloperName = &quot;Standard_Opportunity&quot;,
   ISCHANGED(StageName),

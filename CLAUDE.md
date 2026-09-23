@@ -227,3 +227,17 @@ working here:
   Reviews Due (`Support_Roundup_Updates/Success_Reviews_Due`, folder "Client Success") is meant to
   be subscribed monthly on the 1st with a Record Count > 0 condition; `Next_Review__c` is a formula
   (Last Reviewed + 3 months, else created + 3 months), so no CSM upkeep is needed for the dates.
+- Dispute Chargeback Fee (Sep 2026, case 00105850, Courtney Louiselle / Karen in Finance): the flat
+  per-dispute fee the client pays lives in the REUSED Opportunity field `Charge_Back_Fee__c` (relabeled
+  "Dispute Chargeback Fee"; 0 = client pays none; it existed since 2018 on no layout with four $0
+  values that were left alone to avoid re-saving old closed-won deals). On the Sales, Admin,
+  SD/Implementation and Renewal layouts next to Finance Notes; all 24 profiles already had access.
+  Validation rule `Dispute_Fee_Required_on_Payments_Deals` stops Standard-record-type deals whose
+  `Product_Family_RU__c` (Rollup Helper text; matched the Payments line items on all 416 Payments deals
+  won in the prior 12 months) contains "Payments" from entering Contract or Closed Won with the fee
+  blank; renewals are exempt. The SALES Closed Won Notification templates (HTML `SALES_Closed_Won_Notification`,
+  text `MB_Test_Closed_Won_Text`, both unfiled$public) carry the fee for the PR ticket that Payment
+  Operations configures settlement from. The order form is the Ironclad "2026 Passport Order Form"
+  workflow launched from the opportunity; its field mapping is configured in Ironclad, so mapping the
+  fee there is an Ironclad-admin task, not metadata. Rollback harness: scratchpad vr_dispute_fee3.apex
+  (test deals need Incumbent__c and, for renewals, Renewal_Typ__c).
