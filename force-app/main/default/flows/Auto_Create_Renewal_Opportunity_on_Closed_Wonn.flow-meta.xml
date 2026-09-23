@@ -83,6 +83,22 @@
     <apiVersion>65.0</apiVersion>
     <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <assignments>
+        <name>Assign_NextRenewal_from_Record</name>
+        <label>Next Renewal from closed renewal (+12 months)</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>varNextRenewal</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>fNextRenewalFromRecord</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Get_All_Chain_Opportunity</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
         <name>Assign_NextRenewal_Fallback</name>
         <label>Next Renewal Fallback (+12 months)</label>
         <locationX>0</locationX>
@@ -262,6 +278,38 @@
         </connector>
     </assignments>
     <decisions>
+        <name>Renewal_With_Date</name>
+        <label>Closed opp is a Renewal with a Renewal Date?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Get_Opp_Assets</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No: use assets</defaultConnectorLabel>
+        <rules>
+            <name>Renewal_With_Date_Yes</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Type</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Renewal</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Renewal_Date__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_NextRenewal_from_Record</targetReference>
+            </connector>
+            <label>Yes: closed renewal date + 12 months</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>Account_Assets_Found</name>
         <label>Account Assets Found?</label>
         <locationX>0</locationX>
@@ -414,6 +462,20 @@
         </rules>
     </decisions>
     <environments>Default</environments>
+    <formulas>
+        <description>Next annual renewal after the renewal being closed: its Renewal Date + 12 months, rolled forward in 12-month steps when that would already be in the past (backlog closes).</description>
+        <name>fNextRenewalFromRecord</name>
+        <dataType>Date</dataType>
+        <expression>IF(
+  ADDMONTHS({!$Record.Renewal_Date__c}, 12) &gt;= TODAY(),
+  ADDMONTHS({!$Record.Renewal_Date__c}, 12),
+  IF(
+    ADDMONTHS({!$Record.Renewal_Date__c}, 12 * (YEAR(TODAY()) - YEAR({!$Record.Renewal_Date__c}))) &gt;= TODAY(),
+    ADDMONTHS({!$Record.Renewal_Date__c}, 12 * (YEAR(TODAY()) - YEAR({!$Record.Renewal_Date__c}))),
+    ADDMONTHS({!$Record.Renewal_Date__c}, 12 * (YEAR(TODAY()) - YEAR({!$Record.Renewal_Date__c}) + 1))
+  )
+)</expression>
+    </formulas>
     <formulas>
         <name>fFallbackRenewal</name>
         <dataType>Date</dataType>
@@ -967,7 +1029,7 @@
         <locationX>0</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Get_Opp_Assets</targetReference>
+            <targetReference>Renewal_With_Date</targetReference>
         </connector>
         <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
         <filterFormula>AND(

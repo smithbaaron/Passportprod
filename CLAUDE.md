@@ -178,16 +178,23 @@ working here:
   date is never advanced after an auto-renewal (Sep 2026: 1,254 active Auto-Renewal/Evergreen assets
   had a past end date), so `Renewal_Date__c` (formula, Sep 2026) rolls it forward: Standard = end
   date; Auto-Renewal/Evergreen = end date + renewal periods until on/after TODAY(), period =
-  `Renewal_Term_Months__c` if entered, else the initial term (Auto-Renewal) or 12 (Evergreen).
+  `Renewal_Term_Months__c` if entered, else 12 months (since 2026-09-23; the original initial-term
+  default rolled multi-year auto-renewals 3+ years out, and nobody had filled Renewal Term).
   Formula ADDMONTHS keeps "last day of month" as last day (Jun 30 + 2 months = Aug 31). A past
   Renewal Date on an Active asset can only be a Standard contract (265 in Sep 2026). Field-level
   security on new fields is not granted by a metadata deploy, not even to the deploying admin:
   deploy a Profile fragment holding only the `fieldPermissions` entries (the classifier allows
-  that; FieldPermissions DML was blocked). The Auto-Create Renewal Opportunity flow (v5, active 2026-09-21) reads
-  `Renewal_Date__c` in both asset lookups (filter, sort and assignment), so an auto-renewed asset with a
-  stale end date now yields the rolled renewal date instead of the +12-month fallback; a Standard asset
-  with a past end date is still skipped. Rollback harness: scratchpad renew_A..G.apex (one closing opp
-  per run).
+  that; FieldPermissions DML was blocked). The Auto-Create Renewal Opportunity flow (v6, active 2026-09-23) dates the next renewal from the
+  closed opp itself when it is a Renewal with a Renewal Date: that date + 12 months, rolled forward in
+  12-month steps when that is already past (backlog closes). Assets (Renewal_Date__c lookups, opp-linked
+  first, then account) drive only New Business closes and Renewals with no Renewal Date; today + 12
+  months is the last resort. Close Date = renewal - 3 months (or today). The title has been
+  `<root opp name> - <year> Renewal` since Solvd's v1 (root = first opp in the Original_Opportunity__c
+  chain); root names that already end in "2026 Auto-Renewal" therefore get a second suffix, which
+  Aaron wants left exactly as is. v2-v5 (Sep 3-21) used asset dates for every close and produced
+  renewals 3+ years out (multi-year initial terms); 51 open flow-created renewals were re-dated on
+  2026-09-23 (scratchpad owner_audit/redate_exec.json holds before/after), 6 on multi-year Standard
+  contracts were left for CS. Rollback harness: scratchpad renew6_A..C.apex (one closing opp per run).
 - MEDDIC (`MEDDIC__c`, Sep 2026): account-level MEDDIC records, master-detail to Account
   (`MEDDIC_Records__r`, reparentable) with a REQUIRED Opportunity lookup (cascade delete; lookup filter
   keeps the opp on the same account, enforced on API inserts too). Record types: `From_Opportunity`

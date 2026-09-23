@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Renewal_Date__c</fullName>
-    <description>Next date the contract comes up for renewal. Standard contracts: Contract End Date. Auto-Renewal and Evergreen contracts: Contract End Date rolled forward in renewal periods until it lands on or after today, so the field stays current after the contract auto-renews without anyone editing the asset. Renewal period = Renewal Term (Months) when entered, otherwise the initial term for Auto-Renewal and 12 months for Evergreen. Blank when Contract End Date is blank. Added Sep 2026.</description>
+    <description>Next date the contract comes up for renewal. Standard contracts: Contract End Date. Auto-Renewal and Evergreen contracts: Contract End Date rolled forward in renewal periods until it lands on or after today, so the field stays current after the contract auto-renews without anyone editing the asset. Renewal period = Renewal Term (Months) when entered, otherwise 12 months (changed 2026-09-23: the initial-term default rolled multi-year contracts 3+ years out). Blank when Contract End Date is blank. Added Sep 2026.</description>
     <externalId>false</externalId>
     <formula>IF(
   OR(
@@ -16,14 +16,10 @@
       FLOOR(
         ((YEAR(TODAY()) - YEAR(Contract_End_Date__c)) * 12 + (MONTH(TODAY()) - MONTH(Contract_End_Date__c)) - IF(DAY(TODAY()) &lt; DAY(Contract_End_Date__c), 1, 0))
         /
-        IF(NOT(ISBLANK(Renewal_Term_Months__c)) &amp;&amp; Renewal_Term_Months__c &gt; 0, Renewal_Term_Months__c,
-           IF(ISPICKVAL(Contract_Term_Type__c, &quot;Evergreen&quot;) || ISBLANK(Contract_Start_Date__c), 12,
-              MAX(1, ROUND((Contract_End_Date__c - Contract_Start_Date__c) / 30.4375, 0))))
+        IF(NOT(ISBLANK(Renewal_Term_Months__c)) &amp;&amp; Renewal_Term_Months__c &gt; 0, Renewal_Term_Months__c, 12)
       )
       *
-      IF(NOT(ISBLANK(Renewal_Term_Months__c)) &amp;&amp; Renewal_Term_Months__c &gt; 0, Renewal_Term_Months__c,
-         IF(ISPICKVAL(Contract_Term_Type__c, &quot;Evergreen&quot;) || ISBLANK(Contract_Start_Date__c), 12,
-            MAX(1, ROUND((Contract_End_Date__c - Contract_Start_Date__c) / 30.4375, 0))))
+      IF(NOT(ISBLANK(Renewal_Term_Months__c)) &amp;&amp; Renewal_Term_Months__c &gt; 0, Renewal_Term_Months__c, 12)
     ) = TODAY(),
     TODAY(),
     ADDMONTHS(
@@ -31,19 +27,15 @@
       (FLOOR(
         ((YEAR(TODAY()) - YEAR(Contract_End_Date__c)) * 12 + (MONTH(TODAY()) - MONTH(Contract_End_Date__c)) - IF(DAY(TODAY()) &lt; DAY(Contract_End_Date__c), 1, 0))
         /
-        IF(NOT(ISBLANK(Renewal_Term_Months__c)) &amp;&amp; Renewal_Term_Months__c &gt; 0, Renewal_Term_Months__c,
-           IF(ISPICKVAL(Contract_Term_Type__c, &quot;Evergreen&quot;) || ISBLANK(Contract_Start_Date__c), 12,
-              MAX(1, ROUND((Contract_End_Date__c - Contract_Start_Date__c) / 30.4375, 0))))
+        IF(NOT(ISBLANK(Renewal_Term_Months__c)) &amp;&amp; Renewal_Term_Months__c &gt; 0, Renewal_Term_Months__c, 12)
       ) + 1)
       *
-      IF(NOT(ISBLANK(Renewal_Term_Months__c)) &amp;&amp; Renewal_Term_Months__c &gt; 0, Renewal_Term_Months__c,
-         IF(ISPICKVAL(Contract_Term_Type__c, &quot;Evergreen&quot;) || ISBLANK(Contract_Start_Date__c), 12,
-            MAX(1, ROUND((Contract_End_Date__c - Contract_Start_Date__c) / 30.4375, 0))))
+      IF(NOT(ISBLANK(Renewal_Term_Months__c)) &amp;&amp; Renewal_Term_Months__c &gt; 0, Renewal_Term_Months__c, 12)
     )
   )
 )</formula>
     <formulaTreatBlanksAs>BlankAsBlank</formulaTreatBlanksAs>
-    <inlineHelpText>Next renewal date. Standard: the Contract End Date. Auto-Renewal and Evergreen: the end date rolled forward by the renewal period until it is on or after today.</inlineHelpText>
+    <inlineHelpText>Next renewal date. Standard: the Contract End Date. Auto-Renewal and Evergreen: the end date rolled forward in renewal periods (Renewal Term (Months), else 12 months) until it is on or after today.</inlineHelpText>
     <label>Renewal Date</label>
     <required>false</required>
     <type>Date</type>
