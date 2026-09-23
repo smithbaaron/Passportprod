@@ -1,0 +1,17 @@
+NEW CLOSED WON OPPORTUNITY!!
+
+Congratulations to {!Opportunity.OwnerFullName} for closing a deal with {!Opportunity.Account}!
+
+Opportunity: {!Opportunity.Account} - {!Opportunity.Name}
+Opportunity Type: {!Opportunity.Type}
+ARR Amount: {!Opportunity.Recurring_Amount_RU__c}
+One-Time Amount: {!Opportunity.One_Time_Amount_RU__c}
+Product(s): {!Opportunity.Product_Family_RU__c}
+Dispute Chargeback Fee: {!Opportunity.Charge_Back_Fee__c}
+Lead Source: {!Opportunity.LeadSource}
+Incumbent: {!Opportunity.Incumbent__c}
+Incumbent Other: {!Opportunity.Incumbent_if_Other__c}
+
+Passport Team:
+Opp Owner: {!Opportunity.OwnerFullName}
+Client Success: {!Opportunity.Client_Success_Rep__c}

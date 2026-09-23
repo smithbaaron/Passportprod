@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Charge_Back_Fee__c</fullName>
+    <description>Flat fee per dispute (chargeback) the client pays, as written in the executed agreement. Reused Sep 2026 for change request 00105850 (Courtney Louiselle, Contracts; answers from Karen, Finance): the field existed since 2018 as "Charge Back Fee" but was on no layout. Sales enters it while building the deal so it can be mapped into the Ironclad order form; Contracts confirms it against the executed agreement; Payment Operations configures settlement from it via the PR ticket. Required by validation rule Dispute_Fee_Required_on_Payments_Deals before the Contract stage on deals with a Payments-family product. 0 = client pays no fee. If the fee differs by product on one contract (rare), note the split in Finance Notes.</description>
+    <inlineHelpText>Flat amount per dispute the client pays, exactly as it appears in the agreement and order form. Enter 0 if the client pays none. Required on Payments deals before the Contract stage. If it differs by product on one contract, note the split in Finance Notes.</inlineHelpText>
+    <label>Dispute Chargeback Fee</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Currency</type>
+</CustomField>

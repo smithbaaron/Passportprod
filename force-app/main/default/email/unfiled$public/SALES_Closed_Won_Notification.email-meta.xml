@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Email to notify seller and Leadership a deal has closed won from an AE or AM.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Closed_Won</letterhead>
+    <name>SALES: Email Closed Won Notification</name>
+    <style>freeForm</style>
+    <subject>NEW CLOSED WON | {!Opportunity.Type} | {!Opportunity.Account}!</subject>
+    <textOnly>NEW CLOSED WON OPPORTUNITY!! 
+
+Congratulations to {!Opportunity.OwnerFullName} for closing a deal with {!Opportunity.Account}!
+
+Opportunity: {!Opportunity.Account} - {!Opportunity.Name}
+ARR Amount: {!Opportunity.Recurring_Amount_RU__c}
+One-Time Amount: {!Opportunity.One_Time_Amount_RU__c}
+Product(s): {!Opportunity.Product_Family_RU_c}
+
+Passport Team: 
+Opp Owner: {!Opportunity.OwnerFullName} 
+Client Success: {!Opportunity.Client_Success_rep_c}
+Channel Manager: {!Opportunity.Channel_Rep_c}
+Product Consultant: {!Opportunity.Product_Consultant_c}
+Solution Engineer: {!Opportunity.Solution_Engineer_c}
+
+Links
+Ironclad Workflow: {!Opportunity.Ironclad_Workflow_c} 
+Google Folder: {!Opportunity.Google_Drive_Deal_Folder_c}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>
