@@ -704,6 +704,7 @@
         <fields>NAME</fields>
         <fields>Source__c</fields>
         <fields>Opportunity__c</fields>
+        <fields>Opportunity_Created_Date__c</fields>
         <fields>Economic_Buyer__c</fields>
         <fields>Champion__c</fields>
         <fields>Success_Status__c</fields>
