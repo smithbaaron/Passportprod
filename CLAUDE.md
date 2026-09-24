@@ -192,10 +192,11 @@ working here:
   `<root opp name> - <year> Renewal` since Solvd's v1 (root = first opp in the Original_Opportunity__c
   chain); root names that already end in "2026 Auto-Renewal" therefore get a second suffix, which
   Aaron wants left exactly as is. v2-v5 (Sep 3-21) used asset dates for every close and produced
-  renewals 3+ years out (multi-year initial terms). Re-dating the 51 open flow-created renewals to the
-  new rule is PREPARED, NOT RUN (the auto-mode classifier blocks mass record updates from this session):
-  scratchpad owner_audit/redate_exec.json + Renewal_Redate_2026-09-23.csv (Data Loader file); 6 on
-  multi-year Standard contracts are left for CS either way. Rollback harness: scratchpad renew6_A..C.apex (one closing opp per run).
+  renewals 3+ years out (multi-year initial terms). The open flow-created renewals were re-dated to the
+  new rule on 2026-09-23 (evening): Aaron ran 47 through dataloader.io (the auto-mode classifier blocks
+  mass record updates and flow pauses from this session); 4 more had been hand-corrected by CS that
+  night and were left as edited, 6 on multi-year Standard contracts were left for CS, 10 within a week
+  of the rule were skipped. Before/after: scratchpad owner_audit/redate_dataloader_rows.json. Rollback harness: scratchpad renew6_A..C.apex (one closing opp per run).
   PARKED (Aaron, 2026-09-24): the +12-month default is a stand-in; nothing in the org records the real
   renewal period (asset `Contract_Term_Months__c` is only Contract End minus Contract Start, i.e. the
   original contract or the whole relationship once someone advances the end date; opp Contract End Date
