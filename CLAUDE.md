@@ -220,8 +220,14 @@ working here:
   `Competition__c` (multi-select copied as semicolon text). Cecily's Stage-4 lifecycle fields live on the
   same object for Client Success records only (Client Objectives, Measurement, Qualitative Success,
   Status incl. `Success_Status__c`, `Last_Reviewed__c`, `Next_Review__c`); the quarterly review reminder
-  is NOT built. Backfill = one mirror per opp with any of the nine fields filled (1,994 opps / 1,103
-  accounts as of 2026-09-22): scratchpad `meddic_backfill_dry.apex` (rollback) is the template. The
+  is NOT built. Backfill DONE 2026-09-24 (evening): 1,989 From Opportunity mirrors inserted for every opp
+  with any of the nine fields filled, 41 opps skipped because the live flows had already mirrored them,
+  0 failures (scratchpad `meddic_backfill_run.apex`; `meddic_backfill_dry.apex` is the rollback version).
+  `Opportunity_Created_Date__c` (stored Date, added 2026-09-24) is stamped from the linked opp's
+  CreatedDate by the before-save flow `MEDDIC_Set_Opportunity_Created_Date` (create and every save,
+  both record types) so the Account related list sorts in deal order; it is a related-list column on
+  both Account layouts and read-only on both MEDDIC layouts. A cross-object formula was avoided because
+  related lists cannot sort on one. The
   Account - Prospect layout carried a dead Freshdesk related list (package removed) that a deploy now
   rejects; it was dropped from the layout on 2026-09-22. Deleting an opp
   cascades to ALL its MEDDIC records, CS-entered ones included.
