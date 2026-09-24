@@ -211,7 +211,12 @@ working here:
   rejects any edit that does not change `Last_Synced__c`; System Administrator exempt) and
   `Client_Success` (CS-entered). Two record-triggered flows: `MEDDIC_Sync_on_Opportunity_Create`
   (any of the six fields filled) and `MEDDIC_Sync_from_Opportunity` (update; entry = IsChanged on the
-  six fields or AccountId). Flow entry FORMULAS cannot reference rich-text fields (Metrics, Identify
+  six fields or AccountId). SCOPE (Marcia, 2026-09-24): MEDDIC applies only to Type "New Business - New
+  Customer" and "New Business - Cross-Sell"; both flows carry that as an AND on the entry filter
+  (create v3 / update v4, active 2026-09-24), so Renewal, Upsell and Revenue Enhancement deals are never
+  mirrored. The 861 mirrors the backfill had created from those types are deleted by Aaron via Data
+  Loader (scratchpad MEDDIC_Delete_NonNewBusiness.csv; mass deletes are blocked from this session);
+  2 mirrors from the retired Type value "New Business - Net New" were kept as new business. Flow entry FORMULAS cannot reference rich-text fields (Metrics, Identify
   Pain), and the IsChanged entry operator is FALSE on record create, hence the split. Profile
   `fieldPermissions` cannot be deployed for required fields (Source__c, Opportunity__c). Related list
   sits last in the right column of `Account_Record_Page` and on the Account / Account - Prospect
