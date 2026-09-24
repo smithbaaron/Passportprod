@@ -136,8 +136,15 @@ working here:
   "New Business - Cross-Sell": net-new deals get their CS rep after close, and the Google
   Drive Deal Folder link is no longer gated. `Stage_Gate_Discovery`, `Stage_Gate_RFP`,
   `Pre_Close_Audit_Check` and `Google_Drive_in_Sales_Team_Section` are inactive in the org.
-  The org carries 45 Opportunity validation rules; this repo holds 8 (retrieve
-  `CustomObject:Opportunity` for ground truth).
+  The org carries 45 Opportunity validation rules; this repo holds 10 (retrieve
+  `CustomObject:Opportunity` for ground truth). `Next_Step_must_be_current` ("Update Next Step
+  before changing stages.") fires on every non-Renewal record type, Technology/Services Partner
+  deals included; since 2026-09-24 it exempts the `CUSTOM - SF Admin` profile (Rachel Kleman's,
+  8 active users incl. Sam Warnecke, Solvd and Zapier) and any profile or role containing
+  "Marketing" (`CUSTOM - Marketing User`, role `Marketing`) via `$Profile.Name` / `$UserRole.Name`.
+  Older rules exempt admins by `$Profile.Id` (`00e0f00000107LD` = CUSTOM - SF Admin). Rollback
+  probe: scratchpad vr_nextstep_probe.apex (runs as Aaron, who is NOT exempt: System
+  Administrator / role SF Admin).
 - Account roll-up summaries over Opportunity (`Open_Opp_Count__c`, `Closed_Won_Opportunities__c`,
   `Won_Opp_Count__c`, `Amount_Sum__c`, `Total_spaces_sold__c`, `Customer_Acquisition_Date__c`,
   `Implementation_Complete_Opportunities__c`) re-save the Account whenever an opp enters or

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Next_Step_must_be_current</fullName>
+    <active>true</active>
+    <description>Stage changes on non-Renewal deals need a Next Step. Exempt since 2026-09-24 (Aaron): the CUSTOM - SF Admin profile and any profile or role containing Marketing.</description>
+    <errorConditionFormula>AND(
+NOT(OR(
+  $Profile.Name = &quot;CUSTOM - SF Admin&quot;,
+  CONTAINS($Profile.Name, &quot;Marketing&quot;),
+  CONTAINS($UserRole.Name, &quot;Marketing&quot;)
+)),
+RecordType.DeveloperName &lt;&gt; &quot;Renewal&quot;,
+ISCHANGED(StageName),
+NOT(ISPICKVAL(StageName, &quot;Closed Won&quot;)),
+NOT(ISPICKVAL(StageName, &quot;Closed Lost&quot;)),
+ISBLANK(NextStep)
+)</errorConditionFormula>
+    <errorDisplayField>StageName</errorDisplayField>
+    <errorMessage>Update Next Step before changing stages.</errorMessage>
+</ValidationRule>
