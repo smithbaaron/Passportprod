@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Renewal_Term_Months__c</fullName>
-    <description>Optional. Length in months of each auto-renewal period when the contract states it. Renewal Date uses it to roll forward; when blank, Auto-Renewal contracts use the initial term (Contract End Date minus Contract Start Date) and Evergreen contracts use 12 months. Added Sep 2026.</description>
+    <description>Optional. Length in months of each renewal period when the contract states it. Renewal Date rolls Auto-Renewal and Evergreen contracts forward in this many months; when blank, 12 months (since 2026-09-23; the original default of the initial term rolled multi-year contracts 3+ years out). Added Sep 2026.</description>
     <externalId>false</externalId>
-    <inlineHelpText>Months in each auto-renewal period, if the contract states it. Leave blank to use the initial term (Auto-Renewal) or 12 months (Evergreen).</inlineHelpText>
+    <inlineHelpText>Months in each renewal period, if the contract states it (36 for a three-year renewal). Leave blank for 12 months.</inlineHelpText>
     <label>Renewal Term (Months)</label>
     <precision>3</precision>
     <required>false</required>
