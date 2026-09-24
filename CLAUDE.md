@@ -196,6 +196,13 @@ working here:
   new rule is PREPARED, NOT RUN (the auto-mode classifier blocks mass record updates from this session):
   scratchpad owner_audit/redate_exec.json + Renewal_Redate_2026-09-23.csv (Data Loader file); 6 on
   multi-year Standard contracts are left for CS either way. Rollback harness: scratchpad renew6_A..C.apex (one closing opp per run).
+  PARKED (Aaron, 2026-09-24): the +12-month default is a stand-in; nothing in the org records the real
+  renewal period (asset `Contract_Term_Months__c` is only Contract End minus Contract Start, i.e. the
+  original contract or the whole relationship once someone advances the end date; opp Contract End Date
+  and the netsuite_conn term fields are blank on every won deal; asset `Renewal_Term_Months__c` is blank
+  everywhere). When Aaron says so: add a Renewal Term (Months) field on the renewal opp, have the flow
+  add that many months (fallback: asset Renewal Term, then 12), copy it onto the new renewal, and require
+  it at Closed Won like Renewal Type. Asset date hygiene is with Marcia.
 - MEDDIC (`MEDDIC__c`, Sep 2026): account-level MEDDIC records, master-detail to Account
   (`MEDDIC_Records__r`, reparentable) with a REQUIRED Opportunity lookup (cascade delete; lookup filter
   keeps the opp on the same account, enforced on API inserts too). Record types: `From_Opportunity`
