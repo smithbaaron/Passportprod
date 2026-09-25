@@ -243,6 +243,24 @@ working here:
   Account - Prospect layout carried a dead Freshdesk related list (package removed) that a deploy now
   rejects; it was dropped from the layout on 2026-09-22. Deleting an opp
   cascades to ALL its MEDDIC records, CS-entered ones included.
+  QA (2026-09-25): the overseas test team works from the Claude Doc "MEDDIC on the Account: Testing Guide"
+  (claude.ai/code/artifact/d98ba219-4bf6-40d3-8d05-a6b46182a97f; four pillars W/D/E/B, test log with dropdowns).
+  Testers use the existing accounts Admin Account Test Org (0010f00002KTyDcAAL) and Test (0016f00002oEF04AAG):
+  every NEW account is pushed to Intercom (`Create_Intercom_Company_on_New_Account`). Opp actions that email
+  real people: Type changed from Cross-Sell/Upsell to a New Business type (Cecily + Punith, `Notify_CS_Rep_when_Opp_Type_changes`),
+  Inbound ticked (6 leaders), a past Close Date (account owner), owner/CS rep/implementation changes, any close.
+  Gaps found by rollback probes (scratchpad meddic_qa_probe1-4.apex), not fixed, for Aaron to decide: the From
+  Opportunity layout shows CS Notes (and Account/Opportunity) as editable but `Synced_Records_Are_Read_Only` blocks
+  every non-System-Administrator save; both MEDDIC record types are visible to every profile, so anyone can
+  hand-create a From Opportunity record, which duplicates the deal's copy (the sync then updates only one);
+  `Competition__c` is Text(255) but `Deal_Competition__c` can exceed it (about 23+ values), which faults the sync
+  (opp saves, copy stops updating, Aaron gets "MEDDIC sync failed"; longest live value 95 chars);
+  `Compelling_Reason_Event_to_Close_in_Q__c` (feeds Compelling Event) is on no Opportunity layout; moving an opp to
+  another account moves only its From Opportunity copy, and Client Success records left behind fail their lookup
+  filter on the next save; a copy stays but stops syncing when the opp's Type leaves New Customer/Cross-Sell;
+  restoring a deleted copy from the Recycle Bin after it was re-created leaves two copies. The 861 non-New-Business
+  mirrors (480 Renewal, 195 Revenue Enhancement, 186 Upsell) were still present on 2026-09-25, so test D2 fails
+  until Aaron's Data Loader delete runs. No MEDDIC field has history tracking on (MEDDIC History shows creates only).
 - Report subscriptions (Analytics REST `/analytics/notifications`, source `lightningReportSubscribe`):
   POST creates one for the calling user (even when it returns "An unexpected error occurred" it may
   have created it, and a second POST then says "You already have a notification"); updates are PUT,
