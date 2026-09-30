@@ -16,8 +16,8 @@ sf version
 
 if [ -n "${SFDX_AUTH_URL:-}" ]; then
   echo "Authenticating to prod org from SFDX_AUTH_URL..."
-  printf '%s' "$SFDX_AUTH_URL" | sf org login sfdx-url --sfdx-url-stdin --alias=prod --set-default
-  sf org display -o prod
+  printf '%s' "$SFDX_AUTH_URL" | sf org login sfdx-url --sfdx-url-stdin - --alias prod --set-default
+  sf org display -o prod | grep -v -i -E "token|force://"
 else
   echo "SFDX_AUTH_URL not set - skipping org auth."
   echo "Add it as a secret env var in the environment settings, or log in manually:"
