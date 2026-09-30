@@ -271,6 +271,17 @@ working here:
   Reviews Due (`Support_Roundup_Updates/Success_Reviews_Due`, folder "Client Success") is meant to
   be subscribed monthly on the 1st with a Record Count > 0 condition; `Next_Review__c` is a formula
   (Last Reviewed + 3 months, else created + 3 months), so no CSM upkeep is needed for the dates.
+- Client Success user template (compared 2026-09-30, scratchpad cs_user_template_comparison.md): all 15 CS
+  people are on profile `CUSTOM - CS User` (00e0f00000108JDAAY, Salesforce license; 10 of 95 seats free) with
+  permission sets Account Plans, Campaign Influence, Check In Permissions, Files Connect Cloud Access, Ironclad
+  Standard User Clone (+ Einstein Search on 14) and PSLs CRM User, Einstein Search, Slack Service User, Standard
+  Einstein Activity Capture User; Sales Cloud for Slack is on 8, LEX Pilot is legacy. Every 2026 hire (Madhura
+  Banerjee creates them) has role Client Success Rep Team1 (00ER7000002Q3fSMAS), manager Meg Polak (Agents) or
+  Tydus Mana (CSM/CSE), Division/Department Client Success, Company Passport Labs, Inc., Marketing User on for
+  CSM/CSE. No CS user is in a public group or queue. Drift: Mike Buckley lacks Einstein Search + Slack Service
+  User; Sean Calderon (005R700000NsYaXIAV, created 2026-09-01, manager Ben Stewart, role Client Success Rep,
+  active SSO user) has no title/division and lacks Account Plans and Check In Permissions. Provisioning harness:
+  scratchpad provision_cs_user.sh (create or complete a user to the template; review before running).
 - Dispute Chargeback Fee (Sep 2026, case 00105850, Courtney Louiselle / Karen in Finance): the flat
   per-dispute fee the client pays lives in the REUSED Opportunity field `Charge_Back_Fee__c` (relabeled
   "Dispute Chargeback Fee"; 0 = client pays none; it existed since 2018 on no layout with four $0
