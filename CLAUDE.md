@@ -282,6 +282,10 @@ working here:
   User; Sean Calderon (005R700000NsYaXIAV, created 2026-09-01, manager Ben Stewart, role Client Success Rep,
   active SSO user) has no title/division and lacks Account Plans and Check In Permissions. Provisioning harness:
   scratchpad provision_cs_user.sh (create or complete a user to the template; review before running).
+  Brett Lipensky (005R700000OP11VIAT, brett.lipensky@passportinc.com) was created 2026-09-30 as a clone of
+  Dylan Trapp: CSM title, Team1 role, manager Tydus Mana, Marketing User on, the six shared permission sets plus
+  Sales Cloud for Slack, and the four PSLs (`sf data create record -s User` + `sf org assign permset` /
+  `permsetlicense`; the CLI accepts user creation from a cloud session).
 - Dispute Chargeback Fee (Sep 2026, case 00105850, Courtney Louiselle / Karen in Finance): the flat
   per-dispute fee the client pays lives in the REUSED Opportunity field `Charge_Back_Fee__c` (relabeled
   "Dispute Chargeback Fee"; 0 = client pays none; it existed since 2018 on no layout with four $0
