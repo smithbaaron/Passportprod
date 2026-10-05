@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Estimated_Bid_Release_Required</fullName>
+    <active>true</active>
+    <description>Standard deals entering RFP need an estimated bid release date for Proposal Ops. Renewals are exempt (2026-10-05): their path walks through RFP on the way to Contract and the rule was producing placeholder dates.</description>
+    <errorConditionFormula>ISBLANK( Est_Bid_Release_Date__c ) &amp;&amp;
+ISPICKVAL( StageName , &quot;RFP&quot; ) &amp;&amp;
+ISCHANGED( StageName ) &amp;&amp;
+RecordType.DeveloperName &lt;&gt; &quot;Renewal&quot;</errorConditionFormula>
+    <errorDisplayField>Est_Bid_Release_Date__c</errorDisplayField>
+    <errorMessage>Please fill in Estimated Bid Release Date before changing Stage to RFP</errorMessage>
+</ValidationRule>
