@@ -286,6 +286,34 @@ working here:
   Dylan Trapp: CSM title, Team1 role, manager Tydus Mana, Marketing User on, the six shared permission sets plus
   Sales Cloud for Slack, and the four PSLs (`sf data create record -s User` + `sf org assign permset` /
   `permsetlicense`; the CLI accepts user creation from a cloud session).
+- FOIA + Bid Intake (Prop Ops, live 2026-10-05 via change set "FOIA and Intake Form", 52 components; runbook +
+  checklist from the foia sandbox session are in the session uploads, baseline/before/after copies in scratchpad foia/):
+  Case record type `FOIA_Request` (business process = the six statuses, default New Request, compact layout came with the
+  RT), 15 Case fields (`Capture_Strategy_Record__c` and `Requestor__c` pre-existed with data and merged cleanly), 4 Case
+  validation rules, queue `Prop_Ops_FOIA` (Mackenzie Smith, Makanzie Ekstrom, Savanna Chrostowski; no queue email yet),
+  8 flows all active v1 (`Bid_Intake` screen flow + 7 FOIA record/scheduled flows; the two scheduled ones run 07:00 ET
+  as Aaron), reports + dashboard in folder `PropOps_FOIA` (View: All Internal Users), a FOIA donut appended to the
+  Proposal Ops Dashboard (Marcia's, under Revenue_Ops_Dashboards/ProposalOperations). ACCESS (Aaron, 2026-10-05):
+  `FOIA_Request_Submitter` = every active full-license user (85), so anyone can raise a FOIA request;
+  `FOIA_Request_Prop_Ops` and `Bid_Intake_Access` = ONLY Mackenzie, Makanzie, Savanna, Aaron, Marcia Barnette, Punith
+  Suresh (Michael Danko deliberately excluded); Case OWD is Private, so criteria sharing rule
+  `FOIA_Requests_Visible_to_All_Internal_Users` (Read) lets everyone incl. the requestor see queue-owned FOIA cases.
+  Shared config was edited by retrieve-append-deploy, never wholesale: StandardValueSets CaseStatus (+Submitted to
+  Pursuit, Request for Resubmission; Delivered stays non-Closed) and CaseType (+FOIA Request), Capture Strategy
+  `Product_Family__c` (restricted multi-select; LPR reactivated, +Spotblock, Photo Enforcement, Text to Pay, Guest
+  Checkout, Other), Case AssignmentRules (FOIA entry at sort 1 of the active "Request Solutions Engineering" rule),
+  Profile fragments carrying only `layoutAssignments` for Case-FOIA Request x FOIA_Request on 11 human profiles, six
+  layouts (Capture Strategy got a "Bid Intake" section and an action override mirroring the UI API default action set
+  plus `Capture_Strategy__c.New_FOIA_Request`; Account x2 and Opp Sales/Admin/Renewal got the action after Edit; global
+  actions are referenced WITHOUT the `Global.` prefix). The Home page tile could NOT be deployed: the Flow component
+  on `home:desktopTemplate` is `flowruntime:interview` (properties flowLayout=oneColumn, flowName), not
+  `flowRuntimeForFlexipage`, which the API rejects in every region; Aaron placed it in App Builder (sidebar, visibility
+  `{!$Permission.CustomPermission.Bid_Intake} EQUAL true`), and the picker lists only ACTIVE flows, so Bid_Intake was
+  activated first. Record-type-gated quick actions stay hidden until the user holds the record type (perm set), and
+  describe hides new fields until FLS arrives the same way: verify existence with Tooling CustomField. Deliverability
+  is not readable by API. Smoke test (Bid Intake + FOIA from the Capstrat, status moves, login-as a Sales user) and
+  TEST-record cleanup were still pending at the end of 2026-10-05; the negative check (no related record) passed by
+  rollback probe (scratchpad foia/smoke_negative.apex).
 - Dispute Chargeback Fee (Sep 2026, case 00105850, Courtney Louiselle / Karen in Finance): the flat
   per-dispute fee the client pays lives in the REUSED Opportunity field `Charge_Back_Fee__c` (relabeled
   "Dispute Chargeback Fee"; 0 = client pays none; it existed since 2018 on no layout with four $0
