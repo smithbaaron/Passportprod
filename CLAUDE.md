@@ -314,6 +314,18 @@ working here:
   is not readable by API. Smoke test (Bid Intake + FOIA from the Capstrat, status moves, login-as a Sales user) and
   TEST-record cleanup were still pending at the end of 2026-10-05; the negative check (no related record) passed by
   rollback probe (scratchpad foia/smoke_negative.apex).
+- `Estimated_Bid_Release_Required` (Opportunity validation rule, Aaron, 2026-05-05) asks for `Est_Bid_Release_Date__c`
+  when Stage changes to RFP. Since 2026-10-05 it exempts the Renewal record type (Aaron's call after discussing keeping
+  it): the Renewal stage order is Internal Review, Discovery, RFP, Contract, Closed, so the path's "Mark Stage as
+  Complete" from Discovery walks every renewal through RFP and reps typed placeholder dates to pass (Dylan Trapp,
+  21 renewals on 2026-09-26, scratchpad dylan_placeholder_bid_dates_before.csv; 19 are closed and were left alone
+  because re-saving closed-won opps fires the Celigo trigger and ~33 flows). Related facts: the active flow
+  `RFP_Checkbox_Required` sets `RFP__c = true` on any stage change into RFP, so those renewals are also flagged as RFP
+  deals (all 40 renewal RFP-stage entries in T12 carry the flag; only ~6 were real rebids, e.g. Lowell, Sound Transit,
+  SP Plus Dallas, Great Falls, Cincinnati); exempting renewals there too is an open decision. The Auto-Create Renewal
+  flow copies `Est_Bid_Release_Date__c` onto the next renewal, so placeholder dates propagate. Rollback probe:
+  scratchpad vr_est_bid_probe.apex. Renewals that are not bidding should move Discovery -> Contract/Closed Won by
+  picking the stage, not Mark Stage as Complete.
 - Dispute Chargeback Fee (Sep 2026, case 00105850, Courtney Louiselle / Karen in Finance): the flat
   per-dispute fee the client pays lives in the REUSED Opportunity field `Charge_Back_Fee__c` (relabeled
   "Dispute Chargeback Fee"; 0 = client pays none; it existed since 2018 on no layout with four $0
