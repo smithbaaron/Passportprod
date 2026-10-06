@@ -326,6 +326,26 @@ working here:
   flow copies `Est_Bid_Release_Date__c` onto the next renewal, so placeholder dates propagate. Rollback probe:
   scratchpad vr_est_bid_probe.apex. Renewals that are not bidding should move Discovery -> Contract/Closed Won by
   picking the stage, not Mark Stage as Complete.
+- User audit reporting (Aaron, 2026-10-06, first subject Ashwin Chinivar): report folder + dashboard folder
+  `User_Audit_Ashwin_Chinivar` ("User Audit - Ashwin Chinivar"), shared View to Marcia Barnette only (Aaron owns;
+  `folderShares` in ReportFolder/DashboardFolder metadata DID apply on these NEW folders), nine tabular reports filtered
+  on the user's name with Current CY time frames (Account/Opportunity/Case/MEDDIC field history via the standard
+  `*AuditHistory` types, Reports built or edited via `ReportList`, Accounts/Assets/Opportunities created or last edited),
+  and a 9-tile metric dashboard running as Aaron. Change the user filter to audit anyone else. Custom report type
+  `Assets_with_Asset_History` (metadata fullName without `__c`; join `<relationship>AssetHistory</relationship>`, tables
+  `Asset` / `Asset.AssetHistory`) fills the gap that Asset history has no standard report type, but Old Value / New Value
+  are NOT exposed for standard-object history in custom report types (deploy says "Could not find field OldValue"), so
+  values come from SOQL on `AssetHistory`. Report metadata on a custom report type names columns `Table$Field`
+  (`Asset$Name`, `Asset.AssetHistory$CreatedDate`, lookups as `Asset.AssetHistory$CreatedBy`) and MUST carry
+  `<scope>organization</scope>` or it silently runs as "my records" (0 rows); standard-type reports on
+  `AssetWithProduct` reject `<scope>`; report `<name>` max 40 chars. `sf project deploy validate` runs local Apex tests
+  and fails on the org's pre-existing broken `pkb_Controller*` classes (KnowledgeArticleVersion): use `deploy start`
+  for non-Apex metadata. Audit limits: SetupAuditTrail and LoginHistory are API-queryable for ~180 days / ~6 months
+  only and have no report type (download from Setup for anything older); field history covers tracked fields only
+  (lookup changes write TWO history rows, EntityId + Text, so SOQL counts are 2x the report's); LastModifiedBy shows
+  only the latest editor; no Event Monitoring (no report-run/export/Data Loader visibility). Ashwin's 2026 footprint:
+  254 `Client_Success_Rep_2__c` reassignments on 2026-04-15, ~470 Asset Status/InstallDate edits spread Jan-Oct,
+  9 reports, 2 opps, 2 assets, 2 MEDDIC records, no metadata authored. Exports in scratchpad ashwin/.
 - Dispute Chargeback Fee (Sep 2026, case 00105850, Courtney Louiselle / Karen in Finance): the flat
   per-dispute fee the client pays lives in the REUSED Opportunity field `Charge_Back_Fee__c` (relabeled
   "Dispute Chargeback Fee"; 0 = client pays none; it existed since 2018 on no layout with four $0
