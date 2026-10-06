@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Report xmlns="http://soap.sforce.com/2006/04/metadata">
     <columns>
-        <field>Asset.Name</field>
+        <field>Asset$Name</field>
     </columns>
     <columns>
-        <field>Asset.Account.Name</field>
+        <field>Asset$Account</field>
     </columns>
     <columns>
-        <field>Asset.Product2.Name</field>
+        <field>Asset$Product2</field>
     </columns>
     <columns>
-        <field>AssetHistory.CreatedDate</field>
+        <field>Asset.AssetHistory$CreatedDate</field>
     </columns>
     <columns>
-        <field>AssetHistory.Field</field>
+        <field>Asset.AssetHistory$Field</field>
     </columns>
     <columns>
-        <field>AssetHistory.CreatedBy.Name</field>
+        <field>Asset.AssetHistory$CreatedBy</field>
     </columns>
     <description>Every tracked Asset field change made by Ashwin Chinivar this calendar year (which asset, which field, when). Old/new values are not available in this report type; the exported CSV has them.</description>
     <filter>
         <criteriaItems>
-            <column>AssetHistory.CreatedBy.Name</column>
+            <column>Asset.AssetHistory$CreatedBy</column>
             <operator>equals</operator>
             <value>Ashwin Chinivar</value>
         </criteriaItems>
@@ -36,10 +36,10 @@
     <showDetails>true</showDetails>
     <showGrandTotal>true</showGrandTotal>
     <showSubTotals>false</showSubTotals>
-    <sortColumn>AssetHistory.CreatedDate</sortColumn>
+    <sortColumn>Asset.AssetHistory$CreatedDate</sortColumn>
     <sortOrder>Desc</sortOrder>
     <timeFrameFilter>
-        <dateColumn>AssetHistory.CreatedDate</dateColumn>
+        <dateColumn>Asset.AssetHistory$CreatedDate</dateColumn>
         <interval>INTERVAL_CURY</interval>
     </timeFrameFilter>
 </Report>
