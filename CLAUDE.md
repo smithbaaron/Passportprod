@@ -314,6 +314,17 @@ working here:
   is not readable by API. Smoke test (Bid Intake + FOIA from the Capstrat, status moves, login-as a Sales user) and
   TEST-record cleanup were still pending at the end of 2026-10-05; the negative check (no related record) passed by
   rollback probe (scratchpad foia/smoke_negative.apex).
+  QA guide for Punith's team (2026-10-06): Claude Doc "FOIA Tracking & Bid Intake: Testing Guide"
+  (claude.ai/code/artifact/5c829739-a24c-4a8a-9c61-c83e9aacc59e; pillars A-E, 27-row test log with Pass/Fail/Blocked
+  dropdowns, ZZ TEST naming, no new Accounts, Pillar E back-dates Submitted Date / Expected Submission Date to trigger
+  the scheduled reminders). Flow facts it relies on: `FOIA_Populate_Related_Records` stamps Type = "FOIA Request" and
+  fills Account/Opportunity from the Capstrat (Capstrat wins) or the Opportunity; `FOIA_Stamp_Dates` defaults
+  Requestor on create, stamps Submitted Date on the FIRST Submitted to Pursuit, clears Resubmitted Date entering
+  Request for Resubmission and stamps it on refile, stamps Delivered Date once; `FOIA_Sync_To_Capstrat` sets
+  FOIA_Requested__c/+Date on create and FOIA_Received_Date__c on the Delivered transition; the new-request email and
+  the Monday unfiled sweep go to rfp@passportinc.com, the daily overdue email to the Requestor; status changes post
+  to the case feed ("FOIA <n>: <old> -> <new> (<subject>)", plus "Documents received" on Delivered). Flow XML copies
+  in scratchpad foia/flows/.
 - `Estimated_Bid_Release_Required` (Opportunity validation rule, Aaron, 2026-05-05) asks for `Est_Bid_Release_Date__c`
   when Stage changes to RFP. Since 2026-10-05 it exempts the Renewal record type (Aaron's call after discussing keeping
   it): the Renewal stage order is Internal Review, Discovery, RFP, Contract, Closed, so the path's "Mark Stage as
