@@ -357,6 +357,25 @@ working here:
   only the latest editor; no Event Monitoring (no report-run/export/Data Loader visibility). Ashwin's 2026 footprint:
   254 `Client_Success_Rep_2__c` reassignments on 2026-04-15, ~470 Asset Status/InstallDate edits spread Jan-Oct,
   9 reports, 2 opps, 2 assets, 2 MEDDIC records, no metadata authored. Exports in scratchpad ashwin/.
+  Dashboard lessons (2026-10-06): a Metric/chart component on a TABULAR report fails at run time with error 209
+  ("cannot be used as the source for this component") even though the deploy succeeds, so every audit report is now
+  a Summary grouped by its date column with `<dateGranularity>Month</dateGranularity>` (drop that column from
+  `<columns>` and drop the report-level `<sortColumn>`, which may not name the grouped column). The dashboard carries
+  a "Month (2026)" filter (12 `between` options, dates as M/d/yyyy) mapped per component via
+  `<dashboardFilterColumns>`; filter option Ids are regenerated on every dashboard redeploy. Analytics API: GET
+  `/analytics/dashboards/<id>?filter1=<optionId>` returns cached results only; PUT the same URL with `{}` to refresh.
+  Report month buckets are in the running user's timezone, SOQL CALENDAR_MONTH is UTC, so counts can differ by a few
+  late-night rows.
+- SOAP API login() retirement (Salesforce notice to Marcia 2026-10-06; retired Summer '27 for API v31-64, and
+  Winter '27 requires the new user permission `PermissionsUseAnyApiAuth` "Use Any API Auth" or login() returns
+  INSUFFICIENT_ACCESS): LoginHistory shows ONE real SOAP login() client, the Celigo NetSuite integration running as
+  user "Passport Operations" (ops@gopassport.com, profile CUSTOM - SysAdmin Integrations, SOAP Partner API v35.0,
+  daily ~09:00 UTC, 147 successful logins Apr-Oct 2026). Fivetran tried SOAP twice on 2026-08-21 and failed; its
+  real traffic is OAuth ("Fivetran Data Loader"). Every other integration is OAuth (Remote Access 2.0) or SSO;
+  LoginType "Application" rows are browser username/password logins, not API. As of 2026-10-06 nobody in the org
+  holds Use Any API Auth. Plan: (1) assign it to Passport Operations before Winter '27 lands (a small permission set
+  is the clean way), (2) have the Celigo admin switch the integrator.io Salesforce connection to OAuth (connected app
+  `Integrator_io` exists since 2018) before Summer '27. Evidence in scratchpad soap/.
 - Dispute Chargeback Fee (Sep 2026, case 00105850, Courtney Louiselle / Karen in Finance): the flat
   per-dispute fee the client pays lives in the REUSED Opportunity field `Charge_Back_Fee__c` (relabeled
   "Dispute Chargeback Fee"; 0 = client pays none; it existed since 2018 on no layout with four $0
