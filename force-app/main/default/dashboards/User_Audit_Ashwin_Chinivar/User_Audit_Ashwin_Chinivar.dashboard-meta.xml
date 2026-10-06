@@ -3,6 +3,69 @@
     <backgroundEndColor>#FFFFFF</backgroundEndColor>
     <backgroundFadeDirection>Diagonal</backgroundFadeDirection>
     <backgroundStartColor>#FFFFFF</backgroundStartColor>
+    <dashboardFilters>
+        <dashboardFilterOptions>
+            <operator>between</operator>
+            <values>1/1/2026</values>
+            <values>1/31/2026</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>between</operator>
+            <values>2/1/2026</values>
+            <values>2/28/2026</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>between</operator>
+            <values>3/1/2026</values>
+            <values>3/31/2026</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>between</operator>
+            <values>4/1/2026</values>
+            <values>4/30/2026</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>between</operator>
+            <values>5/1/2026</values>
+            <values>5/31/2026</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>between</operator>
+            <values>6/1/2026</values>
+            <values>6/30/2026</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>between</operator>
+            <values>7/1/2026</values>
+            <values>7/31/2026</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>between</operator>
+            <values>8/1/2026</values>
+            <values>8/31/2026</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>between</operator>
+            <values>9/1/2026</values>
+            <values>9/30/2026</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>between</operator>
+            <values>10/1/2026</values>
+            <values>10/31/2026</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>between</operator>
+            <values>11/1/2026</values>
+            <values>11/30/2026</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>between</operator>
+            <values>12/1/2026</values>
+            <values>12/31/2026</values>
+        </dashboardFilterOptions>
+        <name>Month (2026)</name>
+    </dashboardFilters>
     <dashboardGridLayout>
         <dashboardGridComponents>
             <colSpan>3</colSpan>
@@ -14,6 +77,9 @@
                     <column>RowCount</column>
                 </chartSummary>
                 <componentType>Metric</componentType>
+                <dashboardFilterColumns>
+                    <column>CREATED_DATE</column>
+                </dashboardFilterColumns>
                 <decimalPrecision>-1</decimalPrecision>
                 <displayUnits>Auto</displayUnits>
                 <groupingSortProperties/>
@@ -37,6 +103,9 @@
                     <column>RowCount</column>
                 </chartSummary>
                 <componentType>Metric</componentType>
+                <dashboardFilterColumns>
+                    <column>CREATED_DATE</column>
+                </dashboardFilterColumns>
                 <decimalPrecision>-1</decimalPrecision>
                 <displayUnits>Auto</displayUnits>
                 <groupingSortProperties/>
@@ -60,6 +129,9 @@
                     <column>RowCount</column>
                 </chartSummary>
                 <componentType>Metric</componentType>
+                <dashboardFilterColumns>
+                    <column>CREATED_DATE</column>
+                </dashboardFilterColumns>
                 <decimalPrecision>-1</decimalPrecision>
                 <displayUnits>Auto</displayUnits>
                 <groupingSortProperties/>
@@ -83,6 +155,9 @@
                     <column>RowCount</column>
                 </chartSummary>
                 <componentType>Metric</componentType>
+                <dashboardFilterColumns>
+                    <column>CREATED_DATE</column>
+                </dashboardFilterColumns>
                 <decimalPrecision>-1</decimalPrecision>
                 <displayUnits>Auto</displayUnits>
                 <groupingSortProperties/>
@@ -106,6 +181,9 @@
                     <column>RowCount</column>
                 </chartSummary>
                 <componentType>Metric</componentType>
+                <dashboardFilterColumns>
+                    <column>LASTMODIFIEDDATE</column>
+                </dashboardFilterColumns>
                 <decimalPrecision>-1</decimalPrecision>
                 <displayUnits>Auto</displayUnits>
                 <groupingSortProperties/>
@@ -129,6 +207,9 @@
                     <column>RowCount</column>
                 </chartSummary>
                 <componentType>Metric</componentType>
+                <dashboardFilterColumns>
+                    <column>LAST_UPDATE</column>
+                </dashboardFilterColumns>
                 <decimalPrecision>-1</decimalPrecision>
                 <displayUnits>Auto</displayUnits>
                 <groupingSortProperties/>
@@ -152,6 +233,9 @@
                     <column>RowCount</column>
                 </chartSummary>
                 <componentType>Metric</componentType>
+                <dashboardFilterColumns>
+                    <column>LAST_UPDATE</column>
+                </dashboardFilterColumns>
                 <decimalPrecision>-1</decimalPrecision>
                 <displayUnits>Auto</displayUnits>
                 <groupingSortProperties/>
@@ -175,6 +259,9 @@
                     <column>RowCount</column>
                 </chartSummary>
                 <componentType>Metric</componentType>
+                <dashboardFilterColumns>
+                    <column>LAST_UPDATE</column>
+                </dashboardFilterColumns>
                 <decimalPrecision>-1</decimalPrecision>
                 <displayUnits>Auto</displayUnits>
                 <groupingSortProperties/>
@@ -198,6 +285,9 @@
                     <column>RowCount</column>
                 </chartSummary>
                 <componentType>Metric</componentType>
+                <dashboardFilterColumns>
+                    <column>Asset.AssetHistory$CreatedDate</column>
+                </dashboardFilterColumns>
                 <decimalPrecision>-1</decimalPrecision>
                 <displayUnits>Auto</displayUnits>
                 <groupingSortProperties/>
