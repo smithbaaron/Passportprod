@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Asset.Name</field>
+    </columns>
+    <columns>
+        <field>Asset.Account.Name</field>
+    </columns>
+    <columns>
+        <field>Asset.Product2.Name</field>
+    </columns>
+    <columns>
+        <field>AssetHistory.CreatedDate</field>
+    </columns>
+    <columns>
+        <field>AssetHistory.Field</field>
+    </columns>
+    <columns>
+        <field>AssetHistory.CreatedBy.Name</field>
+    </columns>
+    <description>Every tracked Asset field change made by Ashwin Chinivar this calendar year (which asset, which field, when). Old/new values are not available in this report type; the exported CSV has them.</description>
+    <filter>
+        <criteriaItems>
+            <column>AssetHistory.CreatedBy.Name</column>
+            <operator>equals</operator>
+            <value>Ashwin Chinivar</value>
+        </criteriaItems>
+    </filter>
+    <format>Tabular</format>
+    <name>Asset Field Changes 2026</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Assets_with_Asset_History__c</reportType>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>false</showSubTotals>
+    <sortColumn>AssetHistory.CreatedDate</sortColumn>
+    <sortOrder>Desc</sortOrder>
+    <timeFrameFilter>
+        <dateColumn>AssetHistory.CreatedDate</dateColumn>
+        <interval>INTERVAL_CURY</interval>
+    </timeFrameFilter>
+</Report>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ReportType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <baseObject>Asset</baseObject>
+    <category>other</category>
+    <deployed>true</deployed>
+    <description>Assets with their field history rows: who changed which field and when. Old/New Value are not exposed for Asset history in custom report types; use SOQL on AssetHistory for values. Added 2026-10-06 because the org has no standard Asset History report type.</description>
+    <join>
+        <outerJoin>false</outerJoin>
+        <relationship>AssetHistory</relationship>
+    </join>
+    <label>Assets with Asset History</label>
+    <sections>
+        <columns>
+            <checkedByDefault>true</checkedByDefault>
+            <field>Name</field>
+            <table>Asset</table>
+        </columns>
+        <columns>
+            <checkedByDefault>true</checkedByDefault>
+            <field>Account</field>
+            <table>Asset</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Product2</field>
+            <table>Asset</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Status</field>
+            <table>Asset</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Contract_Term_Type__c</field>
+            <table>Asset</table>
+        </columns>
+        <masterLabel>Assets</masterLabel>
+    </sections>
+    <sections>
+        <columns>
+            <checkedByDefault>true</checkedByDefault>
+            <field>CreatedBy</field>
+            <table>Asset.AssetHistory</table>
+        </columns>
+        <columns>
+            <checkedByDefault>true</checkedByDefault>
+            <field>CreatedDate</field>
+            <table>Asset.AssetHistory</table>
+        </columns>
+        <columns>
+            <checkedByDefault>true</checkedByDefault>
+            <field>Field</field>
+            <table>Asset.AssetHistory</table>
+        </columns>
+        <masterLabel>Asset History</masterLabel>
+    </sections>
+</ReportType>
