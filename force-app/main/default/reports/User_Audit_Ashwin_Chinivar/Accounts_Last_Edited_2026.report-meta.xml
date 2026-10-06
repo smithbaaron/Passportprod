@@ -10,9 +10,6 @@
         <field>LAST_UPDATE_BY</field>
     </columns>
     <columns>
-        <field>LAST_UPDATE</field>
-    </columns>
-    <columns>
         <field>CREATED</field>
     </columns>
     <columns>
@@ -26,7 +23,12 @@
             <value>Ashwin Chinivar</value>
         </criteriaItems>
     </filter>
-    <format>Tabular</format>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Month</dateGranularity>
+        <field>LAST_UPDATE</field>
+        <sortOrder>Desc</sortOrder>
+    </groupingsDown>
     <name>Accounts Last Edited 2026</name>
     <params>
         <name>co</name>
@@ -36,9 +38,7 @@
     <scope>organization</scope>
     <showDetails>true</showDetails>
     <showGrandTotal>true</showGrandTotal>
-    <showSubTotals>false</showSubTotals>
-    <sortColumn>LAST_UPDATE</sortColumn>
-    <sortOrder>Desc</sortOrder>
+    <showSubTotals>true</showSubTotals>
     <timeFrameFilter>
         <dateColumn>LAST_UPDATE</dateColumn>
         <interval>INTERVAL_CURY</interval>

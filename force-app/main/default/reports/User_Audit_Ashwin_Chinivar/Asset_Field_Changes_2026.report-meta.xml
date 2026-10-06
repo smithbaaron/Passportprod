@@ -10,9 +10,6 @@
         <field>Asset$Product2</field>
     </columns>
     <columns>
-        <field>Asset.AssetHistory$CreatedDate</field>
-    </columns>
-    <columns>
         <field>Asset.AssetHistory$Field</field>
     </columns>
     <columns>
@@ -26,7 +23,12 @@
             <value>Ashwin Chinivar</value>
         </criteriaItems>
     </filter>
-    <format>Tabular</format>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Month</dateGranularity>
+        <field>Asset.AssetHistory$CreatedDate</field>
+        <sortOrder>Desc</sortOrder>
+    </groupingsDown>
     <name>Asset Field Changes 2026</name>
     <params>
         <name>co</name>
@@ -36,9 +38,7 @@
     <scope>organization</scope>
     <showDetails>true</showDetails>
     <showGrandTotal>true</showGrandTotal>
-    <showSubTotals>false</showSubTotals>
-    <sortColumn>Asset.AssetHistory$CreatedDate</sortColumn>
-    <sortOrder>Desc</sortOrder>
+    <showSubTotals>true</showSubTotals>
     <timeFrameFilter>
         <dateColumn>Asset.AssetHistory$CreatedDate</dateColumn>
         <interval>INTERVAL_CURY</interval>

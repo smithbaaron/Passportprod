@@ -16,9 +16,6 @@
         <field>LASTMODIFIED</field>
     </columns>
     <columns>
-        <field>LASTMODIFIEDDATE</field>
-    </columns>
-    <columns>
         <field>LASTRUNDATE</field>
     </columns>
     <description>Reports Ashwin Chinivar created or was the last to modify this calendar year (last-modified shows only the latest editor).</description>
@@ -35,7 +32,12 @@
             <value>Ashwin Chinivar</value>
         </criteriaItems>
     </filter>
-    <format>Tabular</format>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Month</dateGranularity>
+        <field>LASTMODIFIEDDATE</field>
+        <sortOrder>Desc</sortOrder>
+    </groupingsDown>
     <name>Reports Built or Edited</name>
     <params>
         <name>co</name>
@@ -44,9 +46,7 @@
     <reportType>ReportList</reportType>
     <showDetails>true</showDetails>
     <showGrandTotal>true</showGrandTotal>
-    <showSubTotals>false</showSubTotals>
-    <sortColumn>LASTMODIFIEDDATE</sortColumn>
-    <sortOrder>Desc</sortOrder>
+    <showSubTotals>true</showSubTotals>
     <timeFrameFilter>
         <dateColumn>LASTMODIFIEDDATE</dateColumn>
         <interval>INTERVAL_CURY</interval>
