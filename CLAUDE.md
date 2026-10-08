@@ -315,9 +315,12 @@ working here:
   TEST-record cleanup were still pending at the end of 2026-10-05; the negative check (no related record) passed by
   rollback probe (scratchpad foia/smoke_negative.apex).
   QA guide for Punith's team (2026-10-06): Claude Doc "FOIA Tracking & Bid Intake: Testing Guide"
-  (claude.ai/code/artifact/5c829739-a24c-4a8a-9c61-c83e9aacc59e; pillars A-E, 27-row test log with Pass/Fail/Blocked
-  dropdowns, ZZ TEST naming, no new Accounts, Pillar E back-dates Submitted Date / Expected Submission Date to trigger
-  the scheduled reminders). Flow facts it relies on: `FOIA_Populate_Related_Records` stamps Type = "FOIA Request" and
+  (claude.ai/code/artifact/5c829739-a24c-4a8a-9c61-c83e9aacc59e; rebuilt 2026-10-08 on the MEDDIC guide's four pillars
+  W/D/E/B: 13 walk-through, 6 data, 6 exception, 10 breakability tests, 36-row log with Result + Severity dropdowns;
+  one intake and three FOIA cases for the whole team, intake user / standard user / observer roles, ZZ TEST naming, no
+  new Accounts; W5 sets the intake Capstrat's Account Name by hand because Bid Intake writes only the text field
+  Intake_Account_Name__c; E3/E4 back-date Submitted Date / Expected Submission Date to trigger the scheduled reminders;
+  B3/B4 go through Cases tab > New to reach the validation rules the quick action's required fields hide). Flow facts it relies on: `FOIA_Populate_Related_Records` stamps Type = "FOIA Request" and
   fills Account/Opportunity from the Capstrat (Capstrat wins) or the Opportunity; `FOIA_Stamp_Dates` defaults
   Requestor on create, stamps Submitted Date on the FIRST Submitted to Pursuit, clears Resubmitted Date entering
   Request for Resubmission and stamps it on refile, stamps Delivered Date once; `FOIA_Sync_To_Capstrat` sets
