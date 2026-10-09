@@ -403,3 +403,14 @@ working here:
   workflow launched from the opportunity; its field mapping is configured in Ironclad, so mapping the
   fee there is an Ironclad-admin task, not metadata. Rollback harness: scratchpad vr_dispute_fee3.apex
   (test deals need Incumbent__c and, for renewals, Renewal_Typ__c).
+- Ironclad Contract object (`ironclad__Ironclad_Contract__c`, 3,568 rows as of 2026-10-09): NO field mirrors the Ironclad
+  record ID. Custom `Ironclad_Record_ID__c` / `Ironclad_Record_Link__c` / `Ironclad_Workflow_ID__c` are hand-typed on 5-8 rows;
+  `Effective_Date__c` / `Expiration_Date__c` (Aaron, 2026-09-29) are empty. The "IronClad Integration" user created 1,824 rows,
+  ALL in 2021 (one-time repository push at install); every row since (1,744) is hand-made, almost all by Punith. What syncs
+  today is `ironclad__Ironclad_Workflow__c` (2,328 rows, `ironclad__Workflow_ID__c` external ID, lookup to Opportunity, no link
+  to a contract row). The join key lives on the IRONCLAD side: the 2021 sync stamped the Salesforce record ID onto each
+  Ironclad record (1,769 records carry it). Aaron's 2026-10-08 exports (scratchpad ironclad_import/in/, 5,499 records; 1,768
+  with both dates, 18 with expiration before effective) omitted that property column, so re-export with "Salesforce record ID"
+  (+ Workflow ID) to key the date backfill; name matching reaches 756 of the dated rows (17 ambiguous; SF has 505 rows sharing
+  a name). Plan once Aaron has Ironclad access: keyed load of record ID + link + dates for the 2021 set, then decide how to
+  re-link the hand-made rows and get the contract sync running again. Analysis json in scratchpad ironclad_import/.
