@@ -261,6 +261,16 @@ working here:
   restoring a deleted copy from the Recycle Bin after it was re-created leaves two copies. The 861 non-New-Business
   mirrors (480 Renewal, 195 Revenue Enhancement, 186 Upsell) were still present on 2026-09-25, so test D2 fails
   until Aaron's Data Loader delete runs. No MEDDIC field has history tracking on (MEDDIC History shows creates only).
+  Account page list (Cecily, 2026-10-09): the MEDDIC Records list on `Account_Record_Page` is a Dynamic Related List
+  (`lst:dynamicRelatedList`, identifier `lst_dynamicRelatedList_MEDDIC`) filtered `Opportunity_Stage__c|NOT_EQUAL|["Closed Lost"]`
+  (Closed Won stays; 481 of 2,050 mirrors hidden at the time, no Client Success record affected). Dynamic related list
+  facts: `adminFilters` values are `Field|OPERATOR|["value"]` with operators EQUALS / NOT_EQUAL (NOT_EQUALS is rejected
+  with "Select a valid filter operator"), filters accept cross-object formula fields, columns are `relatedListFieldAliases`
+  (NAME for the name field), sort is `sortFieldAlias` + `sortFieldOrder` Ascending/Descending. The same component already
+  drives Active/Inactive Contacts and Won/Lost Opportunities lists on the Account and Technology Account pages. Probe prod
+  flexipage XML with `sf project deploy start --dry-run` (no --test-level: NoTestRun is rejected in prod and `deploy validate`
+  forces Apex tests). Standard related lists on this page follow the layout's column order; the live page order had
+  drifted from the repo (Aaron's App Builder edits) and the repo copy was refreshed from the org on 2026-10-09.
 - Report subscriptions (Analytics REST `/analytics/notifications`, source `lightningReportSubscribe`):
   POST creates one for the calling user (even when it returns "An unexpected error occurred" it may
   have created it, and a second POST then says "You already have a notification"); updates are PUT,
