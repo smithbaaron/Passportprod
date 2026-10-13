@@ -414,3 +414,18 @@ working here:
   (+ Workflow ID) to key the date backfill; name matching reaches 756 of the dated rows (17 ambiguous; SF has 505 rows sharing
   a name). Plan once Aaron has Ironclad access: keyed load of record ID + link + dates for the 2021 set, then decide how to
   re-link the hand-made rows and get the contract sync running again. Analysis json in scratchpad ironclad_import/.
+- Org data library (Aaron, 2026-10-13, prep for a possible two-org merge): workbook `docs/data-library/Passport_Prod_Data_Library_2026-10-13.xlsx`
+  (16 tabs: Org Summary, Objects 336, Fields 3,683 on 98 profiled objects with fill %, picklist values defined vs used, record
+  types, validation rules, flows, workflows/triggers/approvals, scheduled jobs, integrations, users/access/OWD, data volumes,
+  data quality, reports/UI, merge considerations) + Claude Doc "Passport Production Org: Data Library Summary"
+  (claude.ai/code/artifact/c033b466-2266-44c8-ae05-4b82ef9197eb). Builders in `scripts/data-library/` (profile_fields.py,
+  build_workbook.py; paths point at the session scratchpad datalib/ which holds the raw JSON pulls). Pull facts: recordCount
+  REST endpoint in batches of 100 for counts; `sf sobject list --sobject all` returns 1,745 names; `CustomObject` wildcard
+  retrieve aborts on Knowledge (FAQ__kav, no permission) so retrieve objects by name; FlowDefinitionView gives trigger object +
+  namespace (279 defs, 136 own); COUNT(field) aggregate per 35 fields works for fill rates but not on multi-select picklists or
+  long text (use GROUP BY for multi-select); objects >400k rows profiled on LAST_N_DAYS:365. Headline numbers: 98 active users
+  (85 Salesforce), 379 inactive owning 60% of opps; 23 packages own 3,303 of 4,665 fields; 66 active record-triggered flows
+  (33 on Opportunity) + 58 classic workflow rules (33 on Case) + 9 own triggers; 79 active VRs (30 Opportunity); 270 picklist
+  values in data but undefined, 515 custom fields <1% filled; Pipeline Snapshot 1.49M + Task 1.29M rows dominate storage;
+  13.6 GB legacy Attachments; SOAP = Celigo only. LibreOffice recalc of a 3,700-row formula sheet exceeds 15 min, so the
+  workbook stores percentages as values.
