@@ -446,3 +446,12 @@ working here:
   version for Arrive) comparing best practices, Confluence updates, and a task-list reprioritization. Known data gaps she
   hit: wrong `Procurement_Method__c` values (list pulled for Punith), Omnia contract count unverifiable. Marcia owns the
   on-street/off-street opp-splitting question. The 2026-10-13 data library is the internal half of the dictionary.
+- External process dictionary for Arrive (Aaron, due end of week of 2026-10-13; built 2026-10-15): Claude Doc "Passport Salesforce:
+  Process & Data Dictionary" (claude.ai/code/artifact/0f8a6845-e8d3-4599-afc9-76551b0f053c): 15 sections (how to read, org at a
+  glance, data model diagram, seven processes: lead to opp, bid intake + Capture Strategy, opp lifecycle with stage-gate drawing,
+  contract to opp to asset drawing, renewals, client success, FOIA; revenue feed, automation + integration inventory, picklists and
+  definitions, gaps + merge considerations with 10 questions for Arrive, workbook appendix). External-safe: no user names beyond
+  roles, no revenue by customer, no sharing/security detail. Facts read from prod 2026-10-13..15 (layouts, object metadata,
+  datalib JSON, SOQL). Still needs Arrive's North American bid spreadsheet (via Marcia) for the bid-field comparison. Figures to
+  keep in sync if reused: 1,262 closes T12 (800 won), Procurement Method blank on 752 of 805 wins, 365 of 379 T12 assets created by
+  one RevOps analyst, 157 of 805 wins carry an Ironclad Workflow, 184 lead conversions T12 (80 with an opp).
