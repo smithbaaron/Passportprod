@@ -431,3 +431,18 @@ working here:
   values in data but undefined, 515 custom fields <1% filled; Pipeline Snapshot 1.49M + Task 1.29M rows dominate storage;
   13.6 GB legacy Attachments; SOAP = Celigo only. LibreOffice recalc of a 3,700-row formula sheet exceeds 15 min, so the
   workbook stores percentages as values.
+- Merger context (Aaron + Marcia 1x1, 2026-10-13): the counterparty is Arrive (HQ Sweden, North America HQ Atlanta in the old
+  ParkMobile office; new India reporting office; recently consolidated 8 platforms into ONE Salesforce instance; marketing on
+  HubSpot under a 1-year contract, separate from go-to-market). Full Salesforce integration expected in 2027; teams combine at a
+  town hall on 2026-11-04, Proposal Ops to integrate sooner so enforcement is represented in bids. Structural differences:
+  Arrive splits on-street vs off-street (gated garage) business units with separate opps/reps per city (e.g. Tampa), sells
+  mobile pay + hardware street-by-street; Passport sells four product lines regionally with one team. Arrive bid management
+  runs on a North American spreadsheet (statuses, stage definitions, bid/sales leads, products, agencies, due dates, RFP
+  metrics) that Marcia rejected for Passport; their head of bids distrusts Salesforce data integrity. Active split bid: City
+  of Suffolk (Arrive mobile pay + hardware, Passport enforcement). Arrive's cooperative lead was impressed by Passport's
+  procurement-method + contract-to-opp/asset linking. Marcia's asks: prioritize Salesforce cleanup and data-capture gaps
+  (enforcement, permitting, payments), set Client Success up for success, redesign clunky objects (Capture Strategy) from
+  scratch for the new system, and produce an advanced data dictionary + process documentation (internal and an external
+  version for Arrive) comparing best practices, Confluence updates, and a task-list reprioritization. Known data gaps she
+  hit: wrong `Procurement_Method__c` values (list pulled for Punith), Omnia contract count unverifiable. Marcia owns the
+  on-street/off-street opp-splitting question. The 2026-10-13 data library is the internal half of the dictionary.
