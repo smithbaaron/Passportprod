@@ -266,7 +266,9 @@ working here:
   (Closed Won stays; 481 of 2,050 mirrors hidden at the time, no Client Success record affected). Dynamic related list
   facts: `adminFilters` values are `Field|OPERATOR|["value"]` with operators EQUALS / NOT_EQUAL (NOT_EQUALS is rejected
   with "Select a valid filter operator"), filters accept cross-object formula fields, columns are `relatedListFieldAliases`
-  (NAME for the name field), sort is `sortFieldAlias` + `sortFieldOrder` Ascending/Descending. The same component already
+  (NAME for the name field), sort is `sortFieldAlias` + `sortFieldOrder` Ascending/Descending, and a dynamic list shows NO
+  buttons unless `actionNames` is set (`New` for a custom object, `NewContact` for Contacts); the MEDDIC list got `New` on
+  2026-10-15 after a week with no create button. The same component already
   drives Active/Inactive Contacts and Won/Lost Opportunities lists on the Account and Technology Account pages. Probe prod
   flexipage XML with `sf project deploy start --dry-run` (no --test-level: NoTestRun is rejected in prod and `deploy validate`
   forces Apex tests). Standard related lists on this page follow the layout's column order; the live page order had
