@@ -455,3 +455,8 @@ working here:
   datalib JSON, SOQL). Still needs Arrive's North American bid spreadsheet (via Marcia) for the bid-field comparison. Figures to
   keep in sync if reused: 1,262 closes T12 (800 won), Procurement Method blank on 752 of 805 wins, 365 of 379 T12 assets created by
   one RevOps analyst, 157 of 805 wins carry an Ironclad Workflow, 184 lead conversions T12 (80 with an opp).
+  2026-10-16 additions: section "One deal traced end to end" (City of Racine WI, 006R700000RfRJHIA3: full chain incl. its gaps,
+  plus the live Suffolk County NY split bid a0YR7000016oyYHMAY), tabs "Process cards" (8 rows, empty Arrive column) and "Field
+  mapping starter" (30 fields, Arrive columns + Mapping status dropdown: Not started / Discussed / Mapped / Gap). Activity fact:
+  178k Tasks T12, 94% by HubSpot Integration + Automated Process (email/calendar capture). 14 active flows email a named
+  mailbox/person or carry hard-coded IDs. Aaron has no Arrive-side access yet (2026-10-16); the Arrive columns stay empty.
