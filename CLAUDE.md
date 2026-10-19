@@ -460,3 +460,17 @@ working here:
   mapping starter" (30 fields, Arrive columns + Mapping status dropdown: Not started / Discussed / Mapped / Gap). Activity fact:
   178k Tasks T12, 94% by HubSpot Integration + Automated Process (email/calendar capture). 14 active flows email a named
   mailbox/person or carry hard-coded IDs. Aaron has no Arrive-side access yet (2026-10-16); the Arrive columns stay empty.
+  2026-10-19 migration-readiness pass (Aaron: "Go"): workbook `docs/data-library/Passport_Prod_Data_Library_2026-10-19.xlsx`
+  = the 10-13 workbook + 7 tabs built by `scripts/data-library/build_migration_tabs.py <in> <out> <inputs_dir>` (inputs = scratchpad
+  mig/: control_totals.json, account_scan.json, layout_fields.json, reports_used_365.json, dashboards.json). Field Disposition rules:
+  package -> follows package; own custom: automation refs or required -> Keep; formula -> Keep if on a core layout else Review;
+  fill >=25% Keep (data); 5-25% Keep if on layout else Review; 1-5% Review (low fill); <1%/empty -> Retire candidate (Review if on
+  layout). Result: own custom 1,215 = 666 Keep / 327 Review / 222 Retire (Opportunity 83, Account 44 retire). Object Scope: 336 =
+  241 platform/config, 33 package, 62 business (explicit scope per object). Facts found: Tasks 1.29M by recordCount but only 207,703
+  visible to SOQL (~1.09M archived activities, need ALL ROWS/queryAll export); OpportunityHistory 107,276 rows + ~120k field-history
+  rows cannot be inserted in a target (warehouse via Fivetran is the mitigation); reports 2,935 total, 855 run in 365d, 474 in 90d,
+  107 never; dashboards 64; email templates 248 (1 used); account dup scan (normalised name + state) 30 groups/60 accounts, 8 with
+  Current customers (Albany, Babylon, Rye, Fairfax, Bristol, Springfield, Genetec, Denison Fort Myers; several legit separate
+  bodies); key coverage on current accounts (948 incl. partners): NetSuite 817, HubSpot id 948, Passport ID 948, Operator ID 770,
+  Pursuit 500, Intercom 3 (Intercom keys on the SF Id, field unused); stale prospects 3,294 of 5,824; inactive owners hold 10,817
+  opps + 10,792 contacts. Doc gained a "Migration readiness" section and a "Cleanup backlog" tab (20 items, status dropdown).
