@@ -474,3 +474,16 @@ working here:
   bodies); key coverage on current accounts (948 incl. partners): NetSuite 817, HubSpot id 948, Passport ID 948, Operator ID 770,
   Pursuit 500, Intercom 3 (Intercom keys on the SF Id, field unused); stale prospects 3,294 of 5,824; inactive owners hold 10,817
   opps + 10,792 contacts. Doc gained a "Migration readiness" section and a "Cleanup backlog" tab (20 items, status dropdown).
+  Correction pass 2026-10-19 (before the doc goes to Marcia), verified against prod: Upsell and Revenue Enhancement are CLIENT
+  SUCCESS deals (CS closed 76 of 84 Upsells and 112 of 115 RevEn T12; Sales owns New Customer 220 of 250 and Cross-Sell 37 of 39);
+  active classic workflow rules by object = Case 33, Lead 8 (7 region + inbound date), Account 4 (churn rev capture, churned email,
+  At-Risk Date, Status->Current on first win), Capture Strategy 4, EmailMessage 4, OLI 3, Opportunity 2 (renewal reminder, New CS Rep
+  Assignment email), Implementation At-Risk Journey 0 (its 8 are inactive); own Apex = 54 legacy classes (portal/community controllers,
+  pkb_*, trigger tests, JWT, link_to_scout); renewals T12 = 648, 292 without Original_Opportunity__c (flow always sets it, so hand-made);
+  Automated Process user logged 93,557 "Email: ..." tasks T12 (assumed Gmail-integration auto logging, unconfirmed); HubSpot
+  Integration 72,682. Revenue_Enhancement_Type__c blank on 164 of 175 RevEn deals T12; values in use: Other, USPS, CMP Fee Increase,
+  MPP Fee Increase, Cardholder Security, Termination Fee (reuse for the price-increase work). Flow "Account - Weekly overdue account
+  notifications" emails all@solvdllc.com (external consultancy) + donotreply: flagged to Aaron, not yet changed. Deliverables now:
+  doc (rev 39) + `docs/data-library/Passport_Process_and_Data_Dictionary_2026-10-19.xlsx` (22 tabs, built by
+  `scripts/data-library/dictionary_to_xlsx.py` from the doc's markdown exports; the maintained master going forward) + merged PDF in
+  scratchpad final/ + the data-library workbook (backlog item 21 added). Gaps section opens with "Statements to confirm".

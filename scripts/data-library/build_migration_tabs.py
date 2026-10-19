@@ -214,7 +214,7 @@ EXPLICIT = {
  "FeedItem": ("Not migrated", "100,900 Chatter posts; export if legal hold needs them."),
  "FeedComment": ("Not migrated", "Chatter comments."),
  "FeedTrackedChange": ("Not migrated", "Feed tracking of field changes."),
- "ironclad__Ironclad_Workflow__c": ("Migrate all", "2,329 workflow records keep the deal-to-contract link; Ironclad can also re-sync them into the target."),
+ "ironclad__Ironclad_Workflow__c": ("Migrate all", "2,329 workflow records keep the deal-to-contract link; whether Ironclad can re-push them into another org is to be confirmed with the Ironclad administrator."),
  "ironclad__Ironclad_Contract__c": ("Migrate after backfill", "3,573 repository rows; load Ironclad IDs and dates first, then migrate or let Ironclad re-push."),
  "ironclad__Ironclad_Approval__c": ("Re-sync", "9,007 rows; Ironclad re-pushes."),
  "ironclad__Ironclad_Signature__c": ("Re-sync", "4,638 rows; Ironclad re-pushes."),
@@ -395,6 +395,7 @@ backlog = [
  ["Asset contract date hygiene (end dates not advanced on auto-renewals)", "Client Success / Marcia", "M", "Medium", "No", "Not started", "Renewal Date formula covers it for now."],
  ["Celigo connection to OAuth; Use Any API Auth for the integration user", "RevOps / Finance systems", "S", "High", "No", "Not started", "Salesforce deadline (Winter '27 permission, Summer '27 SOAP retirement), independent of the merge."],
  ["Email template cleanup (248 templates, 1 used in the last year)", "RevOps", "S", "Low", "No", "Not started", "Keep the closed-won and FOIA templates; archive the rest."],
+ ["Revenue Enhancement Type blank on 164 of 175 recent Revenue Enhancement deals", "Client Success + RevOps", "S", "Low", "No", "Not started", "The picklist already carries CMP Fee Increase, MPP Fee Increase, Termination Fee and USPS; the price-increase work can reuse it instead of adding a field."],
 ]
 sheet("Cleanup Backlog", ["Item", "Owner", "Effort (S/M/L)", "Impact", "Blocks Migration", "Status", "Note"],
       backlog, widths=[70, 24, 10, 10, 12, 14, 70], wrap_cols=(1, 7))
