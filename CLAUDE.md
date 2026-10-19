@@ -487,3 +487,8 @@ working here:
   doc (rev 39) + `docs/data-library/Passport_Process_and_Data_Dictionary_2026-10-19.xlsx` (22 tabs, built by
   `scripts/data-library/dictionary_to_xlsx.py` from the doc's markdown exports; the maintained master going forward) + merged PDF in
   scratchpad final/ + the data-library workbook (backlog item 21 added). Gaps section opens with "Statements to confirm".
+  Final packaging 2026-10-19: Racine deal amounts blanked in the doc (rev 41; percent split only). ONE combined workbook is the
+  deliverable: `docs/data-library/Passport_Salesforce_Data_Dictionary_2026-10-19.xlsx` (44 tabs = 22 dictionary tabs + 22 library
+  tabs; library Read Me renamed "Library Read Me", library Cleanup Backlog dropped and its Note column merged into the dictionary's
+  dropdown backlog), built by `scripts/data-library/combine_workbooks.py <dictionary.xlsx> <library.xlsx> <out.xlsx>` (about 60 s,
+  cell-by-cell style copy). Rebuild chain: export doc tabs as markdown -> dictionary_to_xlsx.py -> combine_workbooks.py.
