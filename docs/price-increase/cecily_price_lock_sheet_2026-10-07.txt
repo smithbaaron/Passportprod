@@ -1,0 +1,861 @@
+--- page 1 ---
+Account Name CS Rep Price Lock 
+Verbiage
+Ann Arbor DDA No
+City of Providence, RI Kelsey Yes
+City of Victoria Rob Yes
+North Vancouver Rob No
+Sound Transit Ben Yes
+City of Oxford OH Rob Yes
+City of Champaign IL Kristin No
+Town of Rye NY Jeanette No
+Princeton, NJ Jeanette No
+City of Flagstaff AZ Jackson No
+City of St. Augustine FL Kristin Yes
+Mitchell Time Parking Yes
+--- page 2 ---
+Product(s) Covered Verbiage
+MPP Trans Fee
+During the Term, Passport may, no more than once 
+per contract year, apply a fee increase to then-
+applicable rates by providing written notice to 
+Provider not less than 120 days prior to each
+anniversary of the Effective Date. No single increase 
+applied under this Section 2 shall exceed $0.05,
+and the total fee after all increases applied under 
+this Section 2 shall not exceed $0.40
+CMP, DPP, Payments (Not on MPP 
+agreement)
+No more than 2% at each anniversary (price lock)
+MPP (Mobile Payment for Parking) - 
+service/license fees and convenience 
+fees
+Annual step-up schedule per transaction: Year 1 
+$0.06 USD, Year 2 $0.08, Year 3 $0.12, Year 4 
+$0.14, Year 5 $0.16
+MPP MPP ($166K ARR) currently @$0.15/trans will 
+increase in 6 Mos. on 3/2/27 to $0.17 and the 
+following 6 Mos on 9/2/27. to $0.20
+DPP (Digital Permit Platform), CMP 
+(Citation Management Platform), MLPR 
+(Mobile License Plate Recognition), 
+Parking Management Services 
+(Enforcement/Ambassadors), and 
+Merchant Processing
+Escalations begin in Year 6 (3/1/2027) and Year 11 
+(3/1/2032): DPP +5.0%, CMP +5.0%, MLPR +5.0%, 
+Parking Management Services +3.5%/year, 
+Delinquent Notices to $1.58/notice + 16% of 
+delinquent citations paid (Year 6) then $1.65/notice + 
+17% (Year 11), Merchant Processing to 2.3% + 
+$0.16/transaction (Year 6) then 2.4% + $0.17
+/transaction (Year 11); Secure Gateway Fee of $0.05 
+has no escalation for the entire term
+CMP (Citation Management Platform) 
+and DPP (Digital Permits for Parking 
+Platform) - the 5% escalator specifically 
+applies to the combined CMP/DPP 
+annual subscription fee; agreement also 
+covers MPP and LPR
+Annual CMP/DPP subscription fee of $59,064 
+increases by 5% each year
+MPP (Mobile Payment for Parking 
+Platform)
+2026- 15% increase; $86,730 ARR
+2027- 23% increase; $92,763 ARR
+2028- 30% increase; $98,042 ARR
+Annual License Fee 35,000/year to increase 3 every year
+MPP Trans Fee
+2026 - $106,358 ARR
+2027 - $124,085 ARR
+Annual Fee
+At the conclusion of the initial four year term, 
+annual pricing for the term July 14, 2025 through 
+July 13, 2026 shall be $39,575.00 and increasing by 
+5% each successive year thereafter with all fees 
+billed annual and in advance. 
+MPP (Mobile Payment for Parking 
+Platform), CMP (Citation Management), 
+DPP (Digital Permits for Parking 
+Platform), and Payment Processing 
+Services
+2-7%
+Payments 2-7
+--- page 3 ---
+Fee Adjustments Effective Date
+3/15/2026
+No more than 2% at each anniversary 4/21/2026
+Passport reserves the right to update 
+pricing if project scope changes
+11/22/2024
+$0.15/trans will increase in 6 Mos. on 
+3/2/27 to $0.17 and the following 6 Mos on 
+9/2/27. to $0.20
+9/2/2026
+Regulatory change-of-law cost increases 
+may be reimbursed at Sound Transit's 
+determination; additional out-of-scope 
+work requires a written change order
+2/22/2022
+None additional identified beyond the 5% 
+CMP/DPP subscription escalator
+5/9/2024
+January 1, 2026- $0.05 increase to $0.15
+January 1, 2027- $0.08 increase to $0.23
+January 1, 2028- $0.07 increase to $0.30
+1/1/2027
+3% increase to annual license fee 7/31/2025
+Non Wallet:
+July 1, 2026 - $0.05 increase to $0.30
+July 1, 2027 - $0.05 increase to $0.35
+Wallet:
+July 1, 2026 - $0.05 increase to $0.25
+July 1, 2027 - $0.05 increase to $0.30 7/1/2027
+5%7/14/2025
+feeAdjustmentsYn and customFeesYn 
+flags = true; includes a custom fee of 
+$4,800/year for Handheld LPR
+1/1/2026
+1/18/2024
+--- page 4 ---
+Term Termination
+rest of agreement remains in effect
+5 years 90 days prior to expiration
+5-year (60-month) initial term; auto-
+renews for 12-month periods
+90-day opt-out period for renewals
+18 months
+5-year initial term (2/22/2022-2/21/2027); 
+Sound Transit may renew for up to 10 
+consecutive 1-year options at its sole 
+discretion
+180 days' notice for convenience; 
+10 calendar days' notice for 
+uncured material breach
+36-month (3-year) term, expiring 
+12/31/2026; set to auto-renew
+30 days' prior written notice for 
+termination for material breach
+36-month initial term; renewal type "None" 
+per metadata
+10 days' notice
+1-year initial term; 12-month renewal 
+terms
+90 days' notice
+--- page 5 ---
+Notes
+Notice Date Increase Date
+11/5/2026 3/15/2027
+2/20/2027 4/21/2027
+Identified as City of Victoria, British Columbia, 
+Canada
+11/22/2026
+3/2/27 
+9/2/27
+Client name as given ("Central Putgent 
+Sound...") appears to be a typo for Central 
+Puget Sound Regional Transit Authority 
+(Sound Transit); contract is for Advanced 
+Parking Management Services (RTA/RP 0228-
+20)
+2/21/2027
+5/9/2027
+1/1/2027
+7/31/2027
+7/1/2027
+7/14/2026
+11/2/2026 1/1/2027
+11/18/2026 1/17/2027
+--- page 6 ---
+Increase What to increase 2026 rev impact 2027 rev impact
+2%
+0.12 (increase of .04)MPP Transaction Fee $107,980.20 $53,990.10
+.02
+.03
+MPP Transaction Fee
+3.50%Subscription Fee
+5%Subscription Fee $2,945.78
+.23 (up from .15)MPP Transaction Fee $43,037.52
+3%Annual License Fee $1,050.00
+Non Wallet:
+July 1, 2027 - $0.05 increase to $0.35
+Wallet:
+July 1, 2027 - $0.05 increase to $0.30
+MPP Transaction Fee
+5% of 41553
+$2,077.65
+5%
+5%
+--- page 7 ---
+Notes $103,161.05
+Based on 2,699,505 
+transactions in 12 months
+537,969
+--- page 8 ---
+LAZ-Hawthorne, CA Ben Yes
+City of Rye NY Jeanette Yes
+SP Plus - City of Decatur Ben Yes
+LAZ- University Hospital Cleveland OH Ben Yes
+City of Plymouth Michigan Vicky Yes
+Town of Westerly RI Dylan Yes
+City of Baraboo, WI Mike Yes
+Borough of Bridgeville PA Yes
+Benton Harbor, MI Vicky Yes
+LAZ - Pomona CA Ben Yes
+--- page 9 ---
+DPP (Digital Permits for Parking 
+Platform) and Payment Processing 
+Services
+Annual increase of 2%-7% of then-applicable rates at 
+each anniversary; plus CPI-based increase during 
+Renewal Terms capped at 7%/year; plus automatic 
+proportional increase if rates/fees charged to end 
+users increase
+MPP (Mobile Payment for Parking 
+Platform), CMP (Citation Management 
+for Parking), DPP (Digital Permits for 
+Parking Platform), Payment Processing 
+Services, and Managed Services
+Annual increase of 2%-7% of then-applicable rates at 
+each anniversary (unexercised increases carry 
+forward/compound); plus CPI-based increase during 
+Renewal Terms capped at 7%/year; plus automatic 
+proportional increase if the City raises parking 
+rates/citation fines/permit fees/other End User 
+charges; plus an inflationary true-up if cumulative CPI 
+exceeds 7% in any 12-month period
+DPP Only Annual fee increase of 2%-7% of then-applicable 
+rates (unexercised increases can carry 
+forward/compound at next anniversary); plus CPI-
+based increase during Renewal Terms, capped at 
+7%/year; plus automatic proportional increase if 
+Customer raises parking rates/citation fines/permit 
+fees
+CMP 2-7
+CMP 2-7
+MPP (Mobile Payment for Parking 
+Platform), CMP (Citation Management 
+for Parking), Payment Processing 
+Services, Managed Services, and 
+Hardware (licensed or third-party 
+supplied)
+Annual increase of 2%-7% of then-applicable rates at 
+each anniversary (unexercised increases carry 
+forward/compound); plus CPI-based increase during 
+Renewal Terms capped at 7%/year; plus automatic 
+proportional increase if the Town raises parking 
+rates/citation fines/permit fees/other End User 
+charges; plus an inflationary true-up if cumulative CPI 
+exceeds 7% in any 12-month period
+CMP (Citation Management for 
+Parking), Payment Processing 
+Services, and Hardware
+2-7%
+MPP, Payments 2-7
+Card Present, Gateway Fee 2-7%
+DPP Only 2-7
+--- page 10 ---
+Pass-through costs (postage, merchant 
+processing, hosting); direct cost 
+adjustments (hosting, data storage, 
+payment network fees); End User fees 
+(convenience/SMS) settable/modifiable by 
+Passport at its sole discretion
+3/13/2026
+Pass-through costs (postage, merchant 
+processing fees, hosting costs); direct cost 
+adjustments (payment network fees, third-
+party integrations)
+46112
+Pass-through costs (postage, shipping, 
+subcontractor, hosting, third-party vendor 
+costs); direct cost adjustments (hosting, 
+data storage, payment network fees, 
+integrations); End User fee changes at 
+Passport's discretion; inflationary/CPI true-
+up if cumulative CPI exceeds 7% in a 12-
+month period; DPP merchant services fee 
+3.5% + $0.35, payment gateway fee 
+$0.05, $5.00 convenience fee per 
+residential permit, $3.50 per temporary 
+permit (passed to end user)
+3/31/2026
+All adjustments 4/1/2026
+4/1/2026
+Pass-through costs (postage, mailing, 
+shipping, subcontractor, merchant 
+processing, hosting, other third-party 
+vendor costs); direct cost adjustments 
+(hosting, data storage, payment network 
+fees, subcontracted operations, third-party 
+integrations)
+4/20/2026
+General right for Passport to 
+modify/update fees over time (not a 
+defined percentage/formula)
+4/20/2026
+4/24/2026
+5/1/2026
+5/1/2026
+--- page 11 ---
+3-year initial term; auto-renews for 
+successive 12-month terms unless either 
+party gives 90 days' non-renewal notice
+90 calendar days' notice prior to 
+expiration of the current term
+3-year initial term; auto-renews for 
+successive 12-month terms thereafter
+90 calendar days' notice prior to 
+expiration of the current term (for 
+non-renewal)
+3-year initial term (P3Y); 12-month 
+renewal terms (P12M)
+90 days' notice
+2 years, 12 month renewals 90 days' notice (standard); LPR 
+section auto-terminates if annual 
+pricing isn't agreed
+3 years, 12 month renewal 90 days prior
+36-month Initial Term; renews for 
+successive 12-month Renewal Terms 
+upon mutual agreement
+90 days' notice
+3-year initial term from Go-Live Date 90 days' notice generally; 30 days' 
+notice for material breach
+1 year auto renewal 90 days prior
+3 years, 12 month renewals 90 days prior to expiration
+3 years, 12 months
+--- page 12 ---
+1/12/2027 3/13/2027
+Matches the pre-filled reference row (row 8) 
+from Cecily's original Q1 2027 Renewals 
+spreadsheet (Price Lock=Yes, 2-7%, Effective 
+3/31/2026, Term "1 year, two automatically 
+renew terms", Termination "90 calendar days 
+prior to expiration") - Ironclad confirms and 
+adds full product-line detail and the additional 
+CPI/proportional/inflationary mechanisms not 
+captured in the original reference row
+1/30/2027 3/31/2027
+Same underlying contract reviewed in the first 
+(51-account) list; this pass adds the specific 
+product-line detail (DPP/Payments/Hardware) 
+that the earlier review did not capture
+1/30/2027 3/31/2027
+This is LAZ Parking's general/master California 
+agreement - the search did not surface a 
+location-specific contract naming "University 
+Hospitals Cleveland OH," so this may be a 
+shared master agreement covering multiple 
+LAZ sites rather than one written specifically 
+for this location. Recommend confirming with 
+the client team whether a site-specific order 
+form exists for this location.
+1/31/2027 4/1/2027
+Contracted with Plymouth Growth and 
+Development Corporation (PGDC), Plymouth, 
+MI's downtown development authority
+1/31/2027 4/1/2027
+2/19/2027 4/20/2027
+2/19/2027 4/20/2027
+2/23/2027 4/24/2027
+3/2/2027 5/1/2027
+This is LAZ Parking California LLC's general 
+agreement - the search did not surface a 
+location-specific contract naming "Pomona" 
+(same underlying record as the Hawthorne, CA 
+and University Hospitals Cleveland OH queries 
+above), so this may be a shared master 
+agreement rather than one written specifically 
+for this location. Recommend confirming with 
+the client team whether a site-specific order 
+form exists.
+3/2/2027 5/1/2027
+--- page 13 ---
+5%
+5%
+5%
+5%
+5%
+5%
+5%
+5%
+5%
+5%
+--- page 14 ---
+
+--- page 15 ---
+Town of Huntington, NY Jeanette Yes
+Town of Forest Heights MD Sierra Yes
+City of Williamsburg, VA Kristin Yes
+Corporate Security & Investigative 
+Services
+Rob Yes
+Pierce County Parks and Recreation Dylan Yes
+City of Kingston NY Yes
+Town of Berwyn Heights, MD Sierra Yes
+Northeastern Illinois University Vicky Yes
+City of Statesville, NC Mike Yes
+CityParking Ben Yes
+City of Waterloo Vicky Yes
+City of Artesia, CA Jackson Yes
+City of Troy Jeanette Yes
+City of Racine, Wisconsin Getting 
+reassigned
+Yes
+Palmer Square Management Yes
+City of Ogden City UT Dylan Yes
+Coast Community College District Vicky Yes
+City of Virginia Beach, VA Kristin Yes
+University of Illinois Urbana - Champaign Yes
+New Bedford Kelsey Yes
+City of Hyattsville MD Sierra Yes
+City of New London Mike Yes
+Town of Manchester CT Mike Yes
+City of Penticiton Yes
+Leisure World - Seal Beach CA Mike Yes
+--- page 16 ---
+MPP (Mobile Payment for Parking 
+Platform) and Payment Processing 
+Services
+Annual increase of 2%-7% of then-applicable rates at 
+each anniversary (unexercised increases carry 
+forward); plus CPI-based increase during Renewal 
+Terms capped at 7%/year; plus automatic 
+proportional increase if the Town raises parking 
+rates/citation fines/permit fees/other End User 
+charges
+CMP, DPP 2-7
+CMP, DPP, Payments 2-7
+MPP, CMP, DPP 2-7
+MPP,  MPP Payments, CMP, LPR 2-7%
+Pax maintenance fee 2-7
+CMP (Citation Management Platform), 
+DPP (Digital Permits for Parking 
+Platform), and Payment Processing 
+Services
+Annual increase of 2%-7% of then-applicable rates at 
+each anniversary
+MPP, DPP 2-7
+CMP (Citation Management for 
+Parking) and Payment Processing 
+Services
+At each anniversary of this Order Form, Passport 
+willapply a fee increase of no less
+than 2 percent and no more than 7 percent of then -
+applicable rates for Services
+purchased under this Order Form
+MPP, CMP, DPP, and Payment 
+Processing Services
+Annual increase of 2%-7% of then-applicable rates at 
+each anniversary (unexercised increases carry 
+forward); plus CPI-based increase during Renewal 
+Terms capped at 7%/year; plus automatic 
+proportional increase if Customer raises parking 
+rates/citation fines/permit fees/other End User 
+charges; plus an inflationary true-up (30 days' notice) 
+if cumulative CPI exceeds 7% in a 12-month period
+MPP (Mobile Payment for Parking) 2-7%
+Card Present, Gateway Fee ONLY 2-7
+MPP, DPP 2-7
+CMP (Citation Management for 
+Parking), Payment Processing 
+Services, and Hardware
+Annual increase of 2%-7% of then-applicable rates at 
+each anniversary; plus CPI-based increase during 
+Renewal Terms capped at 7%/year; plus automatic 
+proportional increase if rates/fees charged to end 
+users increase
+MPP, Payments 2-7
+MPP (Mobile Payment for Parking 
+Platform), CMP (Citation Management 
+for Parking), DPP (Digital Permits for 
+Parking Platform), Payment Processing 
+Services, and Hardware
+Metadata flags priceLockYn = true and 
+feeAdjustmentsYn = true; specific annual escalation 
+percentage/formula not detailed in the text retrieved - 
+recommend confirming
+MPP (Mobile Payment for Parking 
+Platform) and Managed Services
+Annual increase of 2%-7% of then-applicable rates at 
+each anniversary; plus automatic proportional 
+increase if the District raises rates for services 
+purchased by End Users
+CMP 2-7%
+MPP, Payments Does not exceed 7%
+CMP 2-7
+MPP,CMP, DPP, Payments 2-7
+CMP 2-7
+MPP,CMP, DPP, Payments 2-7
+MPP 2-7
+CMP, Payments 2-7
+--- page 17 ---
+Inflationary true-up if cumulative CPI 
+exceeds 7% in a 12-month period; pass-
+through costs (postage, hosting, merchant 
+processing); direct cost adjustments
+5/27/2026
+N/A 6/1/2026
+6/10/2025
+6/23/2026
+N/A 6/25/2026
+6/25/2026
+End User rate increases automatically and 
+proportionately increase Passport's 
+associated fee; pass-through costs for 
+postage/mailing/shipping with written 
+notice
+6/30/2025
+6/30/2026
+feeAdjustmentsYn flag = true; specific 
+mechanism not detailed in the text 
+retrieved
+7/1/2025
+Pass-through costs (postage, merchant 
+fees, hosting) and direct cost adjustments 
+(payment network fees, third-party 
+integrations), both with advance written 
+notice
+7/1/2026
+7/1/2026
+Inflationary Economic Adjustments 7/1/2026
+7/9/2025
+General right for Passport to 
+modify/update fees over time (not a 
+defined percentage/formula)
+8/1/2026
+8/21/2026
+Flagged true in metadata 
+(feeAdjustmentsYn) but specific 
+mechanism not detailed in the text 
+retrieved
+8/22/2025
+Proportional fee increase tied to End User 
+rate increases
+9/3/2025
+None identified 9/11/2026
+9/17/2026
+9/21/2026
+9/25/2026
+10/1/2026
+10/12/2026
+11/1/2026
+12/27/26
+--- page 18 ---
+3-year initial term; auto-renews for 
+successive 12-month terms unless either 
+party gives 90 days' non-renewal notice
+90 calendar days' notice prior to 
+expiration of the current term
+3 years, 12 months 90 days prior
+36-month initial term; optional 24-month 
+extension/renewal
+90 days' notice
+3 years, 12 month renewals 90 days prior to expiration
+3 years, 12 months renewals 90 days prior to termination
+same as agreement ""
+36-month initial term; auto-renews for a 
+successive 24-month term unless either 
+party gives 90 days' non-renewal notice
+90 calendar days' notice prior to 
+expiration of the current term
+3 years, 12 months 90 days prior
+36-month initial term (expiring 6/30/2028); 
+auto-renewing 24-month renewal term
+90 days' prior written notice 
+(material breach)
+3-year initial term; auto-renews for 
+successive 12-month periods
+90 calendar days' notice prior to 
+expiration of the Initial or then-
+current Renewal Term
+Unable to confirm - term/renewal structure 
+not specified in documents on file
+90 days prior to termination
+60-month (5-year) initial term; auto-
+renewal structure allowing for 2 renewals
+90 days' notice for convenience
+60 months, 12 months 90 days prior
+3-year initial term; auto-renews for 
+successive 1-year terms
+90 days' written notice for non-
+renewal; immediate termination 
+available for card-network 
+requirements or material risk
+1 year auto renewal 90 days prior
+36-month initial term; 12-month auto-
+renewals
+90 days' prior written notice for 
+termination for breach60-month initial term; renews by mutual 
+consent for successive 12-month renewal 
+terms
+90 calendar days' notice prior to 
+expiration of the current term (to 
+prevent renewal)Co-terminous with initial agreement City may terminate for 
+convenience with at least 30 days' 
+written notice5 years, 12 months 90 days prior
+3 years, 12 months 90 days prior
+5 years, 12 months 90 days prior
+3 years, 12 months 90 days prior
+1 year auto renewal 90 days prior
+3 years, 12 months 90 days prior
+3 years, 12 months 180 days prior
+--- page 19 ---
+3/28/2027 5/27/2027
+4/2/2027 6/1/2027
+4/11/2027 6/10/2027
+4/24/2027 6/23/2027
+4/26/2027 6/25/2027
+4/26/2027 6/25/2027
+5/1/2027 6/30/2027
+5/1/2027 6/30/2027
+5/2/2027 7/1/2027
+Counterparty is "CityParking Inc." 5/2/2027 7/1/2027
+Identified as City of Waterloo, IA 5/2/2027 7/1/2027
+5/2/2027 7/1/2027
+5/10/2027 7/9/2027
+A second, older 2017 agreement (IC-3033) 
+also exists but is expired
+6/2/2027 8/1/2027
+6/22/2027 8/21/2027
+6/23/2027 8/22/2027
+7/5/2027 9/3/2027
+7/13/2027 9/11/2027
+7/19/2027 9/17/2027
+7/23/2027 9/21/2027
+7/27/2027 9/25/2027
+8/2/2027 10/1/2027
+8/13/2027 10/12/2027
+9/2/2027 11/1/2027
+10/28/2027 12/27/2027
+--- page 20 ---
+5%
+5%
+5%
+5%
+5%
+5% 1200 $60.00
+5%
+5%
+5%
+5%
+5%
+5%
+5%
+5%
+5%
+5%
+5%
+5%
+5%
+5%
+5%
+5%
+5%
+5%
+5%
+--- page 21 ---
+pending contract signature
+pending contract signature
+pending contract signature
+pending contract signature
+pending contract signature
+pending contract signature
+pending contract signature
+--- page 22 ---
+Methodology
+This is a curated list of 36 lines (35 unique account names, with Town of Westerly RI supplied twice and kept as separate rows) that Cecily identified as likely 
+having price-lock verbiage. Unlike prior batches, this review also confirms the specific Passport product line(s) each price-lock clause applies to: MPP 
+(Mobile Payment for Parking), DPP (Digital Permits for Parking Platform), CMP (Citation Management Platform), and/or Payments (unified 
+payments/merchant processing).
+Researched via the Ironclad Contracts connector using conversational search. For any initial "not found" result, a second, broader search (dropping "City of"
+/"Town of" prefixes, searching by the bare place name) was tried before concluding not-found - this recovered several accounts an exact-match search 
+initially missed (e.g., City of Ogden City UT, City of Oxford OH, City of Statesville NC, City of Racine WI, City of Baraboo WI, Coast Community College 
+District, and CityParking).
+Two accounts (City of Rye NY, SP Plus - City of Decatur) overlap with prior reviews; this pass re-queried them specifically to capture the product-line detail 
+the earlier reviews did not record.
+Color key
+Green = a contract was located and its price-lock/product-line details were reasonably confirmed.
+Amber = a contract was located, but part of the answer (price lock, term, or termination) could not be confirmed because the base agreement or full clause 
+text wasn't returned by search - only an amendment, order form, or partial metadata was available.
+Red/salmon = no contract could be located in Ironclad under this account name at all, even after a broader retry search.
+Confirmed price lock = Yes (15 of 35 unique accounts)
+City of Ogden City UT, City of Victoria, City of St. Augustine IL, Central Putgent Sound Regional Transit Authority, City of Rye NY, Town of Westerly RI, City 
+of Oxford OH, Town of Berwyn Heights, MD, City of Statesville, NC, CityParking, Town of Kennebunkport, ME, Coast Community College District, SP Plus - 
+City of Decatur, LAZ-Hawthorne, CA, Town of Huntington, NY.
+Accounts with no contract found (6)
+Town of Andover, Pierce County Parks and Recreation, Benton Harbor, MI, City of Providence, RI, Corporate Security & Investigative Services, Town of 
+Forest Heights MD.
+These may exist under a different legal/counterparty name in Ironclad. Since Cecily identified this list specifically as clients with price-lock verbiage, it's worth 
+double-checking the exact entity name for each of these before concluding no price lock exists - e.g., "CityParking" was ultimately found as "CityParking Inc."
+Accounts found but with an incomplete picture (amber) (4)
+Mitchell Time and Parking, City of Kingston, City of Waterloo, Northeastern Illinois University.
+Notable findings
+City of Victoria (BC, Canada): unusual step-schedule price lock - not a percentage but a fixed per-transaction fee that rises each year (Year 1 $0.06 to Year 
+5 $0.16 USD) for MPP.Central Puget Sound Regional Transit Authority (Sound Transit): the most detailed and longest-dated escalation schedule found across any review to date - 
+specific 5% increases (DPP/CMP/MLPR) and 3.5%/year (Parking Management Services) beginning in Year 6 (2027) and again in Year 11 (2032), plus 
+named merchant-processing rate increases at each step.City of Rye NY and Town of Westerly RI and CityParking and Coast Community College District and Town of Huntington NY and Town of Berwyn Heights 
+MD and Town of Kennebunkport ME and LAZ-Hawthorne CA all carry the same standard Passport escalation template: 2%-7% annual increase, CPI 
+increase capped at 7%/year during renewals, and automatic proportional increase tied to the client's own rate increases.City of Oxford OH: a specific 5% annual increase applies only to the combined CMP/DPP subscription fee ($59,064/year), not the full agreement.
+LAZ - Pomona CA: no base-service escalation, but a distinct 30% CMP fee applies specifically to escalated (delinquent) citation amounts - this is a per-
+transaction penalty structure rather than a renewal-based price lock.LAZ- University Hospital Cleveland OH and LAZ - Pomona CA both matched LAZ Parking California LLC's general/master agreement rather than a location-
+specific contract naming that site - worth confirming with the client team whether a site-specific order form exists.City of Kingston: price-lock detail (3% then 4% annual increase) comes from the Order Form Cecily supplied directly in an earlier turn, not from this Ironclad 
+pass - Ironclad's own amendment record did not restate the clause.
+--- page 23 ---
+Account Name Price Lock 
+Verbiage Product(s) Covered
+Mitchell Time and 
+Parking
+No Card-Present payment processing at 
+parking pay stations (added via First 
+Amendment)
+City of Kingston Unable to 
+confirm from 
+this query - 
+amendment 
+retrieved did not 
+restate the 
+price-lock 
+clause
+Managed Services (Mobile Citation 
+Data Plan, Remote Support) per the 
+retrieved amendment; base agreement 
+also references 
+MPP/CMP/DPP/Payments per a 
+separately-obtained Order Form (see 
+note)
+Key West FL No N/A - no price lock or fee-adjustment 
+clause (priceLockYn and 
+feeAdjustmentsYn both false in 
+metadata)
+Town of Andover N/A N/A
+Town of 
+Kennebunkport, ME
+Yes Hardware only
+--- page 24 ---
+Verbiage Fee Adjustments
+N/A - no annual price escalation clause found Card Present Payments revenue share 
+negotiated location-by-location; custom 
+rate of 2.75% + $0.30/transaction for card-
+present merchant processing
+The Per Transaction MPP Service and License Fee of 
+$0.35 Per Transaction shall be fixed at
+this rate for the Initial Term.
+Amendment updates the Managed 
+Services line item for Mobile Citation Data 
+Plan and Remote Support; specifics not 
+detailed
+Pricing set forth in the products and servies section of this 
+order form shall remain fixed for a period of five (5) years. 
+None identified
+Only price lock with with LPR order form N/A
+Annual increase of 2%-7% of then-applicable rates at each 
+anniversary (unexercised increases carry forward); plus 
+CPI-based increase during Renewal Terms capped at 7%
+/year; plus automatic proportional increase if the Town 
+raises parking rates/citation fines/permit fees/other End 
+User charges
+Pass-through costs (postage, shipping, 
+merchant processing fees, hosting); direct 
+cost adjustments (data storage, payment 
+network fees, third-party integrations); 
+inflationary true-up (30 days' notice) if 
+cumulative CPI exceeds 7% in a 12-month 
+period
+--- page 25 ---
+Effective Date Term Termination Expired 
+contract?
+Found in 
+Ironclad?
+11/14/2023 (Partner 
+Acceptance Document); 
+First Amendment 
+effective 12/21/2023
+Unable to confirm - 
+term/renewal structure not 
+specified in documents on 
+file
+Unable to 
+confirm - not 
+specified in 
+documents on 
+file
+Unable to 
+confirm - 
+term/renewal 
+structure not 
+available
+Yes
+2/23/2026 (Software 
+License and Service 
+Agreement); amendment 
+executed 3/3/2026
+Unable to confirm - base 
+agreement not returned in 
+this search
+Unable to 
+confirm - not in 
+the retrieved 
+amendment
+Unable to 
+confirm - base 
+agreement 
+term/renewal 
+structure not 
+available in this 
+search's results
+Yes
+7/14/2025 5-year initial term 90 days' noticeNo - scheduled 
+to expire 
+7/14/2030
+Yes
+N/A N/A N/A No
+2/4/2026 (Order Form); 
+underlying Software 
+License and Service 
+Agreement dated 
+7/30/2020
+36-month initial term (per 
+Agreement properties); 12-
+month renewal terms; Order 
+Form runs co-terminously 
+with the 2020 base 
+Agreement
+30 days' noticeNo - 36-month 
+term active from 
+2/4/2026
+Yes
+--- page 26 ---
+Ironclad 
+Record(s) Notes
+IC-5080 (First 
+Amendment)
+IC-6088 
+(amendment)
+This is the same City of Kingston, NY client reviewed 
+earlier via a directly-supplied Order Form (dated 
+6/25/2026): that document showed a price lock of 3% 
+at the 1st anniversary and 4% at the 2nd anniversary 
+and thereafter, for hardware/fees under the Order 
+Form, co-terminous with this 2/23/2026 base 
+Agreement. Combining both sources: price lock = 
+Yes, 3%/4% annual increase; product line likely spans 
+the full Agreement (MPP/CMP/DPP/Payments) since 
+the Order Form fees run under the base SLSA, 
+though the exact scope was not restated by Ironclad 
+in either document reviewed
+Note - appears the price lock was 
+on a one time hardware purchase 
+agreement
+IC-5593
+No contract 
+found in 
+Ironclad under 
+this name 
+(searched as 
+Town of 
+Andover, MA)
+IC-6042, IC-
+6050
+--- page 27 ---
+#VALUE!

@@ -492,3 +492,27 @@ working here:
   tabs; library Read Me renamed "Library Read Me", library Cleanup Backlog dropped and its Note column merged into the dictionary's
   dropdown backlog), built by `scripts/data-library/combine_workbooks.py <dictionary.xlsx> <library.xlsx> <out.xlsx>` (about 60 s,
   cell-by-cell style copy). Rebuild chain: export doc tabs as markdown -> dictionary_to_xlsx.py -> combine_workbooks.py.
+- Price Increase Automation (Cecily's fee-increase / price-lock sheet into Salesforce; design = Option A, a Price
+  Escalation custom object under Account with a Create Increase Opp action, a weekly reminder flow and a close-the-loop
+  flow; decided 2026-10-16: button first, automatic creation later; who enters the terms is with Marcia). The build runs
+  in the PIA Developer sandbox (requested 2026-10-20 20:58 UTC, description "Price Increase Automation") from a SEPARATE
+  session. Everything that session needs is in the Claude Doc "Price Increase Automation: Sandbox Build Handoff"
+  (claude.ai/code/artifact/47573c9d-7fb0-43ef-b22b-dfac2b739dc6); `docs/price-increase/` holds a markdown copy, the two
+  rollback probes (`pricelock_probe.apex`, `pricelock_probe2.apex`, written against Admin Account Test Org) and Cecily's
+  2026-10-07 export (pdf + text). Design doc: "Price Lock & Fee Increase Tracking: Options A and B"
+  (claude.ai/code/artifact/f4dc2ceb-5910-4ac2-8a57-c8cdef746f4d). Facts verified 2026-10-20: Revenue Enhancement deals
+  are all `Standard_Opportunity` record type, 131 created T12 (70 CUSTOM - SF Admin, 58 CUSTOM - CS User, 3 Minimum
+  Access), CS won 113 of 116; every `Stage_Gate_*`, `Stage_Discovery_Fields` and `Required_Incumbent` formula tests Type
+  New Customer / Cross-Sell, so a RevEn deal on Discovery -> Contract -> Closed Won meets only `Next_Step_must_be_current`,
+  `Require_Why_Passport`, `Stop_close_won_opp_missing_opp_product`, the Account billing city/state and Close Date rules
+  (plus `Dispute_Fee_Required_on_Payments_Deals` on Payments lines); `Prevent_Closed_Opps_from_being_edited` locks closed
+  deals once `Deal_Forecast_Category_Lock__c` is set (admins, Service Delivery and a hard-coded user list exempt). On
+  Closed Won the renewal flow (Type New Customer / Renewal only) and `Opportunity_Closed_Won_Master_Flow` (New Customer,
+  Cross-Sell, Upsell branches) skip it, while `EMAIL_ALERT_Notify_CS_that_an_RevEn_opp_has_been_Closed_By_CS` and
+  `Slack_Notifications_for_Deals_Won` (no Type filter) fire; `Slack_Notification_for_New_Opportunities` is New Customer /
+  Cross-Sell only; `Opportunity_Send_Email_on_Owner_or_CS_Rep_Change` fires on update only (owner change, or CS rep change
+  on an Approved-by-CS non-Cross-Sell deal). `Revenue_Enhancement_Type__c` is blank on 911 of 1,042 RevEn deals all time.
+  Sandbox prep: Developer sandboxes copy no data (seed products, price book entries, accounts, contacts), user emails get
+  .invalid, deactivate `Create_Intercom_Company_on_New_Account`, the four record-triggered Slack flows and the three
+  scheduled Slack digests first. CLI gotcha: `sf project retrieve start --output-dir` into a dot-folder (`.retrieve_tmp`)
+  returns status 0 with 0 files (forceignore); use a plain folder name inside the project and delete it afterwards.
